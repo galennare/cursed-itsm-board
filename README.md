@@ -1,3 +1,6 @@
+# cursed-agile-board
+CISC 275 Project chaos
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
