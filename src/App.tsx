@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { TicketButton } from "./components/TicketButton";
+import { Toolbar } from "./components/CentralToolbar";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 </div>
             </header>
             <TicketButton></TicketButton>
+            <Toolbar></Toolbar>
         </div>
     );
 }
