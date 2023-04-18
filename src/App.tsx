@@ -1,6 +1,10 @@
 import React from "react";
 import "./App.css";
 import { TicketButton } from "./components/TicketButton";
+import { DropDownLogIn } from "./components/DropDownLogIn";
+import { Preferences } from "./components/Preferences";
+import { Ticket } from "./components/Ticket";
+import { ViewMyWork } from "./components/ViewMyWork";
 
 function App() {
     return (
@@ -14,7 +18,17 @@ function App() {
                     </h4>
                 </div>
             </header>
+            <hr></hr>
             <TicketButton></TicketButton>
+            <hr></hr>
+            <DropDownLogIn></DropDownLogIn>
+            <hr></hr>
+            <Preferences></Preferences>
+            <hr></hr>
+            <Ticket></Ticket>
+            <hr></hr>
+            <ViewMyWork></ViewMyWork>
+            <hr></hr>
         </div>
     );
 }
