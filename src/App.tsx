@@ -1,12 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+
+import { CentralListSection } from "./component/CentralSection";
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div>
+            <header>
                 <div>
                     <h1>Team 3</h1>
                     <h4>Galen Nare</h4>
@@ -17,6 +17,13 @@ function App() {
                     <h4>Alexandra Croce</h4>
                 </div>
             </header>
+            <div>
+                {CentralListSection("New", [
+                    "Ticket 1",
+                    "Ticket 2",
+                    "Ticket 3"
+                ])}
+            </div>
         </div>
     );
 }
