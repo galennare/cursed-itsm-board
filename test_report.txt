@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders react link (38 ms)
+  ✕ renders react link (58 ms)
 
   ● renders react link
 
@@ -31,10 +31,19 @@ FAIL src/App.test.tsx
                 [0mGalen Nare[0m
               [36m</h4>[39m
               [36m<h4>[39m
+                [0mMichael Arocho[0m
+              [36m</h4>[39m
+              [36m<h4>[39m
                 [0mSolenn Gacon[0m
               [36m</h4>[39m
               [36m<h4>[39m
                 [0mNicholas DiGirolamo[0m
+              [36m</h4>[39m
+              [36m<h4>[39m
+                [0mAndrew Roberts[0m
+              [36m</h4>[39m
+              [36m<h4>[39m
+                [0mAlexandra Croce[0m
               [36m</h4>[39m
             [36m</div>[39m
           [36m</header>[39m
@@ -69,5 +78,5 @@ All files |     100 |      100 |     100 |     100 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        1.502 s
+Time:        2.261 s
 Ran all test suites.
