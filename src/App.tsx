@@ -16,7 +16,6 @@ function App() {
                     <h4>Alexandra Croce</h4>
                 </div>
             </header>
-            <Button>user</Button>
         </div>
     );
 }
