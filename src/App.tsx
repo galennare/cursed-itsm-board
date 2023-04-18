@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
+import { Button } from "react-bootstrap";
 import "./App.css";
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
                 <div>
                     <h1>Team 3</h1>
                     <h4>Galen Nare</h4>
@@ -17,6 +16,7 @@ function App() {
                     <h4>Alexandra Croce</h4>
                 </div>
             </header>
+            <Button>user</Button>
         </div>
     );
 }
