@@ -4,6 +4,21 @@ import { Form } from "react-bootstrap";
 
 export type StatusType = "pending" | "in progress" | "resolved";
 
+export interface Ticket {
+    /** A unique identifier for the ticket */
+    id: number;
+    /** The human-friendly title of the ticket */
+    name: string;
+    /** The instructions and content of the ticket */
+    descritpion: string;
+    /** The status of the ticket indicating whether it has been resolved or not */
+    status: StatusType;
+    /** The priority of the ticket */
+    priority: number;
+    /** When the ticket was last modified */
+    last_modified: Date;
+}
+
 export function RepresentTicket(): JSX.Element {
     //Button to edit, button to copy, button to create new textbox
 
@@ -12,7 +27,9 @@ export function RepresentTicket(): JSX.Element {
     const[ticketDescription, setTicketDescription] = useState<string>("No description.");
     const[ticketStatus, setTicketStatus] = useState<StatusType>("pending");
     const[ticketPriority, setTicketPriority] = useState<number>(0);
-    const [ticketLastModified, setTicketLastModified] = useState<Date>();
+    //const [ticketLastModified, setTicketLastModified] = useState<Date>();
+    //const [ticketPreviousVersion, setTicketPreviousVersion] = useState<JSX.Element>();
+    const [ticketImage, setTicketImage] = useState<string>("");
     
 }
 
