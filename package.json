@@ -1,5 +1,5 @@
 {
-  "name": "cursed-agile-board",
+  "name": "cursed-itsm-board",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -47,6 +47,15 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "!src/index.tsx",
+      "!src/reportWebVitals.ts",
+      "!src/react-app-env.d.ts"
     ]
   }
 }
