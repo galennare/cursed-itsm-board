@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
@@ -17,20 +17,41 @@ export interface Ticket {
     priority: number;
     /** When the ticket was last modified */
     last_modified: Date;
+    /** The previous version of the ticket */
+    previous_version: null;
+    /** An image representing the ticket */
+    image: string;
+    /** The author of the ticket */
+    author: User;
+    /** The assignee/resolver of the ticket */
+    assignee: User;
+}
+
+export interface User {
+    /** the username of the user */
+    username: string;
+    /** the name of the user */
+    name: string;
+    /** the image of the user */
+    image: string;
+    /** the ticket list of the user */
+    ticket_list: JSX.Element[];
 }
 
 export function RepresentTicket(): JSX.Element {
     //Button to edit, button to copy, button to create new textbox
 
     //This is State
-    const[ticketTitle, setTicketTitle] = useState<string>("Untitled");
-    const[ticketDescription, setTicketDescription] = useState<string>("No description.");
-    const[ticketStatus, setTicketStatus] = useState<StatusType>("pending");
-    const[ticketPriority, setTicketPriority] = useState<number>(0);
+    const [ticketTitle, setTicketTitle] = useState<string>("Untitled");
+    const [ticketDescription, setTicketDescription] =
+        useState<string>("No description.");
+    const [ticketStatus, setTicketStatus] = useState<StatusType>("pending");
+    const [ticketPriority, setTicketPriority] = useState<number>(0);
     //const [ticketLastModified, setTicketLastModified] = useState<Date>();
     //const [ticketPreviousVersion, setTicketPreviousVersion] = useState<JSX.Element>();
     const [ticketImage, setTicketImage] = useState<string>("");
-    
+    //const [ticketAuthor, setTicketAuthor] = useState<User>();
+    //const [ticketAssignee, setTicketAssignee] = useState<User>();
 }
 
 export function RevealAnswer(): JSX.Element {
@@ -113,4 +134,3 @@ export function EditMode(): JSX.Element {
         </div>
     );
 }
-
