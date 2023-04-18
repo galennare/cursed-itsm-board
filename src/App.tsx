@@ -14,6 +14,7 @@ function App() {
                     <h4>Solenn Gacon</h4>
                     <h4>Nicholas DiGirolamo</h4>
                     <h4>Andrew Roberts</h4>
+                    <h4>Alexandra Croce</h4>
                 </div>
             </header>
         </div>
