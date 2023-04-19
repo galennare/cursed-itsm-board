@@ -50,8 +50,40 @@ export function RepresentTicket(): JSX.Element {
     //const [ticketLastModified, setTicketLastModified] = useState<Date>();
     //const [ticketPreviousVersion, setTicketPreviousVersion] = useState<JSX.Element>();
     const [ticketImage, setTicketImage] = useState<string>("");
-    //const [ticketAuthor, setTicketAuthor] = useState<User>();
     //const [ticketAssignee, setTicketAssignee] = useState<User>();
+
+    //This is Control
+    //function to update the title of the ticket
+    function updateTicketTitle(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketTitle(event.target.value);
+    }
+
+    //function to update the description of the ticket
+    function updateTicketDescription(
+        event: React.ChangeEvent<HTMLInputElement>
+    ) {
+        setTicketDescription(event.target.value);
+    }
+
+    //function to update the status of the ticket
+    /*function updateTicketStatus(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketStatus(event.target.value);
+    }*/
+
+    //function to update the priority of the ticket
+    /*function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketPriority(event.target.value);
+    }*/
+
+    //function to update the last modified field of the ticket
+
+    //function to update the previous version of the ticket
+
+    function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketImage(event.target.value);
+    }
+
+    //function to update the assignee of the ticket
 }
 
 export function RevealAnswer(): JSX.Element {
