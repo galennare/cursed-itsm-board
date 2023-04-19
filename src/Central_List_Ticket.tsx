@@ -39,9 +39,10 @@ export interface User {
 }
 
 export function RepresentTicket(): JSX.Element {
-    //Button to edit, button to copy, button to create new textbox
+    //Note: Button to edit, button to copy, button to create new textbox
 
-    //This is State
+    //STATE
+    const [inEditMode, setInEditMode] = useState<boolean>(false);
     const [ticketTitle, setTicketTitle] = useState<string>("Untitled");
     const [ticketDescription, setTicketDescription] =
         useState<string>("No description.");
@@ -52,7 +53,11 @@ export function RepresentTicket(): JSX.Element {
     const [ticketImage, setTicketImage] = useState<string>("");
     //const [ticketAssignee, setTicketAssignee] = useState<User>();
 
-    //This is Control
+    //CONTROL functions
+    function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
+        setInEditMode(event.target.checked);
+    }
+
     //function to update the title of the ticket
     function updateTicketTitle(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketTitle(event.target.value);
@@ -84,6 +89,29 @@ export function RepresentTicket(): JSX.Element {
     }
 
     //function to update the assignee of the ticket
+
+    //NOT IN EDIT MODE functions: last_modified, previous_version, assignee
+    function titleNotInEditMode(): string {
+        return ticketTitle;
+    }
+
+    function descriptionNotInEditMode(): string {
+        return ticketDescription;
+    }
+
+    function statusNotInEditMode(): StatusType {
+        return ticketStatus;
+    }
+
+    function priorityNotInEditMode(): number {
+        return ticketPriority;
+    }
+
+    function imageNotInEditMode(): string {
+        return ticketImage;
+    }
+
+    //IN EDIT MODE functions
 }
 
 export function RevealAnswer(): JSX.Element {
