@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { EnumStatus } from "../interface/EnumStatus";
+import { Ticket } from "../interface/Ticket";
 
 export function CentralListSection(
     ticketStatus: EnumStatus,
-    ticketList: string[] // TODO use ticket object
+    ticketList: Ticket[] // TODO use ticket object
 ): JSX.Element {
     const tableElements: JSX.Element[] = ticketList.map((ticket) => {
         // TODO replace key with unique ticket id
         return (
-            <div className={""} key={ticket}>
-                <h6>{ticket}</h6>
+            <div className={""} key={ticket.id}>
+                <h6>{ticket.name}</h6>
             </div>
         );
     });

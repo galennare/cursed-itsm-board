@@ -7,6 +7,7 @@ import { Ticket } from "./components/Ticket";
 import { ViewMyWork } from "./components/ViewMyWork";
 
 import { CentralListSection } from "./component/CentralSection";
+import {User} from "./interface/User";
 
 function App() {
     return (
@@ -33,23 +34,42 @@ function App() {
             <hr></hr>
             <div>
                 {CentralListSection("New", [
-                    "Ticket 1",
-                    "Ticket 2",
-                    "Ticket 3"
-                ])}
-            </div>
-            <div>
-                {CentralListSection("In Progress", [
-                    "Ticket 1",
-                    "Ticket 2",
-                    "Ticket 3"
-                ])}
-            </div>
-            <div>
-                {CentralListSection("Resolved", [
-                    "Ticket 1",
-                    "Ticket 2",
-                    "Ticket 3"
+                    {
+                        id: 1,
+                        name: "Ticket 1",
+                        description: "",
+                        status: "New",
+                        priority: 5,
+                        last_modified: new Date(Date.now()),
+                        previous_version: undefined,
+                        image: "null",
+                        author: undefined,
+                        assignee: undefined
+                    },
+                    {
+                        id: 2,
+                        name: "Ticket 2",
+                        description: "",
+                        status: "New",
+                        priority: 5,
+                        last_modified: new Date(Date.now()),
+                        previous_version: undefined,
+                        image: "null",
+                        author: undefined,
+                        assignee: undefined
+                    },
+                    {
+                        id: 3,
+                        name: "Ticket 3",
+                        description: "",
+                        status: "New",
+                        priority: 5,
+                        last_modified: new Date(Date.now()),
+                        previous_version: undefined,
+                        image: "null",
+                        author: undefined,
+                        assignee: undefined
+                    }
                 ])}
             </div>
         </div>
