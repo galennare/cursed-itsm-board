@@ -83,19 +83,28 @@ export function RepresentTicket(): JSX.Element {
     }*/
 
     //function to update the priority of the ticket
-    /*function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
-        setTicketPriority(event.target.value);
-    }*/
+    function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketPriority(parseInt(event.target.value));
+    }
 
     //function to update the last modified field of the ticket
+    /*function updateTicketLastModified(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketLastModified(event.target.value);
+    }*/
 
     //function to update the previous version of the ticket
+    /*function updateTicketPreviousVersion(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketPreviousVersion(event.target.value);
+    }*/
 
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketImage(event.target.value);
     }
 
     //function to update the assignee of the ticket
+    /*function updateTicketAssignee(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketAssignee(event.target.value);
+    }*/
 
     //NOT IN EDIT MODE functions: last_modified, previous_version, assignee
     function titleNotInEditMode(): string {
