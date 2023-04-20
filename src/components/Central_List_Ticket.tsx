@@ -1,42 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import { Ticket } from "../interface/Ticket";
+import { User } from "../interface/User";
 
 export type StatusType = "pending" | "in progress" | "resolved";
-
-export interface Ticket {
-    /** A unique identifier for the ticket */
-    id: number;
-    /** The human-friendly title of the ticket */
-    name: string;
-    /** The instructions and content of the ticket */
-    descritpion: string;
-    /** The status of the ticket indicating whether it has been resolved or not */
-    status: StatusType;
-    /** The priority of the ticket */
-    priority: number;
-    /** When the ticket was last modified */
-    last_modified: Date;
-    /** The previous version of the ticket */
-    previous_version: Ticket;
-    /** An image representing the ticket */
-    image: string;
-    /** The author of the ticket */
-    author: User;
-    /** The assignee/resolver of the ticket */
-    assignee: User;
-}
-
-export interface User {
-    /** the username of the user */
-    username: string;
-    /** the name of the user */
-    name: string;
-    /** the image of the user */
-    image: string;
-    /** the ticket list of the user */
-    ticket_list: Ticket[];
-}
 
 export function RepresentTicket(): JSX.Element {
     //Note: Button to edit, button to copy, button to create new textbox
