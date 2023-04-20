@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import { Ticket } from "./components/Ticket";
 
 export type StatusType = "pending" | "in progress" | "resolved";
 
@@ -19,7 +18,7 @@ export interface Ticket {
     /** When the ticket was last modified */
     last_modified: Date;
     /** The previous version of the ticket */
-    previous_version: null;
+    previous_version: Ticket;
     /** An image representing the ticket */
     image: string;
     /** The author of the ticket */
@@ -36,22 +35,23 @@ export interface User {
     /** the image of the user */
     image: string;
     /** the ticket list of the user */
-    ticket_list: JSX.Element[];
+    ticket_list: Ticket[];
 }
 
 export function RepresentTicket(): JSX.Element {
     //Note: Button to edit, button to copy, button to create new textbox
+    const current_date = new Date();
 
     //STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
-    const [ticketTitle, setTicketTitle] = useState<string>("Untitled");
-    const [ticketDescription, setTicketDescription] =
-        useState<string>("No description.");
+    const [ticketTitle, setTicketTitle] = useState<string>("");
+    const [ticketDescription, setTicketDescription] = useState<string>("");
     const [ticketStatus, setTicketStatus] = useState<StatusType>("pending");
     const [ticketPriority, setTicketPriority] = useState<number>(0);
-    //const [ticketLastModified, setTicketLastModified] = useState<Date>();
+    const [ticketLastModified, setTicketLastModified] =
+        useState<Date>(current_date);
     const [ticketPreviousVersion, setTicketPreviousVersion] =
-        useState<JSX.Element>(RepresentTicket);
+        useState<Ticket | null>(null);
     const [ticketImage, setTicketImage] = useState<string>("");
     const [ticketAssignee, setTicketAssignee] = useState<User>({
         username: "",
