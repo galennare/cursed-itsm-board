@@ -20,13 +20,6 @@ function App() {
                     </h4>
                 </div>
             </header>
-            <div>
-                {CentralListSection("New", [
-                    "Ticket 1",
-                    "Ticket 2",
-                    "Ticket 3"
-                ])}
-            </div>
             <hr></hr>
             <TicketButton></TicketButton>
             <hr></hr>
@@ -38,6 +31,27 @@ function App() {
             <hr></hr>
             <ViewMyWork></ViewMyWork>
             <hr></hr>
+            <div>
+                {CentralListSection("New", [
+                    "Ticket 1",
+                    "Ticket 2",
+                    "Ticket 3"
+                ])}
+            </div>
+            <div>
+                {CentralListSection("In Progress", [
+                    "Ticket 1",
+                    "Ticket 2",
+                    "Ticket 3"
+                ])}
+            </div>
+            <div>
+                {CentralListSection("Resolved", [
+                    "Ticket 1",
+                    "Ticket 2",
+                    "Ticket 3"
+                ])}
+            </div>
         </div>
     );
 }

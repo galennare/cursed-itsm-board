@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import { EnumStatus } from "../interface/EnumStatus";
 
 export function CentralListSection(
@@ -9,38 +8,25 @@ export function CentralListSection(
     const tableElements: JSX.Element[] = ticketList.map((ticket) => {
         // TODO replace key with unique ticket id
         return (
-            <Card
-                body
-                color="primary"
-                outline
-                style={{
-                    width: "18rem",
-                    outlineColor: "white"
-                }}
-                key={ticket}
-            >
-                <CardBody>
-                    <CardSubtitle tag={"h6"}>{ticket}</CardSubtitle>
-                </CardBody>
-            </Card>
+            <div className={""} key={ticket}>
+                <h6>{ticket}</h6>
+            </div>
         );
     });
 
     // const [visible, setVisible] = useState<boolean>(false);
     return (
-        <Card
-            body
-            color="primary"
-            outline
-            style={{
-                width: "18rem",
-                outlineColor: "white"
-            }}
-        >
-            <CardBody>
-                <CardTitle tag={"h3"}>{ticketStatus}</CardTitle>
+        <div>
+            <div className={"List-Section"}>
+                <h3 className={"List-Section-Title"}>
+                    {ticketStatus}
+                    {" Tickets ("}
+                    {ticketList.length}
+                    {")"}
+                </h3>
+                <hr></hr>
                 {tableElements}
-            </CardBody>
-        </Card>
+            </div>
+        </div>
     );
 }
