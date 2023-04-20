@@ -106,7 +106,7 @@ export function RepresentTicket(): JSX.Element {
         setTicketAssignee(event.target.value);
     }*/
 
-    //NOT IN EDIT MODE functions: last_modified, previous_version, assignee
+    //NOT IN EDIT MODE functions
     function titleNotInEditMode(): string {
         return ticketTitle;
     }
@@ -127,7 +127,33 @@ export function RepresentTicket(): JSX.Element {
         return ticketImage;
     }
 
+    function lastModifiedNotInEditMode(): Date {
+        return ticketLastModified;
+    }
+
+    function assigneeNotInEditMode(): User {
+        return ticketAssignee;
+    }
+
     //IN EDIT MODE functions
+    function titleInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="formTitleName">
+                        <Form.Label>Title:</Form.Label>
+                        <Form.Control
+                            value={ticketTitle}
+                            onChange={updateTicketTitle}
+                        />
+                    </Form.Group>
+                    <div>{ticketTitle}</div>
+                </div>
+            );
+        } else {
+            return <p>{titleNotInEditMode()}</p>;
+        }
+    }
 }
 
 export function RevealAnswer(): JSX.Element {
