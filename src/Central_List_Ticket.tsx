@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import { Ticket } from "./components/Ticket";
 
 export type StatusType = "pending" | "in progress" | "resolved";
 
@@ -49,26 +50,21 @@ export function RepresentTicket(): JSX.Element {
     const [ticketStatus, setTicketStatus] = useState<StatusType>("pending");
     const [ticketPriority, setTicketPriority] = useState<number>(0);
     //const [ticketLastModified, setTicketLastModified] = useState<Date>();
-    //const [ticketPreviousVersion, setTicketPreviousVersion] = useState<JSX.Element>();
+    const [ticketPreviousVersion, setTicketPreviousVersion] =
+        useState<JSX.Element>(RepresentTicket);
     const [ticketImage, setTicketImage] = useState<string>("");
-    //const [ticketAssignee, setTicketAssignee] = useState<User>();
+    const [ticketAssignee, setTicketAssignee] = useState<User>({
+        username: "",
+        name: "",
+        image: "",
+        ticket_list: []
+    });
 
     //CONTROL functions
-    function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
-        setInEditMode(event.target.checked);
-    }
 
     //function to update the title of the ticket
-    function updateTicketTitle(event: React.ChangeEvent<HTMLInputElement>) {
-        setTicketTitle(event.target.value);
-    }
 
     //function to update the description of the ticket
-    function updateTicketDescription(
-        event: React.ChangeEvent<HTMLInputElement>
-    ) {
-        setTicketDescription(event.target.value);
-    }
 
     //function to update the status of the ticket
     /*function updateTicketStatus(event: React.ChangeEvent<HTMLInputElement>) {
@@ -84,32 +80,9 @@ export function RepresentTicket(): JSX.Element {
 
     //function to update the previous version of the ticket
 
-    function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
-        setTicketImage(event.target.value);
-    }
-
     //function to update the assignee of the ticket
 
     //NOT IN EDIT MODE functions: last_modified, previous_version, assignee
-    function titleNotInEditMode(): string {
-        return ticketTitle;
-    }
-
-    function descriptionNotInEditMode(): string {
-        return ticketDescription;
-    }
-
-    function statusNotInEditMode(): StatusType {
-        return ticketStatus;
-    }
-
-    function priorityNotInEditMode(): number {
-        return ticketPriority;
-    }
-
-    function imageNotInEditMode(): string {
-        return ticketImage;
-    }
 
     //IN EDIT MODE functions
 }
