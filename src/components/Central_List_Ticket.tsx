@@ -7,7 +7,9 @@ import { User } from "../interface/User";
 export type StatusType = "pending" | "in progress" | "resolved";
 
 export function RepresentTicket(): JSX.Element {
-    //Note: Button to edit, button to copy, button to create new textbox
+    //NOTES:
+    //Button to edit, button to copy, button to create new textbox
+    //Dropdown for the Type union options
     const current_date = new Date();
 
     //STATE
@@ -108,7 +110,7 @@ export function RepresentTicket(): JSX.Element {
         if (inEditMode === true) {
             return (
                 <div>
-                    <Form.Group controlId="formTitleName">
+                    <Form.Group controlId="formTicketTitle">
                         <Form.Label>Title:</Form.Label>
                         <Form.Control
                             value={ticketTitle}
@@ -122,23 +124,69 @@ export function RepresentTicket(): JSX.Element {
             return <p>{titleNotInEditMode()}</p>;
         }
     }
-}
 
-export function RevealAnswer(): JSX.Element {
-    const [visible, setVisible] = useState<boolean>(false);
-
-    function flipVisibility(): void {
-        setVisible(!visible);
+    function descriptionInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="formTicketDescription">
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            //rows={3}
+                            value={ticketDescription}
+                            onChange={updateTicketDescription}
+                        />
+                    </Form.Group>
+                    <div>{ticketDescription}</div>
+                </div>
+            );
+        } else {
+            return <p>{descriptionNotInEditMode()}</p>;
+        }
     }
 
-    return (
-        <div>
-            <Button onClick={flipVisibility}>Reveal Answer</Button>
-            {visible && <div>42</div>}
-        </div>
-    );
+    function priorityInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="formTicketPriority">
+                        <Form.Label>Priority:</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={ticketPriority}
+                            onChange={updateTicketPriority}
+                        />
+                    </Form.Group>
+                    <div>{ticketPriority}</div>
+                </div>
+            );
+        } else {
+            return <p>{priorityNotInEditMode()}</p>;
+        }
+    }
+
+    function imageInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="formTicketImage">
+                        <Form.Label>Image URL:</Form.Label>
+                        <Form.Control
+                            value={ticketImage}
+                            onChange={updateTicketImage}
+                        />
+                    </Form.Group>
+                    <div>{ticketImage}</div>
+                </div>
+            );
+        } else {
+            return <p>{imageNotInEditMode()}</p>;
+        }
+    }
 }
 
+//REFERENCE CODE: InEditMode
 export function EditMode(): JSX.Element {
     //This is State
     const [inEditMode, setInEditMode] = useState<boolean>(false);
