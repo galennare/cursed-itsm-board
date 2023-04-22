@@ -18,17 +18,26 @@ function App() {
                     </h4>
                 </div>
             </header>
+            <br></br>
+            <span>
+                <TicketButton></TicketButton>
+                <DropDownLogIn></DropDownLogIn>
+                <Preferences></Preferences>
+                <ViewMyWork></ViewMyWork>
+            </span>
             <hr></hr>
-            <TicketButton></TicketButton>
-            <hr></hr>
-            <DropDownLogIn></DropDownLogIn>
-            <hr></hr>
-            <Preferences></Preferences>
-            <hr></hr>
+            <h5>New Tickets</h5>
             <Ticket></Ticket>
             <hr></hr>
-            <ViewMyWork></ViewMyWork>
+            <h5>In Progess</h5>
+            <Ticket></Ticket>
             <hr></hr>
+            <h5>Assigned to me</h5>
+            <Ticket></Ticket>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
         </div>
     );
 }
