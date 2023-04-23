@@ -40,6 +40,10 @@ const INITIAL_ADMIN_LIST: Ticket[] = [
 export function AdminList(): JSX.Element {
     const [adminList, setList] = useState<Ticket[]>(INITIAL_ADMIN_LIST);
 
+    /*
+    These are currently not used because I haven't made buttons for them yet.
+    Commented out because otherwise they cause the build to fail.
+
     function addTicket(ticket: Ticket): void {
         setList([...adminList, ticket]);
     }
@@ -50,6 +54,7 @@ export function AdminList(): JSX.Element {
         );
         setList(modifiedList);
     }
+    */
 
     return (
         <div className="AdminList" style={{ float: "left", width: "33%" }}>
