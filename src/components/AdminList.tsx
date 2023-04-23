@@ -38,7 +38,8 @@ const INITIAL_ADMIN_LIST: Ticket[] = [
 ];
 
 export function AdminList(): JSX.Element {
-    const [adminList, setList] = useState<Ticket[]>(INITIAL_ADMIN_LIST);
+    // const [adminList, setList] = useState<Ticket[]>(INITIAL_ADMIN_LIST);
+    const [adminList] = useState<Ticket[]>(INITIAL_ADMIN_LIST);
 
     /*
     These are currently not used because I haven't made buttons for them yet.
