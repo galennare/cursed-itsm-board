@@ -45,9 +45,9 @@ export function RepresentTicket(): JSX.Element {
     }
 
     //function to update the status of the ticket
-    /*function updateTicketStatus(event: React.ChangeEvent<HTMLInputElement>) {
+    function updateTicketStatus(event: React.ChangeEvent<HTMLSelectElement>) {
         setTicketStatus(event.target.value);
-    }*/
+    }
 
     //function to update the priority of the ticket
     function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
@@ -182,6 +182,29 @@ export function RepresentTicket(): JSX.Element {
         }
     }
 
+    function statusInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="ticketStatus">
+                        <Form.Label>Ticket Status</Form.Label>
+                        <Form.Select
+                            value={ticketStatus}
+                            onChange={updateTicketStatus}
+                        >
+                            <option value="pending">Pending</option>
+                            <option value="in progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <div>{ticketStatus}</div>
+                </div>
+            );
+        } else {
+            return <p>{statusNotInEditMode()}</p>;
+        }
+    }
+
     //VIEW
     return (
         <div>
@@ -195,6 +218,7 @@ export function RepresentTicket(): JSX.Element {
             <div>{descriptionInEditMode()}</div>
             <div>{priorityInEditMode()}</div>
             <div>{imageInEditMode()}</div>
+            <div>{statusInEditMode()}</div>
         </div>
     );
 }
