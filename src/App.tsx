@@ -5,6 +5,7 @@ import { DropDownLogIn } from "./components/DropDownLogIn";
 import { Preferences } from "./components/Preferences";
 import { Ticket } from "./components/Ticket";
 import { ViewMyWork } from "./components/ViewMyWork";
+import { AdminList } from "./components/AdminList";
 
 function App() {
     return (
@@ -29,6 +30,16 @@ function App() {
             <hr></hr>
             <ViewMyWork></ViewMyWork>
             <hr></hr>
+
+            <div className="row">
+                <div className="column" style={{ float: "left", width: "33%" }}>
+                    <h1>Central List</h1>
+                </div>
+                <AdminList></AdminList>
+                <div className="column" style={{ float: "left", width: "33%" }}>
+                    <h1>User List</h1>
+                </div>
+            </div>
         </div>
     );
 }
