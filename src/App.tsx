@@ -3,7 +3,7 @@ import "./App.css";
 import { TicketButton } from "./components/TicketButton";
 import { DropDownLogIn } from "./components/DropDownLogIn";
 import { Preferences } from "./components/Preferences";
-import { Ticket } from "./components/Ticket";
+import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
 
@@ -19,17 +19,26 @@ function App() {
                     </h4>
                 </div>
             </header>
+            <br></br>
+            <span>
+                <TicketButton></TicketButton>
+                <DropDownLogIn></DropDownLogIn>
+                <Preferences></Preferences>
+                <ViewMyWork></ViewMyWork>
+            </span>
             <hr></hr>
-            <TicketButton></TicketButton>
+            <h5>New Tickets</h5>
+            <RevealTicket></RevealTicket>
             <hr></hr>
-            <DropDownLogIn></DropDownLogIn>
+            <h5>In Progess</h5>
+            <RevealTicket></RevealTicket>
             <hr></hr>
-            <Preferences></Preferences>
-            <hr></hr>
-            <Ticket></Ticket>
-            <hr></hr>
-            <ViewMyWork></ViewMyWork>
-            <hr></hr>
+            <h5>Assigned to me</h5>
+            <RevealTicket></RevealTicket>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
 
             <div className="row">
                 <div className="column" style={{ float: "left", width: "33%" }}>
