@@ -3,11 +3,9 @@ import "./App.css";
 import { TicketButton } from "./components/TicketButton";
 import { DropDownLogIn } from "./components/DropDownLogIn";
 import { Preferences } from "./components/Preferences";
-import { Ticket } from "./components/Ticket";
+import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
-
-import { CentralListSection } from "./component/CentralSection";
-import {User} from "./interface/User";
+import { AdminList } from "./components/AdminList";
 
 function App() {
     return (
@@ -21,57 +19,20 @@ function App() {
                     </h4>
                 </div>
             </header>
+            <br></br>
+            <span>
+                <TicketButton></TicketButton>
+                <DropDownLogIn></DropDownLogIn>
+                <Preferences></Preferences>
+                <ViewMyWork></ViewMyWork>
+            </span>
             <hr></hr>
-            <TicketButton></TicketButton>
+            <h5>New Tickets</h5>
+            <RevealTicket></RevealTicket>
             <hr></hr>
-            <DropDownLogIn></DropDownLogIn>
+            <h5>In Progess</h5>
+            <RevealTicket></RevealTicket>
             <hr></hr>
-            <Preferences></Preferences>
-            <hr></hr>
-            <Ticket></Ticket>
-            <hr></hr>
-            <ViewMyWork></ViewMyWork>
-            <hr></hr>
-            <div>
-                {CentralListSection("New", [
-                    {
-                        id: 1,
-                        name: "Ticket 1",
-                        description: "",
-                        status: "New",
-                        priority: 5,
-                        last_modified: new Date(Date.now()),
-                        previous_version: undefined,
-                        image: "null",
-                        author: undefined,
-                        assignee: undefined
-                    },
-                    {
-                        id: 2,
-                        name: "Ticket 2",
-                        description: "",
-                        status: "New",
-                        priority: 5,
-                        last_modified: new Date(Date.now()),
-                        previous_version: undefined,
-                        image: "null",
-                        author: undefined,
-                        assignee: undefined
-                    },
-                    {
-                        id: 3,
-                        name: "Ticket 3",
-                        description: "",
-                        status: "New",
-                        priority: 5,
-                        last_modified: new Date(Date.now()),
-                        previous_version: undefined,
-                        image: "null",
-                        author: undefined,
-                        assignee: undefined
-                    }
-                ])}
-            </div>
         </div>
     );
 }
