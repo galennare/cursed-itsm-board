@@ -8,6 +8,7 @@ export type StatusType = "pending" | "in progress" | "resolved";
 
 export function RepresentTicket(): JSX.Element {
     const current_date = new Date();
+    const current_date_string = current_date.toLocaleString();
 
     //STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
@@ -16,7 +17,7 @@ export function RepresentTicket(): JSX.Element {
     const [ticketStatus, setTicketStatus] = useState<StatusType>("pending");
     const [ticketPriority, setTicketPriority] = useState<number>(0);
     const [ticketLastModified, setTicketLastModified] =
-        useState<Date>(current_date);
+        useState<string>(current_date_string);
     const [ticketPreviousVersion, setTicketPreviousVersion] =
         useState<Ticket | null>(null);
     const [ticketImage, setTicketImage] = useState<string>("");
@@ -45,9 +46,9 @@ export function RepresentTicket(): JSX.Element {
     }
 
     //function to update the status of the ticket
-    function updateTicketStatus(event: React.ChangeEvent<HTMLSelectElement>) {
+    /*function updateTicketStatus(event: React.ChangeEvent<HTMLSelectElement>) {
         setTicketStatus(event.target.value);
-    }
+    }*/
 
     //function to update the priority of the ticket
     function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
@@ -55,9 +56,11 @@ export function RepresentTicket(): JSX.Element {
     }
 
     //function to update the last modified field of the ticket
-    /*function updateTicketLastModified(event: React.ChangeEvent<HTMLInputElement>) {
+    function updateTicketLastModified(
+        event: React.ChangeEvent<HTMLInputElement>
+    ) {
         setTicketLastModified(event.target.value);
-    }*/
+    }
 
     //function to update the previous version of the ticket
     /*function updateTicketPreviousVersion(event: React.ChangeEvent<HTMLInputElement>) {
@@ -94,7 +97,7 @@ export function RepresentTicket(): JSX.Element {
         return ticketImage;
     }
 
-    function lastModifiedNotInEditMode(): Date {
+    function lastModifiedNotInEditMode(): string {
         return ticketLastModified;
     }
 
@@ -182,7 +185,7 @@ export function RepresentTicket(): JSX.Element {
         }
     }
 
-    function statusInEditMode(): JSX.Element {
+    /*function statusInEditMode(): JSX.Element {
         if (inEditMode === true) {
             return (
                 <div>
@@ -203,7 +206,7 @@ export function RepresentTicket(): JSX.Element {
         } else {
             return <p>{statusNotInEditMode()}</p>;
         }
-    }
+    }*/
 
     //VIEW
     return (
@@ -218,7 +221,7 @@ export function RepresentTicket(): JSX.Element {
             <div>{descriptionInEditMode()}</div>
             <div>{priorityInEditMode()}</div>
             <div>{imageInEditMode()}</div>
-            <div>{statusInEditMode()}</div>
+            <div>{/*statusInEditMode()*/}</div>
         </div>
     );
 }
