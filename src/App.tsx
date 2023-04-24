@@ -3,7 +3,7 @@ import "./App.css";
 import { TicketButton } from "./components/TicketButton";
 import { DropDownLogIn } from "./components/DropDownLogIn";
 import { Preferences } from "./components/Preferences";
-import { Ticket } from "./components/Ticket";
+import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
 
@@ -28,13 +28,13 @@ function App() {
             </span>
             <hr></hr>
             <h5>New Tickets</h5>
-            <Ticket></Ticket>
+            <RevealTicket></RevealTicket>
             <hr></hr>
             <h5>In Progess</h5>
-            <Ticket></Ticket>
+            <RevealTicket></RevealTicket>
             <hr></hr>
             <h5>Assigned to me</h5>
-            <Ticket></Ticket>
+            <RevealTicket></RevealTicket>
             <br></br>
             <br></br>
             <br></br>
