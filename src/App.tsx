@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { TicketButton } from "./components/TicketButton";
-import { DropDownLogIn } from "./components/DropDownLogIn";
+import { NavigationBar, UserRole } from "./components/NavigationBar";
 import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
 
 function App() {
+    const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
+
     return (
         <div className="App">
             <header className="App-header">
@@ -22,7 +24,10 @@ function App() {
             <br></br>
             <span>
                 <TicketButton></TicketButton>
-                <DropDownLogIn></DropDownLogIn>
+                <NavigationBar
+                    userRole={userRole}
+                    setUserRole={setUserRole}
+                ></NavigationBar>
                 <Preferences></Preferences>
                 <ViewMyWork></ViewMyWork>
             </span>
