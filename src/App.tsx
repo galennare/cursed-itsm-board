@@ -8,6 +8,7 @@ import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
 
 function App() {
+    // userRole is the current role that the user has selected to act as
     const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
 
     return (
