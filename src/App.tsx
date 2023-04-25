@@ -6,6 +6,7 @@ import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
+import { ProfilePhoto } from "./components/ProfilePhoto";
 
 function App() {
     const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
@@ -14,6 +15,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <div>
+                    <ProfilePhoto></ProfilePhoto>
                     <h1>Team 3</h1>
                     <h4>
                         Galen Nare, Michael Arocho, Solenn Gacon, Nicholas
