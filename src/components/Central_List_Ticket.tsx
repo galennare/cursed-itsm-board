@@ -9,23 +9,31 @@ export function RepresentTicket(): JSX.Element {
     const current_date = new Date();
     const current_date_string = current_date.toLocaleString();
 
+    //HELPER FCTS
+    function statusTypeToString(myStatusType: StatusType): string {
+        if (myStatusType === "pending") {
+            return "pending";
+        } else if (myStatusType === "in progress") {
+            return "in progress";
+        } else {
+            return "resolved";
+        }
+    }
+
     //STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
     const [ticketTitle, setTicketTitle] = useState<string>("");
     const [ticketDescription, setTicketDescription] = useState<string>("");
-    const [ticketStatus, setTicketStatus] = useState<StatusType>("pending");
+    const [ticketStatus, setTicketStatus] = useState<string>(
+        statusTypeToString("pending")
+    );
     const [ticketPriority, setTicketPriority] = useState<number>(0);
     const [ticketLastModified, setTicketLastModified] =
         useState<string>(current_date_string);
     const [ticketPreviousVersion, setTicketPreviousVersion] =
         useState<Ticket | null>(null);
     const [ticketImage, setTicketImage] = useState<string>("");
-    const [ticketAssignee, setTicketAssignee] = useState<User>({
-        username: "",
-        name: "",
-        image: "",
-        ticket_list: []
-    });
+    const [ticketAssignee, setTicketAssignee] = useState<User | null>(null);
 
     //CONTROL functions
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
@@ -45,9 +53,9 @@ export function RepresentTicket(): JSX.Element {
     }
 
     //function to update the status of the ticket
-    /*function updateTicketStatus(event: React.ChangeEvent<HTMLSelectElement>) {
+    function updateTicketStatus(event: React.ChangeEvent<HTMLSelectElement>) {
         setTicketStatus(event.target.value);
-    }*/
+    }
 
     //function to update the priority of the ticket
     function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
@@ -84,7 +92,7 @@ export function RepresentTicket(): JSX.Element {
         return ticketDescription;
     }
 
-    function statusNotInEditMode(): StatusType {
+    function statusNotInEditMode(): string {
         return ticketStatus;
     }
 
@@ -98,10 +106,6 @@ export function RepresentTicket(): JSX.Element {
 
     function lastModifiedNotInEditMode(): string {
         return ticketLastModified;
-    }
-
-    function assigneeNotInEditMode(): User {
-        return ticketAssignee;
     }
 
     //IN EDIT MODE functions
@@ -184,7 +188,7 @@ export function RepresentTicket(): JSX.Element {
         }
     }
 
-    /*function statusInEditMode(): JSX.Element {
+    function statusInEditMode(): JSX.Element {
         if (inEditMode === true) {
             return (
                 <div>
@@ -205,7 +209,7 @@ export function RepresentTicket(): JSX.Element {
         } else {
             return <p>{statusNotInEditMode()}</p>;
         }
-    }*/
+    }
 
     //VIEW
     return (
@@ -220,7 +224,7 @@ export function RepresentTicket(): JSX.Element {
             <div>{descriptionInEditMode()}</div>
             <div>{priorityInEditMode()}</div>
             <div>{imageInEditMode()}</div>
-            <div>{/*statusInEditMode()*/}</div>
+            <div>{statusInEditMode()}</div>
         </div>
     );
 }

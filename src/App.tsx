@@ -5,7 +5,6 @@ import { DropDownLogIn } from "./components/DropDownLogIn";
 import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
-import { AdminList } from "./components/AdminList";
 
 function App() {
     return (
