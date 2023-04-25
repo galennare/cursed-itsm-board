@@ -38,7 +38,7 @@ export function NavigationBar({
         <div>
             <h2>Cursed ITSM Ticketing System</h2>
             <p>{userRole}</p>
-            <Button onClick={setAdmin}></Button>
+            <Button onClick={setAdmin}>Delete this button</Button>
         </div>
     );
 }
