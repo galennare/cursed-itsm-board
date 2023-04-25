@@ -14,20 +14,15 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <div>
-                    <h1>Team 3</h1>
-                    <h4>
-                        Galen Nare, Michael Arocho, Solenn Gacon, Nicholas
-                        DiGirolamo, Andrew Roberts, Alexandra Croce
-                    </h4>
+                    <NavigationBar
+                        userRole={userRole}
+                        setUserRole={setUserRole}
+                    ></NavigationBar>
                 </div>
             </header>
             <br></br>
             <span>
                 <TicketButton></TicketButton>
-                <NavigationBar
-                    userRole={userRole}
-                    setUserRole={setUserRole}
-                ></NavigationBar>
                 <Preferences></Preferences>
                 <ViewMyWork></ViewMyWork>
             </span>
