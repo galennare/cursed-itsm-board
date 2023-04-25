@@ -54,9 +54,20 @@ export function TicketItem({
     ticketData: Ticket;
 }): JSX.Element {
     return (
-        <div>
-            <h3>Ticket: {ticketData.title}</h3>
-            <p>Description: {ticketData.description}</p>
+        <div
+            key={ticketData.id}
+            style={{
+                border: "5px solid black",
+                margin: "10px"
+            }}
+        >
+            <h1>{ticketData.title}</h1>
+            <h4>Author: {ticketData.author}</h4>
+            <h4> Assigned To: {ticketData.assignee}</h4>
+            <div>
+                Status: {ticketData.status} Priority: {ticketData.priority}
+            </div>
+            <p>{ticketData.description}</p>
         </div>
     );
 }

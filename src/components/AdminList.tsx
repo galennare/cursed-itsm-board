@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Ticket } from "./TicketItem";
+import { Ticket, TicketItem } from "./TicketItem";
 
 const INITIAL_ADMIN_LIST: Ticket[] = [
     {
@@ -61,21 +61,7 @@ export function AdminList(): JSX.Element {
         <div className="AdminList" style={{ float: "left", width: "33%" }}>
             <h1>Admin List</h1>
             {adminList.map((ticket: Ticket) => (
-                <div
-                    key={ticket.id}
-                    style={{
-                        border: "5px solid black",
-                        margin: "10px"
-                    }}
-                >
-                    <h1>{ticket.title}</h1>
-                    <h4>Author: {ticket.author}</h4>
-                    <h4> Assigned To: {ticket.assignee}</h4>
-                    <div>
-                        Status: {ticket.status} Priority: {ticket.priority}
-                    </div>
-                    <p>{ticket.description}</p>
-                </div>
+                <TicketItem key={ticket.id} ticketData={ticket}></TicketItem>
             ))}
         </div>
     );
