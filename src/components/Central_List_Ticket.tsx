@@ -5,7 +5,11 @@ import { User } from "../interface/User";
 
 export type StatusType = "pending" | "in progress" | "resolved";
 
-export function RepresentTicket(): JSX.Element {
+export function TicketItem({
+    ticketData
+}: {
+    ticketData: Ticket;
+}): JSX.Element {
     const current_date = new Date();
     const current_date_string = current_date.toLocaleString();
 
