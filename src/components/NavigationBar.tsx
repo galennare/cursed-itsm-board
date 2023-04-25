@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 /*
     This is NOT a UI component. This is similar to an interface
@@ -30,10 +31,14 @@ export function NavigationBar({
     userRole: UserRole;
     setUserRole: (role: UserRole) => void;
 }): JSX.Element {
+    // delete this function later
+    const setAdmin = () => setUserRole(UserRole.Admin);
+
     return (
         <div>
             <h2>Cursed ITSM Ticketing System</h2>
             <p>{userRole}</p>
+            <Button onClick={setAdmin}></Button>
         </div>
     );
 }
