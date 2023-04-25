@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/cursed-itsm-board/static/css/main.073c9b0a.css",
-    "main.js": "/cursed-itsm-board/static/js/main.ef084e32.js",
+    "main.css": "/cursed-itsm-board/static/css/main.cebab2f9.css",
+    "main.js": "/cursed-itsm-board/static/js/main.1cd0d643.js",
     "static/js/787.886e8bed.chunk.js": "/cursed-itsm-board/static/js/787.886e8bed.chunk.js",
-    "static/media/logo.svg": "/cursed-itsm-board/static/media/logo.426278726f90c57aa805eb591397948b.svg",
     "index.html": "/cursed-itsm-board/index.html",
-    "main.073c9b0a.css.map": "/cursed-itsm-board/static/css/main.073c9b0a.css.map",
-    "main.ef084e32.js.map": "/cursed-itsm-board/static/js/main.ef084e32.js.map",
+    "main.cebab2f9.css.map": "/cursed-itsm-board/static/css/main.cebab2f9.css.map",
+    "main.1cd0d643.js.map": "/cursed-itsm-board/static/js/main.1cd0d643.js.map",
     "787.886e8bed.chunk.js.map": "/cursed-itsm-board/static/js/787.886e8bed.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.ef084e32.js"
+    "static/css/main.cebab2f9.css",
+    "static/js/main.1cd0d643.js"
   ]
 }

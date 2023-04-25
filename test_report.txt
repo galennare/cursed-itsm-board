@@ -2,81 +2,77 @@
 > cursed-itsm-board@0.1.0 test
 > react-scripts test --coverage
 
-FAIL src/App.test.tsx
-  ✕ renders react link (58 ms)
+FAIL src/components/CentralList.test.tsx
+  ● Counter Component tests › The initial value is 0
 
-  ● renders react link
-
-    TestingLibraryElementError: Unable to find an element with the text: /learn react/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+    TestingLibraryElementError: Unable to find an element with the text: /(\d+)/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
     Ignored nodes: comments, script, style
     [36m<body>[39m
       [36m<div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"App"[39m
-        [36m>[39m
-          [36m<header[39m
-            [33mclass[39m=[32m"App-header"[39m
-          [36m>[39m
-            [36m<img[39m
-              [33malt[39m=[32m"logo"[39m
-              [33mclass[39m=[32m"App-logo"[39m
-              [33msrc[39m=[32m"logo.svg"[39m
-            [36m/>[39m
-            [36m<div>[39m
-              [36m<h1>[39m
-                [0mTeam 3[0m
-              [36m</h1>[39m
-              [36m<h4>[39m
-                [0mGalen Nare[0m
-              [36m</h4>[39m
-              [36m<h4>[39m
-                [0mMichael Arocho[0m
-              [36m</h4>[39m
-              [36m<h4>[39m
-                [0mSolenn Gacon[0m
-              [36m</h4>[39m
-              [36m<h4>[39m
-                [0mNicholas DiGirolamo[0m
-              [36m</h4>[39m
-              [36m<h4>[39m
-                [0mAndrew Roberts[0m
-              [36m</h4>[39m
-              [36m<h4>[39m
-                [0mAlexandra Croce[0m
-              [36m</h4>[39m
-            [36m</div>[39m
-          [36m</header>[39m
-        [36m</div>[39m
+        [36m<span>[39m
+          [0mGoodbye World[0m
+        [36m</span>[39m
       [36m</div>[39m
     [36m</body>[39m
 
-       5 | test("renders react link", () => {
-       6 |     render(<App />);
-    >  7 |     const linkElement = screen.getByText(/learn react/i);
-         |                                ^
-       8 |     expect(linkElement).toBeInTheDocument();
-       9 | });
-      10 |
+       8 |     });
+       9 |     test("The initial value is 0", () => {
+    > 10 |         const attemptNumber = screen.getByText(/(\d+)/);
+         |                                      ^
+      11 |         expect(attemptNumber).toBeInTheDocument();
+      12 |     });
+      13 | });
 
       at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
       at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-      at Object.<anonymous> (src/App.test.tsx:7:32)
+      at Object.<anonymous> (src/components/CentralList.test.tsx:10:38)
+
+FAIL src/App.test.tsx
+  ● renders react link
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has type:  string
+    Received has value: "a"
+
+       6 |     render(<App />);
+       7 |     const linkElement = "a";
+    >  8 |     expect(linkElement).toBeInTheDocument();
+         |                         ^
+       9 | });
+      10 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:386:30)
+      at Object.toBeInTheDocument (node_modules/expect/build/index.js:387:15)
+      at Object.<anonymous> (src/App.test.tsx:8:25)
       at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
       at runJest (node_modules/@jest/core/build/runJest.js:404:19)
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
-----------|---------|----------|---------|---------|-------------------
-File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
-----------|---------|----------|---------|---------|-------------------
-All files |     100 |      100 |     100 |     100 |                   
- App.tsx  |     100 |      100 |     100 |     100 |                   
-----------|---------|----------|---------|---------|-------------------
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 1 total
+--------------------|---------|----------|---------|---------|-------------------
+File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------|---------|----------|---------|---------|-------------------
+All files           |   93.75 |       50 |    90.9 |   93.75 |                   
+ src                |     100 |      100 |     100 |     100 |                   
+  App.tsx           |     100 |      100 |     100 |     100 |                   
+ src/components     |   93.33 |       50 |      90 |   93.33 |                   
+  AdminList.tsx     |     100 |      100 |     100 |     100 |                   
+  CentralList.tsx   |     100 |      100 |     100 |     100 |                   
+  DropDownLogIn.tsx |     100 |      100 |     100 |     100 |                   
+  Preferences.tsx   |     100 |      100 |     100 |     100 |                   
+  RevealTicket.tsx  |   83.33 |       50 |   66.66 |   83.33 | 41                
+  TicketButton.tsx  |     100 |      100 |     100 |     100 |                   
+  ViewMyWork.tsx    |     100 |      100 |     100 |     100 |                   
+ src/interfaces     |       0 |        0 |       0 |       0 |                   
+  Ticket.ts         |       0 |        0 |       0 |       0 |                   
+--------------------|---------|----------|---------|---------|-------------------
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 2 total
 Snapshots:   0 total
-Time:        2.261 s
+Time:        3.174 s
 Ran all test suites.
