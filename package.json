@@ -68,6 +68,14 @@
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
       "!src/react-app-env.d.ts"
-    ]
+    ],
+    "coverageThreshold": {
+      "global" : {
+        "branches": 75,
+        "functions": 75,
+        "lines": 75,
+        "statements": 75
+      }
+    }
   }
 }
