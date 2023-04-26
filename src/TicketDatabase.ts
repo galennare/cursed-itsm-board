@@ -67,8 +67,7 @@ export class TicketDatabase {
 
         if (tickets !== undefined)
             hookedTickets = tickets.map((ticket: Ticket) => {
-                const [newTicket, setter] = useState<Ticket>(ticket);
-                return [newTicket, setter];
+                return useState<Ticket>(ticket);
             });
         else hookedTickets = [];
 
@@ -118,9 +117,16 @@ export class TicketDatabase {
             }).length > 0
         )
             return;
+
         // add a hook to the ticket
+        const hookedTicket: Hook<Ticket> = useState<Ticket>(ticket);
 
         // add ticket to central list
+        const newCentralList: Hook<Ticket>[] = [
+            ...this._centralList,
+            hookedTicket
+        ];
+        this._setCentralList(newCentralList);
     }
 
     deleteTicketFromCentralList(ticket: Ticket): void {
