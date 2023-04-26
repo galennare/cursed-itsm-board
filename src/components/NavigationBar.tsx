@@ -35,10 +35,14 @@ export function NavigationBar({
     const setAdmin = () => setUserRole(UserRole.Admin);
 
     return (
-        <div>
-            <h2>Cursed ITSM Ticketing System</h2>
-            <p>{userRole}</p>
-            <Button onClick={setAdmin}>Delete this button</Button>
-        </div>
+        <span className="title">
+            <div>
+                <b>Cursed ITSM Ticketing System</b>
+            </div>
+            <div>{userRole}</div>
+            <div>
+                <Button onClick={setAdmin}>Delete this button</Button>
+            </div>
+        </span>
     );
 }
