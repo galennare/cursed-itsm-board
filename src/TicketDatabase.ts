@@ -130,26 +130,48 @@ export class TicketDatabase {
     }
 
     deleteTicketFromCentralList(ticket: Ticket): void {
+        // remove ticket from any other lists its in
+        this.removeTicketFromAdminList(ticket);
+        this.removeTicketFromUserList(ticket, 0);
+        this.removeTicketFromUserList(ticket, 1);
+        this.removeTicketFromUserList(ticket, 2);
+
         // get ticket index
+        const index: number = this._centralList.findIndex(
+            (q: Hook<Ticket>) => q[0].id == ticket.id
+        );
+
         // remove ticket at index
+        const newCentralList: Hook<Ticket>[] = [...this._centralList];
+        if (index > -1) newCentralList.splice(index, 1);
+        this._setCentralList(newCentralList);
     }
 
-    addTicketToAdminList(ticket: Ticket): void {}
+    //addTicketToAdminList(ticket: Ticket): void {}
 
-    removeTicketFromAdminList(ticket: Ticket): void {}
+    removeTicketFromAdminList(ticket: Ticket): void {
+        // get index of ticket
+        const index: number = this._adminList.indexOf(ticket.id);
 
-    addTicketToUserList(ticket: Ticket, user: UserRole): void {}
+        // remove ticket at index
+        const newAdminList: number[] = [...this._adminList];
+        if (index > -1) newAdminList.splice(index, 1);
+        this._setAdminList(newAdminList);
+    }
 
-    removeTicketFromUserList(ticket: Ticket, user: UserRole): void {}
-}
+    //addTicketToUserList(ticket: Ticket, user: UserRole): void {}
 
-export function removeTicketFromDatabase(ticket: Ticket): void {
-    const index = ticketDB.indexOf(ticket);
-    const newTickets = [...ticketDB];
-    if (index > -1) newTickets.splice(index, 1);
-    setTicketDB(newTickets);
-}
+    removeTicketFromUserList(ticket: Ticket, user: UserRole): void {
+        // get ticket index
+        const index: number = this._userLists[user].indexOf(ticket.id);
 
-export function getTicketByID(id: number): Ticket {
-    const index = ticketDB.findIndex((q) => q.id == id);
+        //remove ticket at index
+        const newUserLists: number[][] = [
+            [...this._userLists[0]],
+            [...this._userLists[1]],
+            [...this._userLists[2]]
+        ];
+        if (index > -1) newUserLists[user].splice(index, 1);
+        this._setUserLists(newUserLists);
+    }
 }
