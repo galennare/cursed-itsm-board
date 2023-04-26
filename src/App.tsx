@@ -6,7 +6,6 @@ import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
-import { TicketDatabase } from "./TicketDatabase";
 
 function App() {
     // userRole is the current role that the user has selected to act as
