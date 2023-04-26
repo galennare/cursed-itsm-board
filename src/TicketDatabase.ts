@@ -3,6 +3,39 @@ import { UserRole } from "./components/NavigationBar";
 import { Ticket } from "./components/TicketItem";
 
 /*
+    --TicketDatabase Documentation--
+    This is an absolutely cursed but beautiful class that should make the rest
+    of this project smooth sailing. This is NOT a UI component, it is an object
+    that contains and organizes all the Tickets (again not UI components).
+    Do not try to understand how the fuckery of this code works just know that
+    this is how it can be used:
+
+    We will create only 1 variable in the App.tsx file of type TicketDatabase
+    like so:
+    const database: TicketDatabase = new TicketDatabase();
+
+    We can optionally pass a list of Ticket objects to that function if we want
+    to hard code some initial tickets.
+
+    -- KEY IMPORTANT USAGE --
+    Any time that you would like to add or remove tickets from a list or would
+    like to get a list of Ticket objects (not UI elements) so that you can create
+    a UI component with them use the following methods:
+
+    getCentralList(): Hook<Ticket>[]
+    getAdminList(): Hook<Ticket>[]
+    getUserList(user: UserRole): Hook<Ticket>[]
+    addTicketToCentralList(ticket: Ticket): void
+    addTicketToAdminList(ticket: Ticket): void
+    addTicketToUserList(ticket: Ticket, user: UserRole): void
+    deleteTicketFromCentralList(ticket: Ticket): void
+    removeTicketFromAdminList(ticket: Ticket): void
+    removeTicketFromUserList(ticket: Ticket, user: UserRole): void
+
+    See the explanation below of what ticket hooks (Hook<Ticket>) are!
+*/
+
+/*
     To make this magic happen I am using these two type aliases I've defined
     as well as TypeScript Generics which is a concept we did not cover in
     class but we've sortof already used with useState(). 
@@ -86,11 +119,11 @@ export class TicketDatabase {
         this._setUserLists = setUserLists;
     }
 
-    get centralList(): Hook<Ticket>[] {
+    getCentralList(): Hook<Ticket>[] {
         return this._centralList;
     }
 
-    get adminList(): Hook<Ticket>[] {
+    getAdminList(): Hook<Ticket>[] {
         // maps the numbers in the admin list to [ticket, hook] tuples in the central list by their ID and returns the list of [ticket, hook] tuples
         return this._adminList.map((ticketID: number) => {
             return this._centralList.filter(
