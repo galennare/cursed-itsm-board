@@ -8,9 +8,10 @@ import { Button } from "react-bootstrap";
     that can be assigned to a variable of type UserRole
 */
 export enum UserRole {
-    Super = "Super",
-    Admin = "Admin",
-    User = "User"
+    Super,
+    Admin,
+    User,
+    none
 }
 
 /*
