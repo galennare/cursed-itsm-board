@@ -177,7 +177,30 @@ export class TicketDatabase {
         this._setAdminList(newAdminList);
     }
 
-    //addTicketToUserList(ticket: Ticket, user: UserRole): void {}
+    addTicketToUserList(ticket: Ticket, user: UserRole): void {
+        // check that the ticket exists on the central list
+        const onCentral: boolean =
+            this._centralList.filter((q: Hook<Ticket>) => {
+                return q[0].id === ticket.id;
+            }).length > 0;
+
+        // check that the ticket does not exist on the user list
+        const onAdmin: boolean =
+            this._userLists[user].filter((q: number) => {
+                q === ticket.id;
+            }).length > 0;
+
+        // add the ticket to the user list
+        if (onCentral && !onAdmin) {
+            const newUserLists: number[][] = [
+                [...this._userLists[0]],
+                [...this._userLists[1]],
+                [...this._userLists[2]]
+            ];
+            newUserLists[user] = [...this._userLists[user], ticket.id];
+            this._setUserLists(newUserLists);
+        }
+    }
 
     removeTicketFromUserList(ticket: Ticket, user: UserRole): void {
         // get ticket index
