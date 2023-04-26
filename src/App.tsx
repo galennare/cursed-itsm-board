@@ -8,7 +8,12 @@ import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
 
 function App() {
+    // userRole is the current role that the user has selected to act as
     const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
+
+    // instantiate the ticket database
+    // see TicketDatabase.ts for documentation
+    //const ticketDB = new TicketDatabase(); // <-- comment this line back in when you use the ticket database
 
     return (
         <div className="App">
