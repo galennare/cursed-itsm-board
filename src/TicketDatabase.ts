@@ -147,7 +147,25 @@ export class TicketDatabase {
         this._setCentralList(newCentralList);
     }
 
-    //addTicketToAdminList(ticket: Ticket): void {}
+    addTicketToAdminList(ticket: Ticket): void {
+        // check that the ticket exists in the central list
+        const onCentral: boolean =
+            this._centralList.filter((q: Hook<Ticket>) => {
+                return q[0].id === ticket.id;
+            }).length > 0;
+
+        // check that the ticket does not exist in the admin list
+        const onAdmin: boolean =
+            this._adminList.filter((q: number) => {
+                q === ticket.id;
+            }).length > 0;
+
+        // add the ticket to the admin list
+        if (onCentral && !onAdmin) {
+            const newAdminList: number[] = [...this._adminList, ticket.id];
+            this._setAdminList(newAdminList);
+        }
+    }
 
     removeTicketFromAdminList(ticket: Ticket): void {
         // get index of ticket
