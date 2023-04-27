@@ -38,7 +38,16 @@ export function RevealTicket(): JSX.Element {
     const [reveal, setReveal] = useState<boolean>(false);
     return (
         <span>
-            <Button onClick={() => setReveal(!reveal)}>Ticket</Button>
+            <Button
+                style={{
+                    width: "1000px",
+                    padding: "10px",
+                    backgroundColor: "white"
+                }}
+                onClick={() => setReveal(!reveal)}
+            >
+                {fun}
+            </Button>
             {reveal ? fun : ""}
         </span>
     );
