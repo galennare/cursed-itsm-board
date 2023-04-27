@@ -3,13 +3,28 @@
     display: flex;
     justify-content: space-around;
     text-align: center;
-    margin: auto
+    margin: auto;
 }
 
 .title > div {
     width: auto;
     margin: 20px;
     text-align: center;
+}
+
+.buttons {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.buttons > div {
+    display: flex;
+    text-align: center;
+
 }
 
 .App {

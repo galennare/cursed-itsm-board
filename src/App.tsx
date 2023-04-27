@@ -25,13 +25,19 @@ function App() {
                     ></NavigationBar>
                 </div>
             </header>
-            <br></br>
-            <span>
-                <TicketButton></TicketButton>
-                <Preferences></Preferences>
-                <ViewMyWork></ViewMyWork>
-            </span>
-            <hr></hr>
+            <div style={{ backgroundColor: "#8096c06e" }}>
+                <div className="buttons">
+                    <div>
+                        <TicketButton></TicketButton>
+                    </div>
+                    <div>
+                        <ViewMyWork></ViewMyWork>
+                    </div>
+                    <div style={{ paddingLeft: "915px" }}>
+                        <Preferences></Preferences>
+                    </div>
+                </div>
+            </div>
             <h5>New Tickets</h5>
             <RevealTicket></RevealTicket>
             <hr></hr>
