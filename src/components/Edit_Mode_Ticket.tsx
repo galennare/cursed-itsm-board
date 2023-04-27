@@ -12,7 +12,7 @@ export function EditTicket({
     const current_version = ticketData;
     const current_assignee = ticketData.assignee;
 
-    //HELPER FCTS
+    //PART 1: HELPER functions
     function statusToString(myStatus: EnumStatus): string {
         if (myStatus === "New") {
             return "New";
@@ -23,7 +23,7 @@ export function EditTicket({
         }
     }
 
-    //STATE
+    //PART 2: STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
     const [ticketTitle, setTicketTitle] = useState<string>(ticketData.name);
     const [ticketDescription, setTicketDescription] = useState<string>(
@@ -45,7 +45,7 @@ export function EditTicket({
         ticketData.assignee
     );
 
-    //CONTROL functions
+    //PART 3: CONTROL functions
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
         setInEditMode(event.target.checked);
     }
@@ -84,6 +84,7 @@ export function EditTicket({
         setTicketPreviousVersion(current_version);
     }
 
+    //function to update the image of the ticket
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketImage(event.target.value);
     }
@@ -93,7 +94,7 @@ export function EditTicket({
         setTicketAssignee(current_assignee);
     }
 
-    //NOT IN EDIT MODE functions
+    //PART 4: NOT IN EDIT MODE functions
     function titleNotInEditMode(): string {
         return ticketTitle;
     }
@@ -118,7 +119,7 @@ export function EditTicket({
         return ticketLastModified;
     }
 
-    //IN EDIT MODE functions
+    //PART 5: IN EDIT MODE functions
     function titleInEditMode(): JSX.Element {
         if (inEditMode === true) {
             return (
@@ -203,14 +204,14 @@ export function EditTicket({
             return (
                 <div>
                     <Form.Group controlId="ticketStatus">
-                        <Form.Label>Ticket Status</Form.Label>
+                        <Form.Label>Ticket Status:</Form.Label>
                         <Form.Select
                             value={ticketStatus}
                             onChange={updateTicketStatus}
                         >
-                            <option value="pending">Pending</option>
-                            <option value="in progress">In Progress</option>
-                            <option value="resolved">Resolved</option>
+                            <option value="New">New</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Resolved">Resolved</option>
                         </Form.Select>
                     </Form.Group>
                     <div>{ticketStatus}</div>
@@ -221,7 +222,26 @@ export function EditTicket({
         }
     }
 
-    //VIEW
+    function lastModifiedInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="formTicketLastModified">
+                        <Form.Label>Last Modified:</Form.Label>
+                        <Form.Control
+                            value={ticketLastModified}
+                            onChange={updateTicketLastModified}
+                        />
+                    </Form.Group>
+                    <div>{ticketLastModified}</div>
+                </div>
+            );
+        } else {
+            return <p>{lastModifiedNotInEditMode()}</p>;
+        }
+    }
+
+    //PART 6: VIEW
     return (
         <div>
             <Form.Switch
@@ -235,6 +255,7 @@ export function EditTicket({
             <div>{priorityInEditMode()}</div>
             <div>{imageInEditMode()}</div>
             <div>{statusInEditMode()}</div>
+            <div>{lastModifiedInEditMode()}</div>
         </div>
     );
 }
