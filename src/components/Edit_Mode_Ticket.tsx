@@ -11,6 +11,7 @@ export function EditTicket({
 }): JSX.Element {
     const current_version = ticketData;
     const current_assignee = ticketData.assignee;
+    const current_date = new Date();
 
     //PART 1: HELPER functions
     function statusToString(myStatus: EnumStatus): string {
@@ -73,10 +74,8 @@ export function EditTicket({
     }
 
     //function to update the last modified field of the ticket
-    function updateTicketLastModified(
-        event: React.ChangeEvent<HTMLInputElement>
-    ) {
-        setTicketLastModified(event.target.value);
+    function updateTicketLastModified() {
+        setTicketLastModified(current_date.toDateString());
     }
 
     //function to update the previous version of the ticket
@@ -113,10 +112,6 @@ export function EditTicket({
 
     function imageNotInEditMode(): string {
         return ticketImage;
-    }
-
-    function lastModifiedNotInEditMode(): string {
-        return ticketLastModified;
     }
 
     //PART 5: IN EDIT MODE functions
@@ -222,25 +217,6 @@ export function EditTicket({
         }
     }
 
-    function lastModifiedInEditMode(): JSX.Element {
-        if (inEditMode === true) {
-            return (
-                <div>
-                    <Form.Group controlId="formTicketLastModified">
-                        <Form.Label>Last Modified:</Form.Label>
-                        <Form.Control
-                            value={ticketLastModified}
-                            onChange={updateTicketLastModified}
-                        />
-                    </Form.Group>
-                    <div>{ticketLastModified}</div>
-                </div>
-            );
-        } else {
-            return <p>{lastModifiedNotInEditMode()}</p>;
-        }
-    }
-
     //PART 6: VIEW
     return (
         <div>
@@ -255,7 +231,6 @@ export function EditTicket({
             <div>{priorityInEditMode()}</div>
             <div>{imageInEditMode()}</div>
             <div>{statusInEditMode()}</div>
-            <div>{lastModifiedInEditMode()}</div>
         </div>
     );
 }
