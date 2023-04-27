@@ -2,42 +2,48 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Ticket } from "../interface/Ticket";
 import { User } from "../interface/User";
+import { EnumStatus } from "../interface/EnumStatus";
 
-export type StatusType = "pending" | "in progress" | "resolved";
-
-export function TicketItem({
+export function EditTicket({
     ticketData
 }: {
     ticketData: Ticket;
 }): JSX.Element {
-    const current_date = new Date();
-    const current_date_string = current_date.toLocaleString();
+    const current_version = ticketData;
+    const current_assignee = ticketData.assignee;
 
     //HELPER FCTS
-    function statusTypeToString(myStatusType: StatusType): string {
-        if (myStatusType === "pending") {
-            return "pending";
-        } else if (myStatusType === "in progress") {
-            return "in progress";
+    function statusToString(myStatus: EnumStatus): string {
+        if (myStatus === "New") {
+            return "New";
+        } else if (myStatus === "In Progress") {
+            return "In Progress";
         } else {
-            return "resolved";
+            return "Resolved";
         }
     }
 
     //STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
-    const [ticketTitle, setTicketTitle] = useState<string>("");
-    const [ticketDescription, setTicketDescription] = useState<string>("");
-    const [ticketStatus, setTicketStatus] = useState<string>(
-        statusTypeToString("pending")
+    const [ticketTitle, setTicketTitle] = useState<string>(ticketData.name);
+    const [ticketDescription, setTicketDescription] = useState<string>(
+        ticketData.description
     );
-    const [ticketPriority, setTicketPriority] = useState<number>(0);
-    const [ticketLastModified, setTicketLastModified] =
-        useState<string>(current_date_string);
+    const [ticketStatus, setTicketStatus] = useState<string>(
+        statusToString(ticketData.status)
+    );
+    const [ticketPriority, setTicketPriority] = useState<number>(
+        ticketData.priority
+    );
+    const [ticketLastModified, setTicketLastModified] = useState<string>(
+        ticketData.last_modified.toDateString()
+    );
     const [ticketPreviousVersion, setTicketPreviousVersion] =
-        useState<Ticket | null>(null);
-    const [ticketImage, setTicketImage] = useState<string>("");
-    const [ticketAssignee, setTicketAssignee] = useState<User | null>(null);
+        useState<Ticket | null>(ticketData.previous_version);
+    const [ticketImage, setTicketImage] = useState<string>(ticketData.image);
+    const [ticketAssignee, setTicketAssignee] = useState<User | null>(
+        ticketData.assignee
+    );
 
     //CONTROL functions
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
@@ -74,18 +80,18 @@ export function TicketItem({
     }
 
     //function to update the previous version of the ticket
-    /*function updateTicketPreviousVersion(event: React.ChangeEvent<HTMLInputElement>) {
-        setTicketPreviousVersion(event.target.value);
-    }*/
+    function updateTicketPreviousVersion() {
+        setTicketPreviousVersion(current_version);
+    }
 
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketImage(event.target.value);
     }
 
     //function to update the assignee of the ticket
-    /*function updateTicketAssignee(event: React.ChangeEvent<HTMLInputElement>) {
-        setTicketAssignee(event.target.value);
-    }*/
+    function updateTicketAssignee() {
+        setTicketAssignee(current_assignee);
+    }
 
     //NOT IN EDIT MODE functions
     function titleNotInEditMode(): string {
