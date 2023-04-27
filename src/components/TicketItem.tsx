@@ -18,7 +18,7 @@ export interface Ticket {
     priority: 0 | 1 | 2 | 3 | 4 | 5;
     last_modified: Date;
     author: string;
-    status: "Pending" | "In-Progress" | "Resolved";
+    status: "New" | "In-Progress" | "Resolved";
     assignee: string;
     image_path: string;
 }

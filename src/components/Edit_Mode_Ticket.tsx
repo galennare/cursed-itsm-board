@@ -9,7 +9,7 @@ export function EditTicket({
 }: {
     ticketData: Ticket;
 }): JSX.Element {
-    const current_version = ticketData;
+    //const current_version = ticketData;
     const current_assignee = ticketData.assignee;
     const current_date = new Date();
 
@@ -36,11 +36,11 @@ export function EditTicket({
     const [ticketPriority, setTicketPriority] = useState<number>(
         ticketData.priority
     );
-    const [ticketLastModified, setTicketLastModified] = useState<string>(
-        ticketData.last_modified.toDateString()
+    const [ticketLastModified, setTicketLastModified] = useState<Date>(
+        ticketData.last_modified
     );
-    const [ticketPreviousVersion, setTicketPreviousVersion] =
-        useState<Ticket | null>(ticketData.previous_version);
+    /*const [ticketPreviousVersion, setTicketPreviousVersion] =
+        useState<Ticket | null>(ticketData.previous_version);*/
     const [ticketImage, setTicketImage] = useState<string>(ticketData.image);
     const [ticketAssignee, setTicketAssignee] = useState<User | null>(
         ticketData.assignee
@@ -75,13 +75,13 @@ export function EditTicket({
 
     //function to update the last modified field of the ticket
     function updateTicketLastModified() {
-        setTicketLastModified(current_date.toDateString());
+        setTicketLastModified(current_date);
     }
 
     //function to update the previous version of the ticket
-    function updateTicketPreviousVersion() {
+    /*function updateTicketPreviousVersion() {
         setTicketPreviousVersion(current_version);
-    }
+    }*/
 
     //function to update the image of the ticket
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
