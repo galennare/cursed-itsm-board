@@ -15,11 +15,11 @@ export interface Ticket {
     /** When the ticket was last modified */
     last_modified: Date;
     /** The previous version of the ticket */
-    previous_version: Ticket | undefined;
+    previous_version: Ticket | null;
     /** An image representing the ticket */
     image: string;
     /** The author of the ticket */
-    author: User | undefined;
+    author: User | null;
     /** The assignee/resolver of the ticket */
-    assignee: User | undefined;
+    assignee: User | null;
 }
