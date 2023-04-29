@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { useEffect } from "react";
+import { EnumStatus } from "../interface/EnumStatus";
 import { Ticket } from "../interface/Ticket";
 import { User } from "../interface/User";
-import { EnumStatus } from "../interface/EnumStatus";
+import { Form } from "react-bootstrap";
+import { Hook } from "../TicketDatabase";
 
-export function EditTicket({
-    ticketData
-}: {
-    ticketData: Ticket;
-}): JSX.Element {
-    //const current_version = ticketData;
-    const current_assignee = ticketData.assignee;
-    const current_date = new Date();
-
+export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     //PART 1: HELPER functions
     function statusToString(myStatus: EnumStatus): string {
         if (myStatus === "New") {
@@ -26,6 +20,7 @@ export function EditTicket({
 
     //PART 2: STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
+    const [ticketData] = ticket;
     const [ticketTitle, setTicketTitle] = useState<string>(ticketData.name);
     const [ticketDescription, setTicketDescription] = useState<string>(
         ticketData.description
@@ -46,7 +41,14 @@ export function EditTicket({
         ticketData.assignee
     );
 
+    //const current_version = ticketData;
+    const current_assignee = ticketData.assignee;
+    const current_date = new Date();
+
     //PART 3: CONTROL functions
+    useEffect(() => setTicketLastModified(current_date), []);
+    useEffect(() => setTicketAssignee(current_assignee), []);
+
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
         setInEditMode(event.target.checked);
     }
@@ -73,11 +75,6 @@ export function EditTicket({
         setTicketPriority(parseInt(event.target.value));
     }
 
-    //function to update the last modified field of the ticket
-    function updateTicketLastModified() {
-        setTicketLastModified(current_date);
-    }
-
     //function to update the previous version of the ticket
     /*function updateTicketPreviousVersion() {
         setTicketPreviousVersion(current_version);
@@ -86,11 +83,6 @@ export function EditTicket({
     //function to update the image of the ticket
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketImage(event.target.value);
-    }
-
-    //function to update the assignee of the ticket
-    function updateTicketAssignee() {
-        setTicketAssignee(current_assignee);
     }
 
     //PART 4: NOT IN EDIT MODE functions
