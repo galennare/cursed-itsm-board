@@ -1,4 +1,5 @@
 import React from "react";
+import { Hook } from "../TicketDatabase";
 
 /*
     THIS IS NOT A UI COMPONENT. This interface defines our data structure 
@@ -49,25 +50,26 @@ export interface Ticket {
     editable.
  */
 export function TicketItem({
-    ticketData
+    ticket_hook
 }: {
-    ticketData: Ticket;
+    ticket_hook: Hook<Ticket>;
 }): JSX.Element {
     return (
         <div
-            key={ticketData.id}
+            key={ticket_hook[0].id}
             style={{
                 border: "5px solid black",
                 margin: "10px"
             }}
         >
-            <h1>{ticketData.title}</h1>
-            <h4>Author: {ticketData.author}</h4>
-            <h4> Assigned To: {ticketData.assignee}</h4>
+            <h1>{ticket_hook[0].title}</h1>
+            <h4>Author: {ticket_hook[0].author}</h4>
+            <h4> Assigned To: {ticket_hook[0].assignee}</h4>
             <div>
-                Status: {ticketData.status} Priority: {ticketData.priority}
+                Status: {ticket_hook[0].status}
+                Priority: {ticket_hook[0].priority}
             </div>
-            <p>{ticketData.description}</p>
+            <p>{ticket_hook[0].description}</p>
         </div>
     );
 }
