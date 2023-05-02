@@ -47,15 +47,47 @@ test("edit button enables input fields", () => {
     });
 
     const inputs = container.querySelectorAll("input");
-    for (const input in inputs.values()) {
+    inputs.forEach((input) => {
         expect(input).toBeEnabled();
-    }
+    });
 
     act(() => {
         button?.click();
     });
 
-    for (const input in inputs.values()) {
+    inputs.forEach((input) => {
         expect(input).toBeDisabled();
-    }
+    });
+});
+
+test("edit time fields", () => {
+    const { container } = render(
+        <TimeInput
+            expectedTime={0}
+            actualTime={0}
+            onSave={() => {
+                return;
+            }}
+        />
+    );
+    const button = container.querySelector("button");
+    expect(button).toBeInTheDocument();
+    act(() => {
+        button?.click();
+    });
+
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((input) => {
+        act(() => {
+            input.stepUp(30);
+        });
+    });
+
+    act(() => {
+        button?.click();
+    });
+
+    inputs.forEach((input) => {
+        expect(input.value).toEqual(3);
+    });
 });
