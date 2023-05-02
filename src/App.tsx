@@ -6,6 +6,7 @@ import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { AdminList } from "./components/AdminList";
+import { ProfilePhoto } from "./components/ProfilePhoto";
 
 function App() {
     // userRole is the current role that the user has selected to act as
@@ -18,6 +19,9 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <div>
+                    <ProfilePhoto searcher="https://example.com/profile.jpg" />
+                </div>
                 <div>
                     <h1>Team 3</h1>
                     <h4>
