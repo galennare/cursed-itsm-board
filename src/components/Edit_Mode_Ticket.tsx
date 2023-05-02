@@ -106,6 +106,14 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
         return ticketImage;
     }
 
+    function assigneeNotInEditMode(): User | null {
+        return ticketAssignee;
+    }
+
+    function lastModifiedNotInEditMode(): Date {
+        return ticketLastModified;
+    }
+
     //PART 5: IN EDIT MODE functions
     function titleInEditMode(): JSX.Element {
         if (inEditMode === true) {
