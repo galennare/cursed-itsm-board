@@ -7,7 +7,7 @@ beforeEach(() => {
 });
 
 test("There is a RevealTicket Button", () => {
-    const prefsButton = screen.getByRole("button", { name: /RevealTicket/i });
-    expect(prefsButton).toBeInTheDocument();
-    expect(prefsButton).toBeEnabled();
+    const revealButton = screen.getByRole("button", { name: /RevealTicket/i });
+    expect(revealButton).toBeInTheDocument();
+    expect(revealButton).toBeEnabled();
 });
