@@ -101,8 +101,9 @@ function App() {
                     >
                         <h1>Central List</h1>
                         <TicketList
+                            ticketDB={ticketDB}
                             ticket_hooks={ticketDB.getCentralList()}
-                            list_type={UserRole.Super}
+                            type={UserRole.Super}
                         ></TicketList>
                     </div>
 
@@ -112,8 +113,9 @@ function App() {
                     >
                         <h1>Admin List</h1>
                         <TicketList
+                            ticketDB={ticketDB}
                             ticket_hooks={ticketDB.getAdminList()}
-                            list_type={UserRole.Admin}
+                            type={UserRole.Admin}
                         ></TicketList>
                     </div>
 
@@ -123,8 +125,9 @@ function App() {
                     >
                         <h1>User List</h1>
                         <TicketList
+                            ticketDB={ticketDB}
                             ticket_hooks={ticketDB.getUserList(userRole)}
-                            list_type={UserRole.User}
+                            type={UserRole.User}
                         ></TicketList>
                     </div>
                 </div>

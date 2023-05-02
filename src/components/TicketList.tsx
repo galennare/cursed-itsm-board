@@ -2,19 +2,28 @@ import React from "react";
 import { Ticket, TicketItem } from "./TicketItem";
 import { useDrop } from "react-dnd";
 import { UserRole } from "./NavigationBar";
-import { Hook } from "../TicketDatabase";
+import { Hook, TicketDatabase } from "../TicketDatabase";
 
 export function TicketList({
+    ticketDB,
     ticket_hooks,
-    list_type
+    type
 }: {
+    ticketDB: TicketDatabase;
     ticket_hooks: Hook<Ticket>[];
-    list_type: UserRole;
+    type: UserRole;
 }): JSX.Element {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: "TicketItem",
         drop: (item: Hook<Ticket>) => {
-            alert("You dropped a ticket into a list.");
+            if (type == UserRole.Admin) {
+                alert("Dropped on Admin!");
+                ticketDB.addTicketToAdminList(item[0]);
+            }
+            if (type == UserRole.User) {
+                alert("Dropped on User!");
+                ticketDB.addTicketToUserList(item[0], UserRole.User);
+            }
         },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
