@@ -23,24 +23,25 @@ function App() {
                     <ProfilePhoto searcher="https://example.com/profile.jpg" />
                 </div>
                 <div>
-                    <h1>Team 3</h1>
-                    <h4>
-                        Galen Nare, Michael Arocho, Solenn Gacon, Nicholas
-                        DiGirolamo, Andrew Roberts, Alexandra Croce
-                    </h4>
+                    <NavigationBar
+                        userRole={userRole}
+                        setUserRole={setUserRole}
+                    ></NavigationBar>
                 </div>
             </header>
-            <br></br>
-            <span>
-                <TicketButton></TicketButton>
-                <NavigationBar
-                    userRole={userRole}
-                    setUserRole={setUserRole}
-                ></NavigationBar>
-                <Preferences></Preferences>
-                <ViewMyWork></ViewMyWork>
-            </span>
-            <hr></hr>
+            <div style={{ backgroundColor: "#8096c06e" }}>
+                <div className="buttons">
+                    <div>
+                        <TicketButton></TicketButton>
+                    </div>
+                    <div>
+                        <ViewMyWork></ViewMyWork>
+                    </div>
+                    <div style={{ paddingLeft: "915px" }}>
+                        <Preferences></Preferences>
+                    </div>
+                </div>
+            </div>
             <h5>New Tickets</h5>
             <RevealTicket></RevealTicket>
             <hr></hr>
