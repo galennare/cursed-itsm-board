@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import defaultImage from "../default-profile.png";
+import defaultImage from "../default-profile.png";
 import "./ProfilePhoto.css";
 
 interface PFP {
@@ -7,7 +7,7 @@ interface PFP {
     searcher: string;
 }
 
-const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
+export const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
     const [userPhoto, setPhoto] = useState(emptySearch || searcher);
 
     const photoInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
     };
 
     const emptyImageHandler = () => {
-        setPhoto("https://www.gravatar.com/avatar/");
+        setPhoto(defaultImage);
     };
     return (
         <div className="pfp-wrapper">
@@ -48,5 +48,3 @@ const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
         </div>
     );
 };
-
-export default ProfilePhoto;

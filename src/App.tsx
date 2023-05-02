@@ -15,7 +15,9 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <div>
-                    <ProfilePhoto></ProfilePhoto>
+                    <ProfilePhoto searcher="https://example.com/profile.jpg" />
+                </div>
+                <div>
                     <h1>Team 3</h1>
                     <h4>
                         Galen Nare, Michael Arocho, Solenn Gacon, Nicholas
