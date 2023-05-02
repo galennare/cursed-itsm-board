@@ -15,6 +15,7 @@ test("renders 2 numeric fields", () => {
     const input = container.querySelectorAll("input");
     expect(input).toHaveLength(2);
 });
+
 test("renders an edit button", () => {
     const { container, getByText } = render(
         <TimeInput
@@ -24,6 +25,15 @@ test("renders an edit button", () => {
                 return;
             }}
         />
+    );
+    const input = container.querySelector("button");
+    expect(input).toBeInTheDocument();
+    expect(getByText("Edit")).toBeInTheDocument();
+});
+
+test("renders correctly with undefined parameters", () => {
+    const { container, getByText } = render(
+        <TimeInput />
     );
     const input = container.querySelector("button");
     expect(input).toBeInTheDocument();
@@ -80,6 +90,7 @@ test("edit time fields", () => {
     inputs.forEach((input) => {
         act(() => {
             input.stepUp(30);
+            input.dispatchEvent(new Event('change', { bubbles: true }));
         });
     });
 
@@ -88,6 +99,6 @@ test("edit time fields", () => {
     });
 
     inputs.forEach((input) => {
-        expect(input.value).toEqual(3);
+        expect(input.value).toEqual("3");
     });
 });

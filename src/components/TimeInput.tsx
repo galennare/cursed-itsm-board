@@ -2,30 +2,21 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 interface TimeInputProps {
-    expectedTime: number;
-    actualTime: number;
-    onSave: (expectedTime: number, actualTime: number) => void;
+    expectedTime?: number;
+    actualTime?: number;
+    onSave?: (expectedTime: number, actualTime: number) => void;
 }
 
-export function TimeInput(props?: TimeInputProps): JSX.Element {
-    // Make props not undefined for optional param
-    if (props === undefined) {
-        props = {
-            expectedTime: 0,
-            actualTime: 0,
-            onSave: () => {
-                return;
-            }
-        };
-    }
+export function TimeInput(props: TimeInputProps): JSX.Element {
+    const { expectedTime = 0, actualTime = 0, onSave = () => {} } = props;
 
     // Component state
     const [isEditing, setIsEditing] = useState(false);
     const [expectedTimeValue, setExpectedTimeValue] = useState(
-        props?.expectedTime.toString()
+        expectedTime.toString()
     );
     const [actualTimeValue, setActualTimeValue] = useState(
-        props?.actualTime.toString()
+        actualTime.toString()
     );
 
     /**
@@ -37,7 +28,7 @@ export function TimeInput(props?: TimeInputProps): JSX.Element {
         const actualTimeNumber = parseFloat(actualTimeValue);
 
         if (!isNaN(expectedTimeNumber) && !isNaN(actualTimeNumber)) {
-            props?.onSave(expectedTimeNumber, actualTimeNumber);
+            onSave(expectedTimeNumber, actualTimeNumber);
             setIsEditing(false);
         }
     };
