@@ -5,7 +5,6 @@ import { NavigationBar, UserRole } from "./components/NavigationBar";
 import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
-import { AdminList } from "./components/AdminList";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { Hook, TicketDatabase } from "./TicketDatabase";
 import { Ticket } from "./components/TicketItem";
@@ -63,8 +62,8 @@ function App() {
                 <header className="App-header">
                     <div>
                         <ProfilePhoto searcher="https://example.com/profile.jpg" />
-                </div>
-                <div>
+                    </div>
+                    <div>
                         <NavigationBar
                             userRole={userRole}
                             setUserRole={setUserRole}
@@ -72,17 +71,17 @@ function App() {
                     </div>
                 </header>
                 <div style={{ backgroundColor: "#8096c06e" }}>
-                <div className="buttons">
-                    <div>
-                        <TicketButton></TicketButton>
-                    </div>
+                    <div className="buttons">
                         <div>
-                        <ViewMyWork></ViewMyWork>
+                            <TicketButton></TicketButton>
+                        </div>
+                        <div>
+                            <ViewMyWork></ViewMyWork>
+                        </div>
+                        <div style={{ paddingLeft: "915px" }}>
+                            <Preferences></Preferences>
+                        </div>
                     </div>
-                    <div style={{ paddingLeft: "915px" }}>
-                        <Preferences></Preferences>
-                    </div>
-                </div>
                 </div>
                 <h5>New Tickets</h5>
                 <RevealTicket></RevealTicket>

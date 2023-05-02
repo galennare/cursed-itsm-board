@@ -32,9 +32,7 @@ test("renders an edit button", () => {
 });
 
 test("renders correctly with undefined parameters", () => {
-    const { container, getByText } = render(
-        <TimeInput />
-    );
+    const { container, getByText } = render(<TimeInput />);
     const input = container.querySelector("button");
     expect(input).toBeInTheDocument();
     expect(getByText("Edit")).toBeInTheDocument();
@@ -90,7 +88,7 @@ test("edit time fields", () => {
     inputs.forEach((input) => {
         act(() => {
             input.stepUp(30);
-            input.dispatchEvent(new Event('change', { bubbles: true }));
+            input.dispatchEvent(new Event("change", { bubbles: true }));
         });
     });
 

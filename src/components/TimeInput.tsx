@@ -8,7 +8,13 @@ interface TimeInputProps {
 }
 
 export function TimeInput(props: TimeInputProps): JSX.Element {
-    const { expectedTime = 0, actualTime = 0, onSave = () => {} } = props;
+    const {
+        expectedTime = 0,
+        actualTime = 0,
+        onSave = () => {
+            return;
+        }
+    } = props;
 
     // Component state
     const [isEditing, setIsEditing] = useState(false);
