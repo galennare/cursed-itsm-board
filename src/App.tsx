@@ -8,6 +8,8 @@ import { ViewMyWork } from "./components/ViewMyWork";
 import { Hook, TicketDatabase } from "./TicketDatabase";
 import { Ticket } from "./components/TicketItem";
 import { TicketList } from "./components/TicketList";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
     // userRole is the current role that the user has selected to act as
@@ -55,53 +57,78 @@ function App() {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <div>
-                    <h1>Team 3</h1>
-                    <h4>
-                        Galen Nare, Michael Arocho, Solenn Gacon, Nicholas
-                        DiGirolamo, Andrew Roberts, Alexandra Croce
-                    </h4>
-                </div>
-            </header>
-            <br></br>
-            <span>
-                <TicketButton></TicketButton>
-                <NavigationBar
-                    userRole={userRole}
-                    setUserRole={setUserRole}
-                ></NavigationBar>
-                <Preferences></Preferences>
-                <ViewMyWork></ViewMyWork>
-            </span>
-            <hr></hr>
-            <h5>New Tickets</h5>
-            <RevealTicket></RevealTicket>
-            <hr></hr>
-            <h5>In Progess</h5>
-            <RevealTicket></RevealTicket>
-            <hr></hr>
-            <h5>Assigned to me</h5>
-            <RevealTicket></RevealTicket>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+            <DndProvider backend={HTML5Backend}>
+                <header className="App-header">
+                    <div>
+                        <h1>Team 3</h1>
+                        <h4>
+                            Galen Nare, Michael Arocho, Solenn Gacon, Nicholas
+                            DiGirolamo, Andrew Roberts, Alexandra Croce
+                        </h4>
+                    </div>
+                </header>
+                <br></br>
+                <span>
+                    <TicketButton></TicketButton>
+                    <NavigationBar
+                        userRole={userRole}
+                        setUserRole={setUserRole}
+                    ></NavigationBar>
+                    <Preferences></Preferences>
+                    <ViewMyWork></ViewMyWork>
+                </span>
+                <hr></hr>
+                <h5>New Tickets</h5>
+                <RevealTicket></RevealTicket>
+                <hr></hr>
+                <h5>In Progess</h5>
+                <RevealTicket></RevealTicket>
+                <hr></hr>
+                <h5>Assigned to me</h5>
+                <RevealTicket></RevealTicket>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
 
-            <div className="row">
-                <div className="column" style={{ float: "left", width: "33%" }}>
-                    <h1>Central List</h1>
-                    <TicketList
-                        ticket_hooks={ticketDB.getCentralList()}
-                    ></TicketList>
+                <div
+                    className="row"
+                    style={{ width: "100%", display: "table" }}
+                >
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
+                        <h1>Central List</h1>
+                        <TicketList
+                            ticket_hooks={ticketDB.getCentralList()}
+                            list_type={UserRole.Super}
+                        ></TicketList>
+                    </div>
+
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
+                        <h1>Admin List</h1>
+                        <TicketList
+                            ticket_hooks={ticketDB.getAdminList()}
+                            list_type={UserRole.Admin}
+                        ></TicketList>
+                    </div>
+
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
+                        <h1>User List</h1>
+                        <TicketList
+                            ticket_hooks={ticketDB.getUserList(userRole)}
+                            list_type={UserRole.User}
+                        ></TicketList>
+                    </div>
                 </div>
-                <div className="column" style={{ float: "left", width: "33%" }}>
-                    <h1>Admin List</h1>
-                </div>
-                <div className="column" style={{ float: "left", width: "33%" }}>
-                    <h1>User List</h1>
-                </div>
-            </div>
+            </DndProvider>
         </div>
     );
 }

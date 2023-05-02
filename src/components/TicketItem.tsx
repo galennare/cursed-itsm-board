@@ -1,5 +1,6 @@
 import React from "react";
 import { Hook } from "../TicketDatabase";
+import { useDrag } from "react-dnd";
 
 /*
     THIS IS NOT A UI COMPONENT. This interface defines our data structure 
@@ -54,12 +55,23 @@ export function TicketItem({
 }: {
     ticket_hook: Hook<Ticket>;
 }): JSX.Element {
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: "TicketItem",
+        item: ticket_hook,
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+            ticket: monitor.getItem()
+        })
+    }));
+
     return (
         <div
             key={ticket_hook[0].id}
+            ref={drag}
             style={{
                 border: "5px solid black",
-                margin: "10px"
+                margin: "10px",
+                flex: "0 0 auto"
             }}
         >
             <h1>{ticket_hook[0].title}</h1>
