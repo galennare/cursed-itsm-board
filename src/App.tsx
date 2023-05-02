@@ -20,7 +20,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <div>
-                    <ProfilePhoto searcher="https://example.com/profile.jpg" />
+                    <ProfilePhoto searcher="" />
                 </div>
                 <div>
                     <h1>Team 3</h1>

@@ -1,7 +1,7 @@
 .pfp-wrapper {
     position: absolute;
     top: 5%;
-    left: 3%;
+    right: 3%;
     transition:filter 0.2s;
 }
 
