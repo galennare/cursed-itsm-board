@@ -7,7 +7,9 @@ beforeEach(() => {
 });
 
 test("There is a TicketButton Button", () => {
-    const ticketButton = screen.getByRole("button", { name: /Ticket Button/i });
+    const ticketButton = screen.getByRole("button", {
+        name: /View All My Tickets/i
+    });
     expect(ticketButton).toBeInTheDocument();
     expect(ticketButton).toBeEnabled();
 });
