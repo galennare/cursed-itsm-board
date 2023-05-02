@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import defaultImage from "../default-profile.png";
+import "./ProfilePhoto.css";
 
 interface PFP {
+    emptySearch?: string;
     searcher: string;
 }
 
-const ProfilePhoto: React.FC<PFP> = ({ searcher }) => {
-    const [userPhoto, setPhoto] = useState(searcher);
+const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
+    const [userPhoto, setPhoto] = useState(emptySearch || searcher);
 
     const photoInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const photo = event.target.files && event.target.files[0];
@@ -24,27 +26,27 @@ const ProfilePhoto: React.FC<PFP> = ({ searcher }) => {
         }
     };
 
-    if (!searcher) {
-        return <img src={defaultImage} alt="Default PFP" />;
-    } else {
-        return (
-            <div className="App">
-                <img src={userPhoto} alt="USER_PFP" />;
-                <input type="file" onChange={photoInput} accept="image/*" />
-            </div>
-        );
-    }
-};
-
-/*
-export function ProfilePhoto(): JSX.Element {
+    const emptyImageHandler = () => {
+        setPhoto(defaultImage);
+    };
     return (
-        <div className="App">
-            <img src={defaultImage} alt="Default PFP" />;
-            <input type="file" onChange={photoInput} accept="image/*" />
+        <div className="pfp-wrapper">
+            <div className="pfp-container">
+                <img
+                    src={userPhoto}
+                    onError={emptyImageHandler}
+                    alt=""
+                    className="pfp"
+                />
+                <input
+                    type="file"
+                    onChange={photoInput}
+                    accept="image/*"
+                    className="pfp-change"
+                />
+            </div>
         </div>
     );
-}
-*/
+};
 
 export default ProfilePhoto;
