@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import defaultImage from "../default-profile.png";
 import "./ProfilePhoto.css";
 
-interface PFP {
+interface PFPProps {
     emptySearch?: string;
     searcher: string;
 }
 
-export const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
-    const [userPhoto, setPhoto] = useState(emptySearch || searcher);
+export function ProfilePhoto(props: PFPProps): JSX.Element {
+    const [userPhoto, setPhoto] = useState(props.emptySearch || props.searcher);
 
     const photoInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const photo = event.target.files && event.target.files[0];
@@ -47,4 +47,4 @@ export const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
             </div>
         </div>
     );
-};
+}
