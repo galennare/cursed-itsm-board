@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import defaultImage from "../default-profile.png";
+//import defaultImage from "../default-profile.png";
 import "./ProfilePhoto.css";
 
 interface PFP {
@@ -27,7 +27,7 @@ const ProfilePhoto: React.FC<PFP> = ({ emptySearch, searcher }) => {
     };
 
     const emptyImageHandler = () => {
-        setPhoto(defaultImage);
+        setPhoto("https://www.gravatar.com/avatar/");
     };
     return (
         <div className="pfp-wrapper">
