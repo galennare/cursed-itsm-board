@@ -34,5 +34,10 @@ beforeEach(() => {
 
 test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);
+    const ticketPriority = screen.getByText(/Priority/i);
+    const ticketStatus = screen.getByText(/Status/i);
+
     expect(ticketAuthor).toBeInTheDocument();
+    expect(ticketPriority).toBeInTheDocument();
+    expect(ticketStatus).toBeInTheDocument();
 });
