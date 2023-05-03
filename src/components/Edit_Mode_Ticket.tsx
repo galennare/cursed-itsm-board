@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { EnumStatus } from "../interface/EnumStatus";
 import { Ticket } from "./TicketItem";
-import { User } from "../interface/User";
 import { Form } from "react-bootstrap";
 import { Hook } from "../TicketDatabase";
 
@@ -38,17 +37,14 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     const [ticketImage, setTicketImage] = useState<string>(
         ticketData.image_path
     );
-    const [ticketAssignee, setTicketAssignee] = useState<string>("");
-    /*const [ticketPreviousVersion, setTicketPreviousVersion] =
-        useState<Ticket | null>(ticketData.previous_version);*/
+    const [ticketAssignee, setTicketAssignee] = useState<string>(
+        ticketData.assignee
+    );
 
-    const current_assignee = ticketData.assignee;
     const current_date = ticketData.last_modified;
-    //const current_version = ticketData;
 
     //PART 3: CONTROL functions
     useEffect(() => setTicketLastModified(current_date), []);
-    useEffect(() => setTicketAssignee(current_assignee), []);
 
     //function to update EditMode
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
@@ -82,10 +78,10 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
         setTicketImage(event.target.value);
     }
 
-    //function to update the previous version of the ticket
-    /*function updateTicketPreviousVersion() {
-        setTicketPreviousVersion(current_version);
-    }*/
+    //function to update the assignee of the ticket
+    function updateTicketAssignee(event: React.ChangeEvent<HTMLInputElement>) {
+        setTicketAssignee(event.target.value);
+    }
 
     //PART 4: NOT IN EDIT MODE functions
     function titleNotInEditMode(): string {
@@ -109,11 +105,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     }
 
     function assigneeNotInEditMode(): string {
-        if (ticketAssignee !== null) {
-            return ticketAssignee.toString();
-        } else {
-            return "";
-        }
+        return ticketAssignee;
     }
 
     function lastModifiedNotInEditMode(): string {
@@ -223,6 +215,25 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
         }
     }
 
+    function assigneeInEditMode(): JSX.Element {
+        if (inEditMode === true) {
+            return (
+                <div>
+                    <Form.Group controlId="formTicketAssignee">
+                        <Form.Label></Form.Label>
+                        <Form.Control
+                            value={ticketAssignee}
+                            onChange={updateTicketAssignee}
+                        />
+                    </Form.Group>
+                    <div>{ticketAssignee}</div>
+                </div>
+            );
+        } else {
+            return <p>{assigneeNotInEditMode()}</p>;
+        }
+    }
+
     //PART 6: VIEW
     return (
         <div>
@@ -238,7 +249,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             <div>Image: {imageInEditMode()}</div>
             <div>Status: {statusInEditMode()}</div>
             <div>Lastly edited on: {lastModifiedNotInEditMode()}</div>
-            <div>Assignee: {assigneeNotInEditMode()}</div>
+            <div>Assignee: {assigneeInEditMode()}</div>
         </div>
     );
 }
