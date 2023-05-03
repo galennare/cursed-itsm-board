@@ -25,6 +25,7 @@ export function TicketList({
     return (
         <div
             className={"ticket_list"}
+            role={"ticket_list"}
             ref={drop}
             style={{
                 height: "1000px",

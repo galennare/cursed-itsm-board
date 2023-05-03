@@ -66,6 +66,7 @@ export function TicketItem({
 
     return (
         <div
+            role="ticket_item"
             key={ticket_hook[0].id}
             ref={drag}
             style={{
