@@ -25,7 +25,7 @@ test("TicketItem is rendering.", () => {
 
     function HookWrapper(): JSX.Element {
         const hookedTicket: Hook<Ticket> = useState<Ticket>(ticket);
-        return <TicketItem ticket_hook={hookedTicket}></TicketItem>
+        return <TicketItem ticket_hook={hookedTicket}></TicketItem>;
     }
 
     render(<HookWrapper />);
