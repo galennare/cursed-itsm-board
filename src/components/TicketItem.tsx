@@ -56,6 +56,7 @@ export function TicketItem({
 }): JSX.Element {
     return (
         <div
+            role="ticket_item"
             key={ticket_hook[0].id}
             style={{
                 border: "5px solid black",

@@ -8,7 +8,7 @@ export function TicketList({
     ticket_hooks: Hook<Ticket>[];
 }): JSX.Element {
     return (
-        <div className={"ticket_list"}>
+        <div role="ticket_list">
             {ticket_hooks.map((ticket_hook: Hook<Ticket>) => (
                 <TicketItem
                     key={ticket_hook[0].id}
