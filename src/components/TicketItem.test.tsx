@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { screen, render } from "@testing-library/react";
 import { TicketItem } from "./TicketItem";
 import { Ticket } from "../Interfaces/TicketInterface";
+import { Hook } from "../TicketDatabase";
 
 beforeEach(() => {
     const newTicket: Ticket = {
@@ -16,7 +17,9 @@ beforeEach(() => {
         image_path: "path_to_image"
     };
 
-    render(<TicketItem ticketData={newTicket} />);
+    const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
+
+    render(<TicketItem ticket_hook={ticketHook} />);
 });
 
 test("There is a TicketItem", () => {

@@ -80,6 +80,9 @@
     },
     "coveragePathIgnorePatterns": [
       "/src/App.tsx"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-dnd)/"
     ]
   }
 }
