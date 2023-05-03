@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { TicketItem } from "./TicketItem";
 import { Ticket } from "../Interface/TicketInterface";
+import { Hook } from "../TicketDatabase";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const INITIAL_ADMIN_LIST: Ticket[] = [
     {
@@ -58,11 +61,36 @@ export function AdminList(): JSX.Element {
     }
     */
 
+    const newTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "Pending",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    function TicketItemHookWrapper(): JSX.Element {
+        const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
+
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <TicketItem ticket_hook={ticketHook} />
+            </DndProvider>
+        );
+    }
+
     return (
         <div className="AdminList" style={{ float: "left", width: "33%" }}>
             <h1>Admin List</h1>
             {adminList.map((ticket: Ticket) => (
-                <TicketItem key={ticket.id} ticketData={ticket}></TicketItem>
+                <TicketItem
+                    key={ticket.id}
+                    ticket_hook={[ticket, TicketItemHookWrapper]}
+                ></TicketItem>
             ))}
         </div>
     );
