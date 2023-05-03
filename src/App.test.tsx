@@ -2,8 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import App from "./App";
 
-test("renders react link", () => {
-    render(<App />);
-    const linkElement = "a";
-    expect(linkElement).toBeInTheDocument();
+test("renders app header", () => {
+    const { getByText } = render(<App />);
+    expect(getByText("Cursed ITSM Ticketing System")).toBeInTheDocument();
 });

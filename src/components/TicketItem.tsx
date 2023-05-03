@@ -1,4 +1,6 @@
 import React from "react";
+import { Hook } from "../TicketDatabase";
+import { useDrag } from "react-dnd";
 
 /*
     THIS IS NOT A UI COMPONENT. This interface defines our data structure 
@@ -49,25 +51,38 @@ export interface Ticket {
     editable.
  */
 export function TicketItem({
-    ticketData
+    ticket_hook
 }: {
-    ticketData: Ticket;
+    ticket_hook: Hook<Ticket>;
 }): JSX.Element {
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: "TicketItem",
+        item: ticket_hook,
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+            ticket: monitor.getItem()
+        })
+    }));
+
     return (
         <div
-            key={ticketData.id}
+            role="ticket_item"
+            key={ticket_hook[0].id}
+            ref={drag}
             style={{
                 border: "5px solid black",
-                margin: "10px"
+                margin: "10px",
+                flex: "0 0 auto"
             }}
         >
-            <h1>{ticketData.title}</h1>
-            <h4>Author: {ticketData.author}</h4>
-            <h4> Assigned To: {ticketData.assignee}</h4>
+            <h1>{ticket_hook[0].title}</h1>
+            <h4>Author: {ticket_hook[0].author}</h4>
+            <h4> Assigned To: {ticket_hook[0].assignee}</h4>
             <div>
-                Status: {ticketData.status} Priority: {ticketData.priority}
+                Status: {ticket_hook[0].status}
+                Priority: {ticket_hook[0].priority}
             </div>
-            <p>{ticketData.description}</p>
+            <p>{ticket_hook[0].description}</p>
         </div>
     );
 }

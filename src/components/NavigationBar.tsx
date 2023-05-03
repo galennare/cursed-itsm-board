@@ -16,8 +16,8 @@ export enum UserRole {
 
 /*
     This is a UI component that should look like a navigation bar
-    that spans the top of the broswer window and feature our project
-    title as well as the drop down menu to select the user role.
+    that spans the top of the browser window and feature our project
+    title as well as the drop-down menu to select the user role.
 
     This component should accept a parameter of the current
     selected user role as well as a hook/function to update
@@ -36,10 +36,14 @@ export function NavigationBar({
     const setAdmin = () => setUserRole(UserRole.Admin);
 
     return (
-        <div>
-            <h2>Cursed ITSM Ticketing System</h2>
-            <p>{userRole}</p>
-            <Button onClick={setAdmin}>Delete this button</Button>
-        </div>
+        <span className="title">
+            <div>
+                <b>Cursed ITSM Ticketing System</b>
+            </div>
+            <div>{userRole}</div>
+            <div>
+                <Button onClick={setAdmin}>Delete this button</Button>
+            </div>
+        </span>
     );
 }
