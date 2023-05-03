@@ -14,7 +14,7 @@ beforeEach(() => {
         priority: 0,
         last_modified: new Date(),
         author: "Joe Biden",
-        status: "Pending",
+        status: "In-Progress",
         assignee: "Nick DiGirolamo",
         image_path: "path_to_image"
     };
