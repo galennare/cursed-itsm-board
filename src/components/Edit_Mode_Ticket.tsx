@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { EnumStatus } from "../interface/EnumStatus";
-import { Ticket } from "../interface/Ticket";
+import { Ticket } from "./TicketItem";
 import { User } from "../interface/User";
 import { Form } from "react-bootstrap";
 import { Hook } from "../TicketDatabase";
@@ -11,8 +11,8 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     function statusToString(myStatus: EnumStatus): string {
         if (myStatus === "New") {
             return "New";
-        } else if (myStatus === "In Progress") {
-            return "In Progress";
+        } else if (myStatus === "In-Progress") {
+            return "In-Progress";
         } else {
             return "Resolved";
         }
@@ -21,7 +21,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     //PART 2: STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
     const [ticketData] = ticket;
-    const [ticketTitle, setTicketTitle] = useState<string>(ticketData.name);
+    const [ticketTitle, setTicketTitle] = useState<string>(ticketData.title);
     const [ticketDescription, setTicketDescription] = useState<string>(
         ticketData.description
     );
@@ -34,8 +34,10 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     const [ticketLastModified, setTicketLastModified] = useState<Date>(
         ticketData.last_modified
     );
-    const [ticketImage, setTicketImage] = useState<string>(ticketData.image);
-    const [ticketAssignee, setTicketAssignee] = useState<User | null>(
+    const [ticketImage, setTicketImage] = useState<string>(
+        ticketData.image_path
+    );
+    const [ticketAssignee, setTicketAssignee] = useState<string>(
         ticketData.assignee
     );
     /*const [ticketPreviousVersion, setTicketPreviousVersion] =
