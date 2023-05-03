@@ -7,6 +7,8 @@ import { Form } from "react-bootstrap";
 import { Hook } from "../TicketDatabase";
 
 export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
+    const initial_date = new Date();
+
     //PART 1: HELPER functions
     function statusToString(myStatus: EnumStatus): string {
         if (myStatus === "New") {
@@ -31,20 +33,17 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     const [ticketPriority, setTicketPriority] = useState<number>(
         ticketData.priority
     );
-    const [ticketLastModified, setTicketLastModified] = useState<Date>(
-        ticketData.last_modified
-    );
+    const [ticketLastModified, setTicketLastModified] =
+        useState<Date>(initial_date);
     const [ticketImage, setTicketImage] = useState<string>(
         ticketData.image_path
     );
-    const [ticketAssignee, setTicketAssignee] = useState<string>(
-        ticketData.assignee
-    );
+    const [ticketAssignee, setTicketAssignee] = useState<string>("");
     /*const [ticketPreviousVersion, setTicketPreviousVersion] =
         useState<Ticket | null>(ticketData.previous_version);*/
 
     const current_assignee = ticketData.assignee;
-    const current_date = new Date();
+    const current_date = ticketData.last_modified;
     //const current_version = ticketData;
 
     //PART 3: CONTROL functions
@@ -127,7 +126,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             return (
                 <div>
                     <Form.Group controlId="formTicketTitle">
-                        <Form.Label>Title:</Form.Label>
+                        <Form.Label></Form.Label>
                         <Form.Control
                             value={ticketTitle}
                             onChange={updateTicketTitle}
@@ -146,7 +145,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             return (
                 <div>
                     <Form.Group controlId="formTicketDescription">
-                        <Form.Label>Description:</Form.Label>
+                        <Form.Label></Form.Label>
                         <Form.Control
                             as="textarea"
                             //rows={3}
@@ -167,7 +166,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             return (
                 <div>
                     <Form.Group controlId="formTicketPriority">
-                        <Form.Label>Priority:</Form.Label>
+                        <Form.Label></Form.Label>
                         <Form.Control
                             type="number"
                             value={ticketPriority}
@@ -187,7 +186,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             return (
                 <div>
                     <Form.Group controlId="formTicketImage">
-                        <Form.Label>Image URL:</Form.Label>
+                        <Form.Label></Form.Label>
                         <Form.Control
                             value={ticketImage}
                             onChange={updateTicketImage}
@@ -206,7 +205,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             return (
                 <div>
                     <Form.Group controlId="ticketStatus">
-                        <Form.Label>Ticket Status:</Form.Label>
+                        <Form.Label></Form.Label>
                         <Form.Select
                             value={ticketStatus}
                             onChange={updateTicketStatus}
@@ -233,13 +232,13 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
                 checked={inEditMode}
                 onChange={updateInEditMode}
             />
-            <div>{titleInEditMode()}</div>
-            <div>{descriptionInEditMode()}</div>
-            <div>{priorityInEditMode()}</div>
-            <div>{imageInEditMode()}</div>
-            <div>{statusInEditMode()}</div>
-            <div>{lastModifiedNotInEditMode()}</div>
-            <div>{assigneeNotInEditMode()}</div>
+            <div>Title: {titleInEditMode()}</div>
+            <div>Description: {descriptionInEditMode()}</div>
+            <div>Priority: {priorityInEditMode()}</div>
+            <div>Image: {imageInEditMode()}</div>
+            <div>Status: {statusInEditMode()}</div>
+            <div>Lastly edited on: {lastModifiedNotInEditMode()}</div>
+            <div>Assignee: {assigneeNotInEditMode()}</div>
         </div>
     );
 }
