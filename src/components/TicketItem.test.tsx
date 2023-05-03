@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { screen, render } from "@testing-library/react";
 import { TicketItem } from "./TicketItem";
-import { Ticket } from "./TicketItem";
+import { Ticket } from "../Interfaces/TicketInterface";
 import { Hook } from "../TicketDatabase";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
