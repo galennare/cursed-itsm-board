@@ -17,8 +17,8 @@ export enum UserRole {
 
 /*
     This is a UI component that should look like a navigation bar
-    that spans the top of the broswer window and feature our project
-    title as well as the drop down menu to select the user role.
+    that spans the top of the browser window and feature our project
+    title as well as the drop-down menu to select the user role.
 
     This component should accept a parameter of the current
     selected user role as well as a hook/function to update

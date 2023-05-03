@@ -63,6 +63,6 @@
 
 .image {
     text-align: left;
-    align-items: left;
+    align-items: start;
     margin: auto;
 }
