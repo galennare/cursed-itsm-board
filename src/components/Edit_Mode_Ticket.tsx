@@ -34,21 +34,22 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
     const [ticketLastModified, setTicketLastModified] = useState<Date>(
         ticketData.last_modified
     );
-    /*const [ticketPreviousVersion, setTicketPreviousVersion] =
-        useState<Ticket | null>(ticketData.previous_version);*/
     const [ticketImage, setTicketImage] = useState<string>(ticketData.image);
     const [ticketAssignee, setTicketAssignee] = useState<User | null>(
         ticketData.assignee
     );
+    /*const [ticketPreviousVersion, setTicketPreviousVersion] =
+        useState<Ticket | null>(ticketData.previous_version);*/
 
-    //const current_version = ticketData;
     const current_assignee = ticketData.assignee;
     const current_date = new Date();
+    //const current_version = ticketData;
 
     //PART 3: CONTROL functions
     useEffect(() => setTicketLastModified(current_date), []);
     useEffect(() => setTicketAssignee(current_assignee), []);
 
+    //function to update EditMode
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
         setInEditMode(event.target.checked);
     }
@@ -75,15 +76,15 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
         setTicketPriority(parseInt(event.target.value));
     }
 
-    //function to update the previous version of the ticket
-    /*function updateTicketPreviousVersion() {
-        setTicketPreviousVersion(current_version);
-    }*/
-
     //function to update the image of the ticket
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketImage(event.target.value);
     }
+
+    //function to update the previous version of the ticket
+    /*function updateTicketPreviousVersion() {
+        setTicketPreviousVersion(current_version);
+    }*/
 
     //PART 4: NOT IN EDIT MODE functions
     function titleNotInEditMode(): string {
@@ -106,12 +107,16 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
         return ticketImage;
     }
 
-    function assigneeNotInEditMode(): User | null {
-        return ticketAssignee;
+    function assigneeNotInEditMode(): string {
+        if (ticketAssignee !== null) {
+            return ticketAssignee.toString();
+        } else {
+            return "";
+        }
     }
 
-    function lastModifiedNotInEditMode(): Date {
-        return ticketLastModified;
+    function lastModifiedNotInEditMode(): string {
+        return ticketLastModified.toDateString();
     }
 
     //PART 5: IN EDIT MODE functions
@@ -231,6 +236,8 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
             <div>{priorityInEditMode()}</div>
             <div>{imageInEditMode()}</div>
             <div>{statusInEditMode()}</div>
+            <div>{lastModifiedNotInEditMode()}</div>
+            <div>{assigneeNotInEditMode()}</div>
         </div>
     );
 }

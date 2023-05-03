@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
 import { EditTicket } from "./Edit_Mode_Ticket";
-import { Hook } from "../TicketDatabase";
+import { Hook, TicketDatabase } from "../TicketDatabase";
 import userEvent from "@testing-library/user-event";
+import { Ticket } from "../interface/Ticket";
+import { TicketItem } from "./TicketItem";
+import { takeCoverage } from "v8";
 
 describe("EditMode Component tests", () => {
-    //beforeEach(() => render(<EditTicket ticket={[]} />));
+    //beforeEach(() => render(<EditTicket ticket={useState<Ticket>()} />));
     test("There is one checkbox and no textboxes", () => {
         const switchButton = screen.getByRole("checkbox");
         expect(switchButton).toBeInTheDocument();
