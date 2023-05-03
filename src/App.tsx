@@ -6,7 +6,7 @@ import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
-import { Hook, TicketDatabase } from "./TicketDatabase";
+import { TicketDatabase } from "./TicketDatabase";
 import { Ticket } from "./components/TicketItem";
 import { TicketList } from "./components/TicketList";
 import { DndProvider } from "react-dnd";
