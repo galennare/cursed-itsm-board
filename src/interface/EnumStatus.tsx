@@ -1,1 +1,1 @@
-export type EnumStatus = "New" | "In Progress" | "Resolved";
+export type EnumStatus = "New" | "In-Progress" | "Resolved";
