@@ -5,7 +5,7 @@ import { NavigationBar, UserRole } from "./components/NavigationBar";
 import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
-import { Hook, TicketDatabase } from "./TicketDatabase";
+import { TicketDatabase } from "./TicketDatabase";
 import { Ticket } from "./components/TicketItem";
 import { TicketList } from "./components/TicketList";
 
