@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Ticket, TicketItem } from "./TicketItem";
+import { TicketItem } from "./TicketItem";
+import { Ticket } from "../Interfaces/TicketInterface";
 
 const INITIAL_ADMIN_LIST: Ticket[] = [
     {

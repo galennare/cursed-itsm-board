@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 /*
     This is NOT a UI component. This is similar to an interface
@@ -43,6 +44,9 @@ export function NavigationBar({
             <div>{userRole}</div>
             <div>
                 <Button onClick={setAdmin}>Delete this button</Button>
+            </div>
+            <div>
+                <ProfilePhoto searcher="../default-profile.png" />
             </div>
         </span>
     );
