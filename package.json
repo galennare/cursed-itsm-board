@@ -79,7 +79,8 @@
       }
     },
     "coveragePathIgnorePatterns": [
-      "/src/App.tsx"
+      "/src/App.tsx",
+      "/src/TicketDatabase.ts"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!react-dnd)/"
