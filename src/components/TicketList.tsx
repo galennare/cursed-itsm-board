@@ -1,8 +1,9 @@
 import React from "react";
-import { Ticket, TicketItem } from "./TicketItem";
+import { TicketItem } from "./TicketItem";
 import { useDrop } from "react-dnd";
 import { UserRole } from "./NavigationBar";
 import { Hook } from "../TicketDatabase";
+import { Ticket } from "../Interface/TicketInterface";
 
 export function TicketList({
     ticket_hooks,

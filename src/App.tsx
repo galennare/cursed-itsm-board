@@ -7,7 +7,7 @@ import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { TicketDatabase } from "./TicketDatabase";
-import { Ticket } from "./components/TicketItem";
+import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -104,6 +104,16 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
+                        <h1>User List</h1>
+                        <TicketList
+                            ticket_hooks={ticketDB.getUserList(userRole)}
+                            list_type={UserRole.User}
+                        ></TicketList>
+                    </div>
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
                         <h1>Central List</h1>
                         <TicketList
                             ticket_hooks={ticketDB.getCentralList()}
@@ -119,17 +129,6 @@ function App() {
                         <TicketList
                             ticket_hooks={ticketDB.getAdminList()}
                             list_type={UserRole.Admin}
-                        ></TicketList>
-                    </div>
-
-                    <div
-                        className="column"
-                        style={{ width: "33.33%", display: "table-cell" }}
-                    >
-                        <h1>User List</h1>
-                        <TicketList
-                            ticket_hooks={ticketDB.getUserList(userRole)}
-                            list_type={UserRole.User}
                         ></TicketList>
                     </div>
                 </div>
