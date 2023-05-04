@@ -58,15 +58,10 @@ function App() {
 
     return (
         <div className="App">
-<<<<<<< HEAD
-            <header className="App-header">
-                <div>
-                    <ProfilePhoto searcher="../default-profile.png" />
-=======
             <DndProvider backend={HTML5Backend}>
                 <header className="App-header">
                     <div>
-                        <ProfilePhoto searcher="https://example.com/profile.jpg" />
+                        <ProfilePhoto searcher="../default-profile.png" />
                     </div>
                     <div>
                         <NavigationBar
@@ -87,7 +82,6 @@ function App() {
                             <Preferences></Preferences>
                         </div>
                     </div>
->>>>>>> 53c552a6eab283ae285cacad2947811367e914b1
                 </div>
                 <h5>New Tickets</h5>
                 <RevealTicket></RevealTicket>
