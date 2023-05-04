@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Ticket } from "../interfaces/Ticket";
+import { TicketItem } from "./TicketItem";
+import { Ticket } from "../Interface/TicketInterface";
+import { Hook } from "../TicketDatabase";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const INITIAL_ADMIN_LIST: Ticket[] = [
     {
@@ -56,26 +60,38 @@ export function AdminList(): JSX.Element {
         setList(modifiedList);
     }
     */
+    // TODO
+
+    const newTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "Pending",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    function TicketItemHookWrapper(): JSX.Element {
+        const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
+
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <TicketItem ticket_hook={ticketHook} />
+            </DndProvider>
+        );
+    }
 
     return (
         <div className="AdminList" style={{ float: "left", width: "33%" }}>
             <h1>Admin List</h1>
             {adminList.map((ticket: Ticket) => (
-                <div
+                <TicketItem
                     key={ticket.id}
-                    style={{
-                        border: "5px solid black",
-                        margin: "10px"
-                    }}
-                >
-                    <h1>{ticket.title}</h1>
-                    <h4>Author: {ticket.author}</h4>
-                    <h4> Assigned To: {ticket.assignee}</h4>
-                    <div>
-                        Status: {ticket.status} Priority: {ticket.priority}
-                    </div>
-                    <p>{ticket.description}</p>
-                </div>
+                    ticket_hook={[ticket, TicketItemHookWrapper]}
+                ></TicketItem>
             ))}
         </div>
     );
