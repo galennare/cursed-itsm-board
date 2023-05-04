@@ -1,7 +1,7 @@
 .pfp-wrapper {
     position: absolute;
-    top: 5%;
-    right: 3%;
+    top: 2%;
+    right: 2%;
     transition:filter 0.2s;
 }
 
@@ -13,8 +13,8 @@
 
 .pfp-container {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
 }
 
 .pfp {
