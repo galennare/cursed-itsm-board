@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { TicketList } from "./TicketList";
 import React, { useState } from "react";
-import { UserRole } from "./NavigationBar";
-import { Hook } from "../TicketDatabase";
-import { Ticket } from "../Interface/TicketInterface";
+import { UserRole } from "../interfaces/UserRole";
+import { Hook } from "../interfaces/Hook";
+import { Ticket } from "../interfaces/Ticket";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 

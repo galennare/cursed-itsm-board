@@ -1,6 +1,7 @@
 import React from "react";
 import { screen, render } from "@testing-library/react";
-import { NavigationBar, UserRole } from "./NavigationBar";
+import { NavigationBar } from "./NavigationBar";
+import { UserRole } from "../interfaces/UserRole";
 
 beforeEach(() => {
     render(

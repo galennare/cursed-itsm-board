@@ -1,7 +1,7 @@
 import React from "react";
-import { Hook } from "../TicketDatabase";
+import { Hook } from "../interfaces/Hook";
 import { useDrag } from "react-dnd";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interfaces/Ticket";
 
 /*
     KEY PART OF MVP #########################################################

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { screen, render } from "@testing-library/react";
 import { TicketItem } from "./TicketItem";
-import { Hook } from "../TicketDatabase";
+import { Hook } from "../interfaces/Hook";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interfaces/Ticket";
 
 test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);

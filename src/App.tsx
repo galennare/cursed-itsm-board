@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import { TicketButton } from "./components/TicketButton";
-import { NavigationBar, UserRole } from "./components/NavigationBar";
-import { Preferences } from "./components/Preferences";
+import { NavigationBar } from "./components/NavigationBar";
+import { UserRole } from "./interfaces/UserRole";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
-import { TicketDatabase } from "./TicketDatabase";
-import { Ticket } from "./Interface/TicketInterface";
+import { Ticket } from "./interfaces/Ticket";
 import { TicketList } from "./components/TicketList";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -52,10 +50,6 @@ function App() {
         }
     ];
 
-    // instantiate the ticket database
-    // see TicketDatabase.ts for documentation
-    const ticketDB = new TicketDatabase(INITIAL_LIST); // <-- comment this line back in when you use the ticket database
-
     return (
         <div className="App">
             <DndProvider backend={HTML5Backend}>
@@ -73,13 +67,7 @@ function App() {
                 <div style={{ backgroundColor: "#8096c06e" }}>
                     <div className="buttons">
                         <div>
-                            <TicketButton></TicketButton>
-                        </div>
-                        <div>
                             <ViewMyWork></ViewMyWork>
-                        </div>
-                        <div style={{ paddingLeft: "915px" }}>
-                            <Preferences></Preferences>
                         </div>
                     </div>
                 </div>
@@ -105,20 +93,20 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <h1>User List</h1>
-                        <TicketList
+                        {/*<TicketList
                             ticket_hooks={ticketDB.getUserList(userRole)}
                             list_type={UserRole.User}
-                        ></TicketList>
+    ></TicketList>*/}
                     </div>
                     <div
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <h1>Central List</h1>
-                        <TicketList
+                        {/*<TicketList
                             ticket_hooks={ticketDB.getCentralList()}
                             list_type={UserRole.Super}
-                        ></TicketList>
+></TicketList>*/}
                     </div>
 
                     <div
@@ -126,10 +114,10 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <h1>Admin List</h1>
-                        <TicketList
+                        {/*<TicketList
                             ticket_hooks={ticketDB.getAdminList()}
                             list_type={UserRole.Admin}
-                        ></TicketList>
+></TicketList>*/}
                     </div>
                 </div>
             </DndProvider>
