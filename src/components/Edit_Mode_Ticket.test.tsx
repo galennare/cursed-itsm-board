@@ -1,51 +1,36 @@
 import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
-import { EditTicket } from "./Edit_Mode_Ticket";
-import { TicketDatabase } from "../TicketDatabase";
-import userEvent from "@testing-library/user-event";
+//import userEvent from "@testing-library/user-event";
 import { Ticket } from "./TicketItem";
-//import { takeCoverage } from "v8";
+import { EditTicket } from "./Edit_Mode_Ticket";
+import { Hook, TicketDatabase } from "../TicketDatabase";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 beforeEach(() => {
-    const MY_LIST: Ticket[] = [
-        {
-            id: 1,
-            title: "Computer Issues",
-            description: "This is the description for ticket one.",
-            priority: 0,
-            last_modified: new Date(),
-            author: "Joe Biden",
-            status: "New",
-            assignee: "Nick DiGirolamo",
-            image_path: "path_to_image"
-        },
-        {
-            id: 2,
-            title: "My Phone Died",
-            description: "This is the description for ticket two.",
-            priority: 0,
-            last_modified: new Date(),
-            author: "Donald Trump",
-            status: "In-Progress",
-            assignee: "Nick DiGirolamo",
-            image_path: "path_to_image"
-        },
-        {
-            id: 3,
-            title: "No WIFI?",
-            description: "This is the description for ticket three.",
-            priority: 0,
-            last_modified: new Date(),
-            author: "Barack Obama",
-            status: "Resolved",
-            assignee: "Nick DiGirolamo",
-            image_path: "path_to_image"
-        }
-    ];
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
 
-    const ticketDataB = new TicketDatabase(MY_LIST);
+    function EditModeHookWrapper(): JSX.Element {
+        const ticketHook: Hook<Ticket> = useState<Ticket>(myTicket);
 
-    render(<EditTicket ticket={ticketDataB.getCentralList()[1]}></EditTicket>);
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <EditTicket ticket={ticketHook}></EditTicket>
+            </DndProvider>
+        );
+    }
+
+    render(<EditModeHookWrapper />);
 });
 /*test("There is one checkbox and no textboxes", () => {
     const switchButton = screen.getByRole("checkbox");
