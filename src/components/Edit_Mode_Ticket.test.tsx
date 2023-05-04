@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
 //import userEvent from "@testing-library/user-event";
-import { Ticket } from "./TicketItem";
+import { Ticket, TicketItem } from "./TicketItem";
 import { EditTicket } from "./Edit_Mode_Ticket";
 import { Hook, TicketDatabase } from "../TicketDatabase";
 import { DndProvider } from "react-dnd";
@@ -32,16 +32,29 @@ beforeEach(() => {
 
     render(<EditModeHookWrapper />);
 });
-/*test("There is one checkbox and no textboxes", () => {
-    const switchButton = screen.getByRole("checkbox");
-    expect(switchButton).toBeInTheDocument();
-    expect(switchButton.parentElement).toHaveClass("form-switch");
-    expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+test("Initial texts should be ticket fields", () => {
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    expect(screen.getByText(myTicket.title)).toBeInTheDocument();
+    expect(screen.getByText(myTicket.description)).toBeInTheDocument();
+    expect(screen.getByText(myTicket.priority)).toBeInTheDocument();
+    expect(screen.getByText(myTicket.title)).toBeInTheDocument();
+    //expect(screen.getByText(myTicket.last_modified)).toBeInTheDocument();
+    expect(screen.getByText(myTicket.status)).toBeInTheDocument();
+    expect(screen.getByText(myTicket.assignee)).toBeInTheDocument();
+    expect(screen.getByText(myTicket.image_path)).toBeInTheDocument();
 });
-test("Initial text should be 'Your Name is a student'.", () => {
-    expect(screen.getByText(/Your Name is a student/i)).toBeInTheDocument();
-});
-test("Can switch into Edit Mode", () => {
+/*test("Can switch into Edit Mode", () => {
     const switchButton = screen.getByRole("checkbox");
     switchButton.click();
     expect(screen.getByRole("textbox")).toBeInTheDocument();
