@@ -5,7 +5,6 @@ import { NavigationBar, UserRole } from "./components/NavigationBar";
 import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
-import { AdminList } from "./components/AdminList";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { TicketDatabase } from "./TicketDatabase";
 import { Ticket } from "./components/TicketItem";
