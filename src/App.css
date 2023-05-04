@@ -1,3 +1,32 @@
+
+.title {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: auto;
+}
+
+.title > div {
+    width: auto;
+    margin: 20px;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.buttons > div {
+    display: flex;
+    text-align: center;
+
+}
+
 .App {
     text-align: center;
 }
@@ -9,16 +38,15 @@
 }
 
 .App-btn2 {
-    text-align: right;
+    float: right;
 }
 
 .App-header {
-    background-color: #282c34;
-    min-height: 50vh;
+    padding: 10px;
     display: flex;
-    flex-direction: column;
+    background-color: #495d86;
+    min-height: 10vh;
     align-items: center;
-    justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
 }
@@ -29,6 +57,6 @@
 
 .image {
     text-align: left;
-    align-items: left;
+    align-items: start;
     margin: auto;
 }
