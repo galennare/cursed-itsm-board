@@ -16,30 +16,41 @@ const initialList: Ticket[] = [
     }
 ];
 
-const fun = initialList.map((ticket: Ticket) => (
-    <div
-        key={ticket.id}
-        style={{
-            border: "5px solid black",
-            margin: "10px"
-        }}
-    >
-        <h1>{ticket.title}</h1>
-        <h4>Author: {ticket.author}</h4>
-        <h4> Assigned To: {ticket.assignee}</h4>
-        <div>
-            Status: {ticket.status} Priority: {ticket.priority}
+function mappedList(): JSX.Element[] {
+    return initialList.map((ticket: Ticket) => (
+        <div
+            key={ticket.id}
+            style={{
+                border: "5px solid black",
+                margin: "10px"
+            }}
+        >
+            <h1>{ticket.title}</h1>
+            <h4>Author: {ticket.author}</h4>
+            <h4> Assigned To: {ticket.assignee}</h4>
+            <div>
+                Status: {ticket.status} Priority: {ticket.priority}
+            </div>
+            <p>{ticket.description}</p>
         </div>
-        <p>{ticket.description}</p>
-    </div>
-));
+    ));
+}
 
 export function RevealTicket(): JSX.Element {
     const [reveal, setReveal] = useState<boolean>(false);
     return (
         <span>
-            <Button onClick={() => setReveal(!reveal)}>Ticket</Button>
-            {reveal ? fun : ""}
+            <Button
+                style={{
+                    width: "1000px",
+                    padding: "10px",
+                    backgroundColor: "white"
+                }}
+                onClick={() => setReveal(!reveal)}
+            >
+                <div>{mappedList()}</div>
+            </Button>
+            {reveal ? mappedList() : ""}
         </span>
     );
 }
