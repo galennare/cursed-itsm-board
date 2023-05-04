@@ -6,8 +6,8 @@ describe("Counter Component tests", () => {
     beforeEach(() => {
         render(<CentralList />);
     });
-    test("The initial value is 0", () => {
-        const attemptNumber = screen.getByText(/(\d+)/);
-        expect(attemptNumber).toBeInTheDocument();
+    test("There is a list", () => {
+        const listName = screen.getByText(/Central List/i);
+        expect(listName).toBeInTheDocument();
     });
 });
