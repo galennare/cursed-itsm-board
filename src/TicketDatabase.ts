@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserRole } from "./components/NavigationBar";
-import { Ticket } from "./Interface/TicketInterface";
+import { Ticket } from "./interface/TicketInterface";
 
 /*
     --TicketDatabase Documentation--
