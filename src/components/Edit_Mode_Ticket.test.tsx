@@ -56,13 +56,13 @@ test("Initial texts should be ticket fields", () => {
     expect(screen.getByText(myTicket.assignee)).toBeInTheDocument();
     expect(screen.getByText(myTicket.image_path)).toBeInTheDocument();
 });
-/*test("Can switch into Edit Mode", () => {
+test("Can switch into Edit Mode", () => {
     const switchButton = screen.getByRole("checkbox");
     switchButton.click();
     expect(screen.getByRole("textbox")).toBeInTheDocument();
     expect(screen.getAllByRole("checkbox")).toHaveLength(2);
 });
-test("Editing the name and student status changes the text", () => {
+/*test("Editing the name and student status changes the text", () => {
     const switchButton = screen.getByRole("checkbox");
     switchButton.click();
     const nameBox = screen.getByRole("textbox");
