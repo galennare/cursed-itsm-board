@@ -25,7 +25,7 @@ function App() {
             priority: 0,
             last_modified: new Date(),
             author: "Joe Biden",
-            status: "New",
+            status: "Pending",
             assignee: "Nick DiGirolamo",
             image_path: "path_to_image"
         },

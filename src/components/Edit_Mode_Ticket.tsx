@@ -10,8 +10,8 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
 
     //PART 1: HELPER functions
     function statusToString(myStatus: EnumStatus): string {
-        if (myStatus === "New") {
-            return "New";
+        if (myStatus === "Pending") {
+            return "Pending";
         } else if (myStatus === "In-Progress") {
             return "In-Progress";
         } else {

@@ -64,3 +64,5 @@ export function TicketItem({
         </div>
     );
 }
+
+export type { Ticket };
