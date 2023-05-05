@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
-//import userEvent from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import { Ticket, TicketItem } from "./TicketItem";
 import { EditTicket } from "./Edit_Mode_Ticket";
 import { Hook, TicketDatabase } from "../TicketDatabase";
@@ -49,7 +49,9 @@ test("Initial texts should be ticket fields", () => {
     expect(screen.getByText(myTicket.description)).toBeInTheDocument();
     expect(screen.getByText(myTicket.priority)).toBeInTheDocument();
     expect(screen.getByText(myTicket.title)).toBeInTheDocument();
-    //expect(screen.getByText(myTicket.last_modified)).toBeInTheDocument();
+    expect(
+        screen.getByText(myTicket.last_modified.toDateString())
+    ).toBeInTheDocument();
     expect(screen.getByText(myTicket.status)).toBeInTheDocument();
     expect(screen.getByText(myTicket.assignee)).toBeInTheDocument();
     expect(screen.getByText(myTicket.image_path)).toBeInTheDocument();
