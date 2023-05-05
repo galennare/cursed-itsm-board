@@ -7,7 +7,7 @@ import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { TicketDatabase } from "./TicketDatabase";
-import { Ticket } from "./Interface/TicketInterface";
+import { Ticket } from "./interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";

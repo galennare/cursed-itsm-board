@@ -62,19 +62,15 @@ test("Can switch into Edit Mode", () => {
     expect(screen.getByRole("textbox")).toBeInTheDocument();
     expect(screen.getAllByRole("checkbox")).toHaveLength(2);
 });
-/*test("Editing the name and student status changes the text", () => {
+test("Editing the title changes the text of the title", () => {
     const switchButton = screen.getByRole("checkbox");
     switchButton.click();
     const nameBox = screen.getByRole("textbox");
-    userEvent.type(nameBox, "Ada Lovelace");
-    const studentBox = screen.getByRole("checkbox", { name: /student/i });
-    studentBox.click();
+    userEvent.type(nameBox, "Computer problems");
     switchButton.click();
-    expect(
-        screen.getByText(/Ada Lovelace is not a student/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Computer problems/i)).toBeInTheDocument();
 });
-test("Different name, click student box twice changes the text", () => {
+/*test("Different name, click student box twice changes the text", () => {
     const switchButton = screen.getByRole("checkbox");
     switchButton.click();
     const nameBox = screen.getByRole("textbox");

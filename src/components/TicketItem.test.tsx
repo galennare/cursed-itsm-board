@@ -4,7 +4,7 @@ import { TicketItem } from "./TicketItem";
 import { Hook } from "../TicketDatabase";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interface/TicketInterface";
 
 test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);
