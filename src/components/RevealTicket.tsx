@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Ticket } from "./TicketItem";
+import { Ticket } from "../Interface/TicketInterface";
 
 const initialList: Ticket[] = [
     {
