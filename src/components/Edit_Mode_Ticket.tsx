@@ -202,7 +202,7 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
                             value={ticketStatus}
                             onChange={updateTicketStatus}
                         >
-                            <option value="New">New</option>
+                            <option value="Pending">Pending</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Resolved">Resolved</option>
                         </Form.Select>
