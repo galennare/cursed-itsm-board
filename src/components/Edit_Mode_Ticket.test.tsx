@@ -63,63 +63,106 @@ test("Can switch into Edit Mode", () => {
     expect(screen.getAllByRole("checkbox")).toHaveLength(2);
 });
 test("Editing the title changes the title text", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const nameBox = screen.getByRole("textbox");
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    const nameBox = screen.getByAltText(myTicket.title);
     userEvent.type(nameBox, "Computer problems");
-    switchButton.click();
     expect(screen.getByText(/Computer problems/i)).toBeInTheDocument();
 });
 test("Editing the description changes the description text", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const descriptionBox = screen.getByRole("textbox");
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    const descriptionBox = screen.getByAltText(myTicket.description);
     userEvent.type(descriptionBox, "This is the description of the ticket");
-    switchButton.click();
     expect(
         screen.getByText(/This is the description of the ticket/i)
     ).toBeInTheDocument();
 });
 test("Editing the priority changes the priority text", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const prioBox = screen.getByRole("textbox");
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    const prioBox = screen.getByAltText(myTicket.priority);
     userEvent.type(prioBox, "5");
-    switchButton.click();
     expect(screen.getByText(/5/i)).toBeInTheDocument();
 });
 test("Editing the image changes the image text", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const imageBox = screen.getByRole("textbox");
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    const imageBox = screen.getByAltText(myTicket.image_path);
     userEvent.type(imageBox, "image.png");
-    switchButton.click();
     expect(screen.getByText(/image.png/i)).toBeInTheDocument();
 });
 test("Editing the status changes the dropdown option", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const statusBox = screen.getByRole("status");
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    const statusBox = screen.getByAltText(myTicket.status);
     userEvent.type(statusBox, "Pending");
-    switchButton.click();
     expect(screen.getByText(/Pending/i)).toBeInTheDocument();
 });
 test("Editing the assignee changes the assignee text", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const assignBox = screen.getByRole("textbox");
+    const myTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "In-Progress",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    const assignBox = screen.getByAltText(myTicket.assignee);
     userEvent.type(assignBox, "Victor Leclercq");
-    switchButton.click();
     expect(screen.getByText(/Victor Leclercq/i)).toBeInTheDocument();
 });
-/*test("Different name, click student box twice changes the text", () => {
-    const switchButton = screen.getByRole("checkbox");
-    switchButton.click();
-    const nameBox = screen.getByRole("textbox");
-    userEvent.type(nameBox, "Alan Turing");
-    const studentBox = screen.getByRole("checkbox", { name: /student/i });
-    studentBox.click();
-    studentBox.click();
-    switchButton.click();
-    expect(screen.getByText(/Alan Turing is a student/i)).toBeInTheDocument();
-});*/
