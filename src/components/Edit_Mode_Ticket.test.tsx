@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Ticket, TicketItem } from "./TicketItem";
+import { Ticket } from "./TicketItem";
 import { EditTicket } from "./Edit_Mode_Ticket";
-import { Hook, TicketDatabase } from "../TicketDatabase";
+import { Hook } from "../TicketDatabase";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
