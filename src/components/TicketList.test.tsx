@@ -3,7 +3,7 @@ import { TicketList } from "./TicketList";
 import React, { useState } from "react";
 import { UserRole } from "./NavigationBar";
 import { Hook } from "../TicketDatabase";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interface/TicketInterface";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -15,7 +15,7 @@ test("TicketList is rendering.", () => {
         priority: 0,
         last_modified: new Date(),
         author: "Joe Biden",
-        status: "Pending",
+        status: "In-Progress",
         assignee: "Nick DiGirolamo",
         image_path: "path_to_image"
     };

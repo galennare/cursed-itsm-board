@@ -1,7 +1,7 @@
 import React from "react";
 import { Hook } from "../TicketDatabase";
 import { useDrag } from "react-dnd";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interface/TicketInterface";
 
 /*
     KEY PART OF MVP #########################################################
@@ -64,3 +64,5 @@ export function TicketItem({
         </div>
     );
 }
+
+export type { Ticket };

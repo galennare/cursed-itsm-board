@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interface/TicketInterface";
 
 const initialList: Ticket[] = [
     {
@@ -10,7 +10,7 @@ const initialList: Ticket[] = [
         priority: 0,
         last_modified: new Date(),
         author: "Joe Biden",
-        status: "Pending",
+        status: "In-Progress",
         assignee: "Nick DiGirolamo",
         image_path: "path_to_image"
     }

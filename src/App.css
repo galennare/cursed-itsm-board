@@ -57,6 +57,19 @@
     color: white;
 }
 
+.List-Section {
+    border-style: solid;
+    border-radius: 12px;
+    border-color: slateblue;
+    border-width: 2px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.List-Section-Title {
+    text-align: left;
+}
+
 .App-link {
     color: #61dafb;
 }

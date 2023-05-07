@@ -71,7 +71,7 @@
       "!src/react-app-env.d.ts"
     ],
     "coverageThreshold": {
-      "global" : {
+      "global": {
         "branches": 50,
         "functions": 50,
         "lines": 50,

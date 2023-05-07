@@ -7,10 +7,11 @@ import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { TicketDatabase } from "./TicketDatabase";
-import { Ticket } from "./Interface/TicketInterface";
+import { Ticket } from "./interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { EditTicket } from "./components/Edit_Mode_Ticket";
 
 function App() {
     // userRole is the current role that the user has selected to act as
@@ -91,6 +92,8 @@ function App() {
                 <hr></hr>
                 <h5>Assigned to me</h5>
                 <RevealTicket></RevealTicket>
+                <hr></hr>
+                <EditTicket ticket={ticketDB.getCentralList()[1]}></EditTicket>
                 <br></br>
                 <br></br>
                 <br></br>

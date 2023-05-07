@@ -3,7 +3,7 @@ import { TicketItem } from "./TicketItem";
 import { useDrop } from "react-dnd";
 import { UserRole } from "./NavigationBar";
 import { Hook } from "../TicketDatabase";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket } from "../interface/TicketInterface";
 
 export function TicketList({
     ticket_hooks,
