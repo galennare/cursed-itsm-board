@@ -1,5 +1,5 @@
-import { User } from "./User";
-import { EnumStatus } from "./EnumStatus";
+import { User } from "../Interface/User";
+import { EnumStatus } from "../Interface/EnumStatus";
 
 export interface Ticket {
     /** A unique identifier for the ticket */

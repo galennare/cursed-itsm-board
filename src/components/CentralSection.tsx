@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { EnumStatus } from "../interface/EnumStatus";
-import { Ticket } from "../interface/Ticket";
+import { EnumStatus } from "../Interface/EnumStatus";
+import { Ticket } from "../Interface/Ticket";
 
 export function CentralListSection(
     ticketStatus: EnumStatus,

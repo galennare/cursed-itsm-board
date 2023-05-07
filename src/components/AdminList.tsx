@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TicketItem } from "./TicketItem";
-import { Ticket } from "../interface/TicketInterface";
+import { Ticket } from "../Interface/TicketInterface";
 import { Hook } from "../TicketDatabase";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";

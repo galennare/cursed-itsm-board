@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { EnumStatus } from "../interface/EnumStatus";
+import { EnumStatus } from "../Interface/EnumStatus";
 import { Ticket } from "./TicketItem";
 import { Form } from "react-bootstrap";
 import { Hook } from "../TicketDatabase";
