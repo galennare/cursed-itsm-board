@@ -29,10 +29,7 @@ test("TicketList is rendering.", () => {
         const [list, setList] = useState<Ticket[]>([]);
         return (
             <DndProvider backend={HTML5Backend}>
-                <TicketList
-                    list={list}
-                    onDrop={(item: Ticket) => setList([...list, item])}
-                ></TicketList>
+                <TicketList list={list} setList={setList}></TicketList>
             </DndProvider>
         );
     }

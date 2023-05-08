@@ -7,14 +7,20 @@ import { Ticket } from "../Interface/TicketInterface";
 
 export function TicketList({
     list,
-    onDrop
+    setList
 }: {
     list: Ticket[];
-    onDrop: (item: Ticket) => void;
+    setList: (list: Ticket[]) => void;
 }): JSX.Element {
+    const addTicket = (ticket: Ticket) => {
+        console.log("Detected drop. Before: " + list.length);
+        setList([...list, ticket]);
+        console.log("Detected drop. After: " + list.length);
+    };
+
     const [, drop] = useDrop(() => ({
         accept: "TicketItem",
-        drop: onDrop
+        drop: (ticket: Ticket) => addTicket(ticket)
     }));
 
     return (

@@ -109,18 +109,15 @@ function App() {
                         <h1>User List</h1>
                         <Button
                             onClick={() => {
+                                console.log("Clicked on user list button.");
+                                console.log("Before: " + userList.length);
                                 setUserList([...userList, INITIAL_LIST[0]]);
-                                console.log(userList);
+                                console.log("After: " + userList.length);
                             }}
                         >
                             Add Element
                         </Button>
-                        <TicketList
-                            list={userList}
-                            onDrop={(item: Ticket) =>
-                                setUserList([...userList, item])
-                            }
-                        />
+                        <TicketList list={userList} setList={setUserList} />
                     </div>
                     <div
                         className="column"
@@ -129,20 +126,20 @@ function App() {
                         <h1>Central List</h1>
                         <Button
                             onClick={() => {
+                                console.log("Clicked on central list button.");
+                                console.log("Before: " + centralList.length);
                                 setCentralList([
                                     ...centralList,
                                     INITIAL_LIST[0]
                                 ]);
-                                console.log(centralList);
+                                console.log("After: " + centralList.length);
                             }}
                         >
                             Add Element
                         </Button>
                         <TicketList
                             list={centralList}
-                            onDrop={(item: Ticket) =>
-                                setCentralList([...centralList, item])
-                            }
+                            setList={setCentralList}
                         />
                     </div>
 
@@ -153,18 +150,15 @@ function App() {
                         <h1>Admin List</h1>
                         <Button
                             onClick={() => {
+                                console.log("Clicked on admin list button.");
+                                console.log("Before: " + adminList.length);
                                 setAdminList([...adminList, INITIAL_LIST[0]]);
-                                console.log(adminList);
+                                console.log("After: " + adminList.length);
                             }}
                         >
                             Add Element
                         </Button>
-                        <TicketList
-                            list={adminList}
-                            onDrop={(item: Ticket) =>
-                                setAdminList([...adminList, item])
-                            }
-                        />
+                        <TicketList list={adminList} setList={setAdminList} />
                     </div>
                 </div>
             </DndProvider>
