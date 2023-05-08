@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { UserRole } from "../interfaces/UserRole";
+import { StateSetter } from "../interfaces/Hook";
 
 /*
     This is a UI component that should look like a navigation bar
@@ -19,7 +20,7 @@ export function NavigationBar({
     setUserRole
 }: {
     userRole: UserRole;
-    setUserRole: (role: UserRole) => void;
+    setUserRole: StateSetter<UserRole>;
 }): JSX.Element {
     // delete this function later
     const setAdmin = () => setUserRole(UserRole.Admin);
