@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { UserRole } from "./NavigationBar";
 import { Hook } from "../TicketDatabase";
 import { Ticket } from "../Interface/TicketInterface";
-import { DndProvider, useDrop } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { AdminList } from "./AdminList";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {
@@ -21,17 +20,14 @@ test("TicketList is rendering.", () => {
         image_path: "path_to_image"
     };
 
-    const [, centralDrop] = useDrop(() => ({
-        accept: "TicketItem"
-    }));
-
     function TicketListHookWrapper(): JSX.Element {
-        const [list, setList] = useState<Ticket[]>([]);
+        const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
+
         return (
             <DndProvider backend={HTML5Backend}>
                 <TicketList
-                    list={list}
-                    onDrop={(item: Ticket) => setList([...list, item])}
+                    ticket_hooks={[ticketHook]}
+                    list_type={UserRole.User}
                 ></TicketList>
             </DndProvider>
         );
