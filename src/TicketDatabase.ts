@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserRole } from "./components/NavigationBar";
-import { Ticket } from "./components/TicketItem";
+import { Ticket } from "./Interface/TicketInterface";
 
 /*
     --TicketDatabase Documentation--
@@ -98,11 +98,13 @@ export class TicketDatabase {
         // if we are provided a list of tickets, add hooks to all of them; We should now have a list of [ticket, hook] tuples
         let hookedTickets: Hook<Ticket>[];
 
-        if (tickets !== undefined)
+        if (tickets !== undefined) {
             hookedTickets = tickets.map((ticket: Ticket) => {
                 return useState<Ticket>(ticket);
             });
-        else hookedTickets = [];
+        } else {
+            hookedTickets = [];
+        }
 
         // Create the central list from hooked tickets
         const [centralList, setCentralList] =
@@ -146,7 +148,7 @@ export class TicketDatabase {
         // ensure the ticket ID is unique
         if (
             this._centralList.filter((item: Hook<Ticket>) => {
-                item[0].id === ticket.id;
+                return item[0].id === ticket.id;
             }).length > 0
         )
             return;
@@ -190,7 +192,7 @@ export class TicketDatabase {
         // check that the ticket does not exist in the admin list
         const onAdmin: boolean =
             this._adminList.filter((q: number) => {
-                q === ticket.id;
+                return q === ticket.id;
             }).length > 0;
 
         // add the ticket to the admin list
@@ -220,7 +222,7 @@ export class TicketDatabase {
         // check that the ticket does not exist on the user list
         const onAdmin: boolean =
             this._userLists[user].filter((q: number) => {
-                q === ticket.id;
+                return q === ticket.id;
             }).length > 0;
 
         // add the ticket to the user list

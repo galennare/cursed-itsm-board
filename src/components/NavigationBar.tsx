@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 /*
     This is NOT a UI component. This is similar to an interface
@@ -16,8 +17,8 @@ export enum UserRole {
 
 /*
     This is a UI component that should look like a navigation bar
-    that spans the top of the broswer window and feature our project
-    title as well as the drop down menu to select the user role.
+    that spans the top of the browser window and feature our project
+    title as well as the drop-down menu to select the user role.
 
     This component should accept a parameter of the current
     selected user role as well as a hook/function to update
@@ -43,6 +44,9 @@ export function NavigationBar({
             <div>{userRole}</div>
             <div>
                 <Button onClick={setAdmin}>Delete this button</Button>
+            </div>
+            <div>
+                <ProfilePhoto searcher="../default-profile.png" />
             </div>
         </span>
     );
