@@ -7,10 +7,12 @@ import { Ticket } from "../Interface/TicketInterface";
 
 export function TicketList({
     list,
-    onDrop
+    onDrop,
+    onDragOver
 }: {
     list: Ticket[];
     onDrop: (item: Ticket) => void;
+    onDragOver: (item: Ticket) => void;
 }): JSX.Element {
     const [, drop] = useDrop(() => ({
         accept: "TicketItem",

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { TicketButton } from "./components/TicketButton";
 import { NavigationBar, UserRole } from "./components/NavigationBar";
@@ -6,13 +6,10 @@ import { Preferences } from "./components/Preferences";
 import { RevealTicket } from "./components/RevealTicket";
 import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
-import { TicketDatabase } from "./TicketDatabase";
 import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
-import { DndProvider, useDrop } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { CentralList } from "./components/CentralList";
-import { AdminList } from "./components/AdminList";
 import { Button } from "react-bootstrap";
 
 const INITIAL_LIST: Ticket[] = [
@@ -58,6 +55,12 @@ function App() {
     const [adminList, setAdminList] = useState<Ticket[]>([]);
     const [userList, setUserList] = useState<Ticket[]>([]);
 
+    useEffect(() => {
+        console.log("Admin:", adminList);
+        console.log("User:", userList);
+        console.log("Central:", centralList);
+    });
+
     return (
         <div className="App">
             <DndProvider backend={HTML5Backend}>
@@ -88,7 +91,7 @@ function App() {
                 <h5>New Tickets</h5>
                 <RevealTicket></RevealTicket>
                 <hr></hr>
-                <h5>In Progess</h5>
+                <h5>In Progress</h5>
                 <RevealTicket></RevealTicket>
                 <hr></hr>
                 <h5>Assigned to me</h5>
@@ -110,16 +113,18 @@ function App() {
                         <Button
                             onClick={() => {
                                 setUserList([...userList, INITIAL_LIST[0]]);
-                                console.log(userList);
                             }}
                         >
                             Add Element
                         </Button>
                         <TicketList
                             list={userList}
-                            onDrop={(item: Ticket) =>
-                                setUserList([...userList, item])
-                            }
+                            onDragOver={(item: Ticket) => {
+                                console.log([...userList]);
+                            }}
+                            onDrop={(item: Ticket) => {
+                                setUserList([...userList, item]);
+                            }}
                         />
                     </div>
                     <div
@@ -133,16 +138,18 @@ function App() {
                                     ...centralList,
                                     INITIAL_LIST[0]
                                 ]);
-                                console.log(centralList);
                             }}
                         >
                             Add Element
                         </Button>
                         <TicketList
                             list={centralList}
-                            onDrop={(item: Ticket) =>
-                                setCentralList([...centralList, item])
-                            }
+                            onDragOver={(item: Ticket) => {
+                                console.log([...centralList]);
+                            }}
+                            onDrop={(item: Ticket) => {
+                                setCentralList([...centralList, item]);
+                            }}
                         />
                     </div>
 
@@ -154,16 +161,19 @@ function App() {
                         <Button
                             onClick={() => {
                                 setAdminList([...adminList, INITIAL_LIST[0]]);
-                                console.log(adminList);
                             }}
                         >
                             Add Element
                         </Button>
                         <TicketList
                             list={adminList}
-                            onDrop={(item: Ticket) =>
-                                setAdminList([...adminList, item])
-                            }
+                            onDragOver={(item: Ticket) => {
+                                console.log([...adminList]);
+                            }}
+                            onDrop={(item: Ticket) => {
+                                console.log([...adminList]);
+                                setAdminList([...adminList, item]);
+                            }}
                         />
                     </div>
                 </div>
