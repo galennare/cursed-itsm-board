@@ -137,11 +137,13 @@ export class TicketDatabase {
     getUserList(user: UserRole): Hook<Ticket>[] {
         // user is used as index number for which user list to reference
         // the list of numerical ids is then mapped to [ticket, hook] tuples in the central list and returned
-        return this._userLists[user].map((ticketID: number) => {
-            return this._centralList.filter((ticketTuple: Hook<Ticket>) => {
-                return ticketTuple[0].id === ticketID;
-            })[0];
-        });
+        return this._userLists[Object.keys(UserRole).indexOf(user)].map(
+            (ticketID: number) => {
+                return this._centralList.filter((ticketTuple: Hook<Ticket>) => {
+                    return ticketTuple[0].id === ticketID;
+                })[0];
+            }
+        );
     }
 
     addTicketToCentralList(ticket: Ticket): void {
@@ -167,9 +169,9 @@ export class TicketDatabase {
     deleteTicketFromCentralList(ticket: Ticket): void {
         // remove ticket from any other lists its in
         this.removeTicketFromAdminList(ticket);
-        this.removeTicketFromUserList(ticket, 0);
-        this.removeTicketFromUserList(ticket, 1);
-        this.removeTicketFromUserList(ticket, 2);
+        this.removeTicketFromUserList(ticket, UserRole.Super);
+        this.removeTicketFromUserList(ticket, UserRole.Admin);
+        this.removeTicketFromUserList(ticket, UserRole.User);
 
         // get ticket index
         const index: number = this._centralList.findIndex(
@@ -221,9 +223,11 @@ export class TicketDatabase {
 
         // check that the ticket does not exist on the user list
         const onAdmin: boolean =
-            this._userLists[user].filter((q: number) => {
-                return q === ticket.id;
-            }).length > 0;
+            this._userLists[Object.keys(UserRole).indexOf(user)].filter(
+                (q: number) => {
+                    return q === ticket.id;
+                }
+            ).length > 0;
 
         // add the ticket to the user list
         if (onCentral && !onAdmin) {
@@ -232,14 +236,19 @@ export class TicketDatabase {
                 [...this._userLists[1]],
                 [...this._userLists[2]]
             ];
-            newUserLists[user] = [...this._userLists[user], ticket.id];
+            newUserLists[Object.keys(UserRole).indexOf(user)] = [
+                ...this._userLists[Object.keys(UserRole).indexOf(user)],
+                ticket.id
+            ];
             this._setUserLists(newUserLists);
         }
     }
 
     removeTicketFromUserList(ticket: Ticket, user: UserRole): void {
         // get ticket index
-        const index: number = this._userLists[user].indexOf(ticket.id);
+        const index: number = this._userLists[
+            Object.keys(UserRole).indexOf(user)
+        ].indexOf(ticket.id);
 
         //remove ticket at index
         const newUserLists: number[][] = [
@@ -247,7 +256,8 @@ export class TicketDatabase {
             [...this._userLists[1]],
             [...this._userLists[2]]
         ];
-        if (index > -1) newUserLists[user].splice(index, 1);
+        if (index > -1)
+            newUserLists[Object.keys(UserRole).indexOf(user)].splice(index, 1);
         this._setUserLists(newUserLists);
     }
 }
