@@ -21,10 +21,6 @@ test("TicketList is rendering.", () => {
         image_path: "path_to_image"
     };
 
-    const [, centralDrop] = useDrop(() => ({
-        accept: "TicketItem"
-    }));
-
     function TicketListHookWrapper(): JSX.Element {
         const [list, setList] = useState<Ticket[]>([]);
         return (
