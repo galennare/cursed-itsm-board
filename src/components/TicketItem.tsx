@@ -29,13 +29,9 @@ import { Ticket } from "../Interface/TicketInterface";
     editable.
  */
 export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [, drag] = useDrag(() => ({
         type: "TicketItem",
-        item: ticket,
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-            ticket: monitor.getItem()
-        })
+        item: { ticket: ticket }
     }));
 
     return (
@@ -51,10 +47,9 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
         >
             <h1>{ticket.title}</h1>
             <h4>Author: {ticket.author}</h4>
-            <h4> Assigned To: {ticket.assignee}</h4>
+            <h4>Assigned To: {ticket.assignee}</h4>
             <div>
-                Status: {ticket.status}
-                Priority: {ticket.priority}
+                Status: {ticket.status} Priority: {ticket.priority}
             </div>
             <p>{ticket.description}</p>
         </div>

@@ -10,18 +10,17 @@ export function TicketList({
     setList
 }: {
     list: Ticket[];
-    setList: (list: Ticket[]) => void;
+    setList: (newTicket: Ticket[]) => void;
 }): JSX.Element {
-    const addTicket = (ticket: Ticket) => {
-        console.log("Detected drop. Before: " + list.length);
-        setList([...list, ticket]);
-        console.log("Detected drop. After: " + list.length);
-    };
-
-    const [, drop] = useDrop(() => ({
-        accept: "TicketItem",
-        drop: (ticket: Ticket) => addTicket(ticket)
-    }));
+    const [, drop] = useDrop(
+        () => ({
+            accept: "TicketItem",
+            drop: (ticket: { ticket: Ticket }) => {
+                setList([...list, ticket.ticket]);
+            }
+        }),
+        [list]
+    );
 
     return (
         <div
@@ -37,7 +36,6 @@ export function TicketList({
             {list.map((ticket: Ticket) => (
                 <TicketItem key={ticket.id} ticket={ticket} />
             ))}
-
             <div style={{ flex: "1 1 0%" }} />
         </div>
     );

@@ -107,16 +107,6 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <h1>User List</h1>
-                        <Button
-                            onClick={() => {
-                                console.log("Clicked on user list button.");
-                                console.log("Before: " + userList.length);
-                                setUserList([...userList, INITIAL_LIST[0]]);
-                                console.log("After: " + userList.length);
-                            }}
-                        >
-                            Add Element
-                        </Button>
                         <TicketList list={userList} setList={setUserList} />
                     </div>
                     <div
@@ -124,19 +114,6 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <h1>Central List</h1>
-                        <Button
-                            onClick={() => {
-                                console.log("Clicked on central list button.");
-                                console.log("Before: " + centralList.length);
-                                setCentralList([
-                                    ...centralList,
-                                    INITIAL_LIST[0]
-                                ]);
-                                console.log("After: " + centralList.length);
-                            }}
-                        >
-                            Add Element
-                        </Button>
                         <TicketList
                             list={centralList}
                             setList={setCentralList}
@@ -148,16 +125,6 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <h1>Admin List</h1>
-                        <Button
-                            onClick={() => {
-                                console.log("Clicked on admin list button.");
-                                console.log("Before: " + adminList.length);
-                                setAdminList([...adminList, INITIAL_LIST[0]]);
-                                console.log("After: " + adminList.length);
-                            }}
-                        >
-                            Add Element
-                        </Button>
                         <TicketList list={adminList} setList={setAdminList} />
                     </div>
                 </div>
