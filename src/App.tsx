@@ -47,7 +47,7 @@ const INITIAL_LIST: Ticket[] = [
 ];
 
 function App() {
-    const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
+    const [role, setRole] = useState<UserRole>(UserRole.User);
 
     const [centralList, setCentralList] = useState<Ticket[]>(INITIAL_LIST);
     const [adminList, setAdminList] = useState<Ticket[]>([]);
@@ -62,8 +62,8 @@ function App() {
                     </div>
                     <div>
                         <NavigationBar
-                            userRole={userRole}
-                            setUserRole={setUserRole}
+                            role={role}
+                            setRole={setRole}
                         ></NavigationBar>
                     </div>
                 </header>
@@ -90,7 +90,7 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <TicketList
-                            title={"User List"}
+                            title={"My Tickets"}
                             list={userList}
                             setList={setUserList}
                         />
@@ -100,7 +100,7 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <TicketList
-                            title={"Central List"}
+                            title={"Available Tickets"}
                             list={centralList}
                             setList={setCentralList}
                         />
@@ -110,11 +110,13 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        <TicketList
-                            title={"Admin List"}
-                            list={adminList}
-                            setList={setAdminList}
-                        />
+                        {(role == UserRole.Admin || role == UserRole.Super) && (
+                            <TicketList
+                                title={"Tickets for Review"}
+                                list={adminList}
+                                setList={setAdminList}
+                            />
+                        )}
                     </div>
                 </div>
             </DndProvider>
