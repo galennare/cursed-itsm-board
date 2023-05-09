@@ -6,9 +6,11 @@ import { Hook } from "../TicketDatabase";
 import { Ticket } from "../Interface/TicketInterface";
 
 export function TicketList({
+    title,
     list,
     setList
 }: {
+    title: string;
     list: Ticket[];
     setList: (newTicket: Ticket[]) => void;
 }): JSX.Element {
@@ -33,6 +35,7 @@ export function TicketList({
                 flexDirection: "column"
             }}
         >
+            <h1>{title}</h1>
             {list.map((ticket: Ticket) => (
                 <TicketItem key={ticket.id} ticket={ticket} />
             ))}

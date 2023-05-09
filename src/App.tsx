@@ -106,15 +106,18 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        <h1>User List</h1>
-                        <TicketList list={userList} setList={setUserList} />
+                        <TicketList
+                            title={"User List"}
+                            list={userList}
+                            setList={setUserList}
+                        />
                     </div>
                     <div
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        <h1>Central List</h1>
                         <TicketList
+                            title={"Central List"}
                             list={centralList}
                             setList={setCentralList}
                         />
@@ -124,8 +127,11 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        <h1>Admin List</h1>
-                        <TicketList list={adminList} setList={setAdminList} />
+                        <TicketList
+                            title={"Admin List"}
+                            list={adminList}
+                            setList={setAdminList}
+                        />
                     </div>
                 </div>
             </DndProvider>
