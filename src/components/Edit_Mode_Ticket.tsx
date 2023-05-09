@@ -7,12 +7,15 @@ import { UserRole } from "./NavigationBar";
 
 export function EditTicket({
     ticket,
-    userRole
+    currentUserRole,
+    listOwner
 }: {
     ticket: Ticket;
-    userRole: UserRole;
+    currentUserRole: UserRole;
+    listOwner: UserRole;
 }): JSX.Element {
     const initial_date = new Date();
+    let canEdit = false;
 
     //PART 1: HELPER functions
     function statusToString(myStatus: EnumStatus): string {
@@ -113,6 +116,29 @@ export function EditTicket({
 
     function lastModifiedNotInEditMode(): string {
         return ticketLastModified.toDateString();
+    }
+
+    //function to control which user can edit what
+    function userRoleEdit(
+        currentUserRole: UserRole,
+        listOwner: UserRole
+    ): void {
+        if (
+            currentUserRole === UserRole.Super &&
+            listOwner === UserRole.Admin
+        ) {
+            canEdit = true;
+        } else if (
+            currentUserRole === UserRole.Admin &&
+            listOwner === UserRole.Admin
+        ) {
+            canEdit = true;
+        } else if (
+            currentUserRole === UserRole.User &&
+            listOwner === UserRole.User
+        ) {
+            canEdit = true;
+        }
     }
 
     //PART 5: IN EDIT MODE functions

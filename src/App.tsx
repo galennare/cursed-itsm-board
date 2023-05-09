@@ -84,8 +84,9 @@ function App() {
 
                 <div>
                     <EditTicket
+                        currentUserRole={userRole}
+                        listOwner={UserRole.Super}
                         ticket={centralList[1]}
-                        userRole={userRole}
                     ></EditTicket>
                 </div>
 
