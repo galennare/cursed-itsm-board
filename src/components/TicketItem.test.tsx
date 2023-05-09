@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { screen, render } from "@testing-library/react";
 import { TicketItem } from "./TicketItem";
-import { Hook } from "../TicketDatabase";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
@@ -25,8 +24,6 @@ beforeEach(() => {
     };
 
     function TicketItemHookWrapper(): JSX.Element {
-        const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
-
         return (
             <DndProvider backend={HTML5Backend}>
                 <TicketItem ticket={newTicket} />
