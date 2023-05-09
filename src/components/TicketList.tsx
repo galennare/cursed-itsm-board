@@ -20,23 +20,25 @@ export function TicketList({
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
-            drop: (ticket: { ticket: Ticket }) => {
-                let roleValue = 0;
-                roleValue = userRole == UserRole.User ? 1 : roleValue;
-                roleValue = userRole == UserRole.Admin ? 2 : roleValue;
-                roleValue = userRole == UserRole.Super ? 3 : roleValue;
-                if (
-                    (roleValue < 2 && requiredRole == UserRole.Admin) ||
-                    (roleValue < 3 && requiredRole == UserRole.Super)
-                ) {
-                    alert("You do not have permission to add to that list.");
-                } else {
-                    setList([...list, ticket.ticket]);
-                }
-            }
+            drop: onDrop
         }),
         [list, userRole]
     );
+
+    function onDrop(ticket: { ticket: Ticket }): void {
+        let roleValue = 0;
+        roleValue = userRole == UserRole.User ? 1 : roleValue;
+        roleValue = userRole == UserRole.Admin ? 2 : roleValue;
+        roleValue = userRole == UserRole.Super ? 3 : roleValue;
+        if (
+            (roleValue < 2 && requiredRole == UserRole.Admin) ||
+            (roleValue < 3 && requiredRole == UserRole.Super)
+        ) {
+            alert("You do not have permission to add to that list.");
+        } else {
+            setList([...list, ticket.ticket]);
+        }
+    }
 
     return (
         <div
