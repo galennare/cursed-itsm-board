@@ -3,9 +3,8 @@ import { useEffect } from "react";
 import { EnumStatus } from "../Interface/EnumStatus";
 import { Ticket } from "./TicketItem";
 import { Form } from "react-bootstrap";
-import { Hook } from "../TicketDatabase";
 
-export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
+export function EditTicket({ ticket }: { ticket: Ticket }): JSX.Element {
     const initial_date = new Date();
 
     //PART 1: HELPER functions
@@ -21,27 +20,24 @@ export function EditTicket({ ticket }: { ticket: Hook<Ticket> }): JSX.Element {
 
     //PART 2: STATE
     const [inEditMode, setInEditMode] = useState<boolean>(false);
-    const [ticketData] = ticket;
-    const [ticketTitle, setTicketTitle] = useState<string>(ticketData.title);
+    const [ticketTitle, setTicketTitle] = useState<string>(ticket.title);
     const [ticketDescription, setTicketDescription] = useState<string>(
-        ticketData.description
+        ticket.description
     );
     const [ticketStatus, setTicketStatus] = useState<string>(
-        statusToString(ticketData.status)
+        statusToString(ticket.status)
     );
     const [ticketPriority, setTicketPriority] = useState<number>(
-        ticketData.priority
+        ticket.priority
     );
     const [ticketLastModified, setTicketLastModified] =
         useState<Date>(initial_date);
-    const [ticketImage, setTicketImage] = useState<string>(
-        ticketData.image_path
-    );
+    const [ticketImage, setTicketImage] = useState<string>(ticket.image_path);
     const [ticketAssignee, setTicketAssignee] = useState<string>(
-        ticketData.assignee
+        ticket.assignee
     );
 
-    const current_date = ticketData.last_modified;
+    const current_date = ticket.last_modified;
 
     //PART 3: CONTROL functions
     useEffect(() => setTicketLastModified(current_date), []);
