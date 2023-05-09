@@ -12,7 +12,7 @@ export enum UserRole {
     Super = "Super User",
     Admin = "Admin",
     User = "User",
-    none = "None"
+    None = "None"
 }
 
 /*

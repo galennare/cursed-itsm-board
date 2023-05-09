@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Ticket } from "../Interface/TicketInterface";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { UserRole } from "./NavigationBar";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {
@@ -24,6 +25,8 @@ test("TicketList is rendering.", () => {
             <DndProvider backend={HTML5Backend}>
                 <TicketList
                     title={"test"}
+                    role={UserRole.Super}
+                    requiredRole={UserRole.Super}
                     list={list}
                     setList={setList}
                 ></TicketList>

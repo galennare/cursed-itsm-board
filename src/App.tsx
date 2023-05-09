@@ -91,6 +91,8 @@ function App() {
                     >
                         <TicketList
                             title={"My Tickets"}
+                            role={role}
+                            requiredRole={UserRole.User}
                             list={userList}
                             setList={setUserList}
                         />
@@ -101,6 +103,8 @@ function App() {
                     >
                         <TicketList
                             title={"Available Tickets"}
+                            role={role}
+                            requiredRole={UserRole.Super}
                             list={centralList}
                             setList={setCentralList}
                         />
@@ -113,6 +117,8 @@ function App() {
                         {(role == UserRole.Admin || role == UserRole.Super) && (
                             <TicketList
                                 title={"Tickets for Review"}
+                                role={role}
+                                requiredRole={UserRole.Admin}
                                 list={adminList}
                                 setList={setAdminList}
                             />
