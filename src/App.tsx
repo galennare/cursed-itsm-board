@@ -89,7 +89,21 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <TicketList
-                            title={"User List"}
+                            title={"All Tickets"}
+                            userRole={userRole}
+                            requiredRole={UserRole.Super}
+                            list={centralList}
+                            setList={setCentralList}
+                        />
+                    </div>
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
+                        <TicketList
+                            title={"My Tickets"}
+                            userRole={userRole}
+                            requiredRole={UserRole.User}
                             list={userList}
                             setList={setUserList}
                         />
@@ -98,22 +112,16 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        <TicketList
-                            title={"Central List"}
-                            list={centralList}
-                            setList={setCentralList}
-                        />
-                    </div>
-
-                    <div
-                        className="column"
-                        style={{ width: "33.33%", display: "table-cell" }}
-                    >
-                        <TicketList
-                            title={"Admin List"}
-                            list={adminList}
-                            setList={setAdminList}
-                        />
+                        {(userRole == UserRole.Admin ||
+                            userRole == UserRole.Super) && (
+                            <TicketList
+                                title={"Tickets For Review"}
+                                userRole={userRole}
+                                requiredRole={UserRole.Admin}
+                                list={adminList}
+                                setList={setAdminList}
+                            />
+                        )}
                     </div>
                 </div>
             </DndProvider>
