@@ -31,18 +31,16 @@ export function TicketList({
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
-            drop: onDrop
+            drop: (ticket: { ticket: Ticket }) => {
+                if (canDrop(userRole, requiredRole)) {
+                    setList([...list, ticket.ticket]);
+                } else {
+                    alert("You do not have permission to add to that list.");
+                }
+            }
         }),
         [list, userRole]
     );
-
-    function onDrop(ticket: { ticket: Ticket }): void {
-        if (canDrop(userRole, requiredRole)) {
-            alert("You do not have permission to add to that list.");
-        } else {
-            setList([...list, ticket.ticket]);
-        }
-    }
 
     return (
         <div
