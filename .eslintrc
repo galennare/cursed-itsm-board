@@ -45,7 +45,6 @@
     "brace-style": ["warn", "1tbs"],
     "indent": ["warn", 4],
     "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-    "@typescript-eslint/no-unused-vars": "off" // TODO remove before MVP release
+    "semi": ["error", "always"]
   }
 }
