@@ -5,7 +5,6 @@ import { NavigationBar, UserRole } from "./NavigationBar";
 beforeEach(() => {
     render(
         <NavigationBar
-            userRole={UserRole.Admin}
             setUserRole={function (): void {
                 throw new Error("Function not implemented.");
             }}
@@ -14,9 +13,5 @@ beforeEach(() => {
 });
 
 test("Button to delete renders", () => {
-    const addButton = screen.getByRole("button", {
-        name: /Delete This Button/i
-    });
-    expect(addButton).toBeInTheDocument();
-    expect(addButton).toBeEnabled();
+    // this button was removed
 });

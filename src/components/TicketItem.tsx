@@ -1,5 +1,4 @@
 import React from "react";
-import { Hook } from "../TicketDatabase";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
 
@@ -28,24 +27,16 @@ import { Ticket } from "../Interface/TicketInterface";
     current user is in order to determine whether the text fields should be
     editable.
  */
-export function TicketItem({
-    ticket_hook
-}: {
-    ticket_hook: Hook<Ticket>;
-}): JSX.Element {
-    const [{ isDragging }, drag] = useDrag(() => ({
+export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
+    const [, drag] = useDrag(() => ({
         type: "TicketItem",
-        item: ticket_hook,
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-            ticket: monitor.getItem()
-        })
+        item: { ticket: ticket }
     }));
 
     return (
         <div
             role="ticket_item"
-            key={ticket_hook[0].id}
+            key={ticket.id}
             ref={drag}
             style={{
                 border: "5px solid black",
@@ -53,14 +44,13 @@ export function TicketItem({
                 flex: "0 0 auto"
             }}
         >
-            <h1>{ticket_hook[0].title}</h1>
-            <h4>Author: {ticket_hook[0].author}</h4>
-            <h4> Assigned To: {ticket_hook[0].assignee}</h4>
+            <h1>{ticket.title}</h1>
+            <h4>Author: {ticket.author}</h4>
+            <h4>Assigned To: {ticket.assignee}</h4>
             <div>
-                Status: {ticket_hook[0].status}
-                Priority: {ticket_hook[0].priority}
+                Status: {ticket.status} Priority: {ticket.priority}
             </div>
-            <p>{ticket_hook[0].description}</p>
+            <p>{ticket.description}</p>
         </div>
     );
 }
