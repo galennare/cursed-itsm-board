@@ -5,8 +5,8 @@ import { NavigationBar, UserRole } from "./NavigationBar";
 beforeEach(() => {
     render(
         <NavigationBar
-            userRole={UserRole.Admin}
-            setUserRole={function (): void {
+            role={UserRole.Admin}
+            setRole={function (): void {
                 throw new Error("Function not implemented.");
             }}
         />
