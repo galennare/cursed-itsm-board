@@ -43,7 +43,7 @@ export function NavigationBar({
                 <UserSelect users={users} setUserRole={setUserRole} />
             </div>
             <div>
-                <ProfilePhoto searcher="../default-profile.png" />
+                <ProfilePhoto url="../default-profile.png" />
             </div>
         </span>
     );
