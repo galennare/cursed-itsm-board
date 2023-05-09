@@ -3,8 +3,15 @@ import { useEffect } from "react";
 import { EnumStatus } from "../Interface/EnumStatus";
 import { Ticket } from "./TicketItem";
 import { Form } from "react-bootstrap";
+import { UserRole } from "./NavigationBar";
 
-export function EditTicket({ ticket }: { ticket: Ticket }): JSX.Element {
+export function EditTicket({
+    ticket,
+    userRole
+}: {
+    ticket: Ticket;
+    userRole: UserRole;
+}): JSX.Element {
     const initial_date = new Date();
 
     //PART 1: HELPER functions

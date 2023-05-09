@@ -83,7 +83,10 @@ function App() {
                 </div>
 
                 <div>
-                    <EditTicket ticket={centralList[1]}></EditTicket>
+                    <EditTicket
+                        ticket={centralList[1]}
+                        userRole={userRole}
+                    ></EditTicket>
                 </div>
 
                 <div
