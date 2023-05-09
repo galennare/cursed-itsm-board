@@ -48,6 +48,7 @@ const INITIAL_LIST: Ticket[] = [
 ];
 
 function App() {
+    const [user, setUser] = useState<string>("Nick DiGirolamo");
     const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
 
     const [centralList, setCentralList] = useState<Ticket[]>(INITIAL_LIST);
@@ -85,8 +86,9 @@ function App() {
                 <div>
                     <EditTicket
                         currentUserRole={userRole}
-                        listOwner={UserRole.Super}
+                        editListOwner={UserRole.Super}
                         ticket={centralList[1]}
+                        specialField={user}
                     ></EditTicket>
                 </div>
 
