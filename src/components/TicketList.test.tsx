@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import { UserRole } from "./NavigationBar";
 import { Hook } from "../TicketDatabase";
 import { Ticket } from "../Interface/TicketInterface";
-import { DndProvider } from "react-dnd";
+import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { AdminList } from "./AdminList";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {
@@ -21,13 +22,13 @@ test("TicketList is rendering.", () => {
     };
 
     function TicketListHookWrapper(): JSX.Element {
-        const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
-
+        const [list, setList] = useState<Ticket[]>([]);
         return (
             <DndProvider backend={HTML5Backend}>
                 <TicketList
-                    ticket_hooks={[ticketHook]}
-                    list_type={UserRole.User}
+                    title={"test"}
+                    list={list}
+                    setList={setList}
                 ></TicketList>
             </DndProvider>
         );

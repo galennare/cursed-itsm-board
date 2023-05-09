@@ -29,7 +29,7 @@ beforeEach(() => {
 
         return (
             <DndProvider backend={HTML5Backend}>
-                <TicketItem ticket_hook={ticketHook} />
+                <TicketItem ticket={newTicket} />
             </DndProvider>
         );
     }
