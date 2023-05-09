@@ -9,10 +9,10 @@ import { ProfilePhoto } from "./ProfilePhoto";
     that can be assigned to a variable of type UserRole
 */
 export enum UserRole {
-    Super,
-    Admin,
-    User,
-    none
+    Super = "Super User",
+    Admin = "Admin",
+    User = "User",
+    none = "None"
 }
 
 /*
@@ -27,23 +27,28 @@ export enum UserRole {
     component.
 */
 export function NavigationBar({
-    userRole,
-    setUserRole
+    role,
+    setRole
 }: {
-    userRole: UserRole;
-    setUserRole: (role: UserRole) => void;
+    role: UserRole;
+    setRole: (role: UserRole) => void;
 }): JSX.Element {
-    // delete this function later
-    const setAdmin = () => setUserRole(UserRole.Admin);
-
     return (
         <span className="title">
             <div>
                 <b>Cursed ITSM Ticketing System</b>
             </div>
-            <div>{userRole}</div>
+            <div>{role}</div>
             <div>
-                <Button onClick={setAdmin}>Delete this button</Button>
+                <Button onClick={() => setRole(UserRole.Super)}>
+                    Make me Super
+                </Button>
+                <Button onClick={() => setRole(UserRole.Admin)}>
+                    Make me Admin
+                </Button>
+                <Button onClick={() => setRole(UserRole.User)}>
+                    Make me User
+                </Button>
             </div>
             <div>
                 <ProfilePhoto searcher="../default-profile.png" />
