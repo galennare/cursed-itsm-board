@@ -1,4 +1,4 @@
-import { Ticket } from "../Interface/Ticket";
+import { Ticket } from "./TicketInterface";
 
 export interface User {
     /** the username of the user */
