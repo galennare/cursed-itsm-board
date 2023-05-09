@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { TicketList } from "./TicketList";
+import { TicketList, canDrop } from "./TicketList";
 import React, { useState } from "react";
 import { Ticket } from "../Interface/TicketInterface";
 import { DndProvider, useDrop } from "react-dnd";
@@ -37,4 +37,10 @@ test("TicketList is rendering.", () => {
     render(<TicketListHookWrapper />);
     const ticketList = screen.getByRole("ticket_list");
     expect(ticketList).toBeInTheDocument();
+});
+
+test("canDrop is working properly.", () => {
+    const userRole = UserRole.User;
+    const requiredRole = UserRole.Super;
+    expect(!canDrop(userRole, requiredRole)).toBeTruthy();
 });
