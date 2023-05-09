@@ -1,26 +1,26 @@
-import React from "react";
-import { Ticket, TicketItem } from "./TicketItem";
+import React, { useState } from "react";
+import { TicketItem } from "./TicketItem";
 import { useDrop } from "react-dnd";
-import { UserRole } from "./NavigationBar";
-import { Hook } from "../TicketDatabase";
+import { Ticket } from "../Interface/TicketInterface";
 
 export function TicketList({
-    ticket_hooks,
-    list_type
+    title,
+    list,
+    setList
 }: {
-    ticket_hooks: Hook<Ticket>[];
-    list_type: UserRole;
+    title: string;
+    list: Ticket[];
+    setList: (newTicket: Ticket[]) => void;
 }): JSX.Element {
-    const [{ canDrop, isOver }, drop] = useDrop(() => ({
-        accept: "TicketItem",
-        drop: (item: Hook<Ticket>) => {
-            alert("You dropped a ticket into a list.");
-        },
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            canDrop: monitor.canDrop()
-        })
-    }));
+    const [, drop] = useDrop(
+        () => ({
+            accept: "TicketItem",
+            drop: (ticket: { ticket: Ticket }) => {
+                setList([...list, ticket.ticket]);
+            }
+        }),
+        [list]
+    );
 
     return (
         <div
@@ -33,13 +33,10 @@ export function TicketList({
                 flexDirection: "column"
             }}
         >
-            {ticket_hooks.map((ticket_hook: Hook<Ticket>) => (
-                <TicketItem
-                    key={ticket_hook[0].id}
-                    ticket_hook={ticket_hook}
-                ></TicketItem>
+            <h1>{title}</h1>
+            {list.map((ticket: Ticket) => (
+                <TicketItem key={ticket.id} ticket={ticket} />
             ))}
-
             <div style={{ flex: "1 1 0%" }} />
         </div>
     );

@@ -1,5 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { ProfilePhoto } from "./ProfilePhoto";
+import { UserSelect } from "./UserSelect";
 
 /*
     This is NOT a UI component. This is similar to an interface
@@ -8,10 +10,10 @@ import { Button } from "react-bootstrap";
     that can be assigned to a variable of type UserRole
 */
 export enum UserRole {
-    Super,
-    Admin,
-    User,
-    none
+    Super = "Super",
+    Admin = "Admin",
+    User = "User",
+    none = ""
 }
 
 /*
@@ -26,23 +28,22 @@ export enum UserRole {
     component.
 */
 export function NavigationBar({
-    userRole,
     setUserRole
 }: {
-    userRole: UserRole;
     setUserRole: (role: UserRole) => void;
 }): JSX.Element {
-    // delete this function later
-    const setAdmin = () => setUserRole(UserRole.Admin);
-
+    const users = [UserRole.User, UserRole.Super, UserRole.Admin];
     return (
         <span className="title">
             <div>
                 <b>Cursed ITSM Ticketing System</b>
             </div>
-            <div>{userRole}</div>
             <div>
-                <Button onClick={setAdmin}>Delete this button</Button>
+                User selected:
+                <UserSelect users={users} setUserRole={setUserRole} />
+            </div>
+            <div>
+                <ProfilePhoto searcher="../default-profile.png" />
             </div>
         </span>
     );

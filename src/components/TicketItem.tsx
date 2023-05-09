@@ -1,29 +1,6 @@
 import React from "react";
-import { Hook } from "../TicketDatabase";
 import { useDrag } from "react-dnd";
-
-/*
-    THIS IS NOT A UI COMPONENT. This interface defines our data structure 
-    for a single ticket. This is NOT a UI component but rather a declaration
-    of the properties that exist on a Ticket instance.
-
-    IMPORTANT: If you want to have a variable of type Ticket anywhere else
-    in the program you MUST import the interface for it from this file!
-    Trying to create an object with the same properties is NOT sufficient
-    so the variable must be declared with a type of Ticket or TypeScript
-    will get mad!
-*/
-export interface Ticket {
-    id: number;
-    title: string;
-    description: string;
-    priority: 0 | 1 | 2 | 3 | 4 | 5;
-    last_modified: Date;
-    author: string;
-    status: "Pending" | "In-Progress" | "Resolved";
-    assignee: string;
-    image_path: string;
-}
+import { Ticket } from "../Interface/TicketInterface";
 
 /*
     KEY PART OF MVP #########################################################
@@ -50,24 +27,16 @@ export interface Ticket {
     current user is in order to determine whether the text fields should be
     editable.
  */
-export function TicketItem({
-    ticket_hook
-}: {
-    ticket_hook: Hook<Ticket>;
-}): JSX.Element {
-    const [{ isDragging }, drag] = useDrag(() => ({
+export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
+    const [, drag] = useDrag(() => ({
         type: "TicketItem",
-        item: ticket_hook,
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-            ticket: monitor.getItem()
-        })
+        item: { ticket: ticket }
     }));
 
     return (
         <div
             role="ticket_item"
-            key={ticket_hook[0].id}
+            key={ticket.id}
             ref={drag}
             style={{
                 border: "5px solid black",
@@ -75,14 +44,13 @@ export function TicketItem({
                 flex: "0 0 auto"
             }}
         >
-            <h1>{ticket_hook[0].title}</h1>
-            <h4>Author: {ticket_hook[0].author}</h4>
-            <h4> Assigned To: {ticket_hook[0].assignee}</h4>
+            <h1>{ticket.title}</h1>
+            <h4>Author: {ticket.author}</h4>
+            <h4>Assigned To: {ticket.assignee}</h4>
             <div>
-                Status: {ticket_hook[0].status}
-                Priority: {ticket_hook[0].priority}
+                Status: {ticket.status} Priority: {ticket.priority}
             </div>
-            <p>{ticket_hook[0].description}</p>
+            <p>{ticket.description}</p>
         </div>
     );
 }

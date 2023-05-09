@@ -1,10 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { TicketList } from "./TicketList";
 import React, { useState } from "react";
-import { UserRole } from "./NavigationBar";
-import { Hook } from "../TicketDatabase";
-import { Ticket } from "./TicketItem";
-import { DndProvider } from "react-dnd";
+import { Ticket } from "../Interface/TicketInterface";
+import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 test("TicketList is rendering.", () => {
@@ -21,13 +19,13 @@ test("TicketList is rendering.", () => {
     };
 
     function TicketListHookWrapper(): JSX.Element {
-        const ticketHook: Hook<Ticket> = useState<Ticket>(newTicket);
-
+        const [list, setList] = useState<Ticket[]>([]);
         return (
             <DndProvider backend={HTML5Backend}>
                 <TicketList
-                    ticket_hooks={[ticketHook]}
-                    list_type={UserRole.User}
+                    title={"test"}
+                    list={list}
+                    setList={setList}
                 ></TicketList>
             </DndProvider>
         );
