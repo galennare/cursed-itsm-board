@@ -5,19 +5,17 @@
 ----------------------|---------|----------|---------|---------|-------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------------------|---------|----------|---------|---------|-------------------
-All files             |   66.66 |       55 |   67.74 |   66.66 |                   
+All files             |      75 |    55.55 |      75 |   74.41 |                   
  Interface            |       0 |        0 |       0 |       0 |                   
   TicketInterface.tsx |       0 |        0 |       0 |       0 |                   
- components           |   66.66 |       55 |   67.74 |   66.66 |                   
-  AdminList.tsx       |       0 |      100 |       0 |       0 | 8-91              
-  CentralList.tsx     |     100 |      100 |     100 |     100 |                   
-  NavigationBar.tsx   |   66.66 |      100 |      50 |     100 |                   
+ components           |      75 |    55.55 |      75 |   74.41 |                   
+  NavigationBar.tsx   |     100 |      100 |     100 |     100 |                   
   Preferences.tsx     |     100 |      100 |     100 |     100 |                   
   ProfilePhoto.tsx    |   33.33 |    22.22 |      25 |   33.33 | 14-25,30          
-  RevealTicket.tsx    |   83.33 |       50 |      75 |   83.33 | 49                
   TicketButton.tsx    |     100 |      100 |     100 |     100 |                   
   TicketItem.tsx      |     100 |      100 |     100 |     100 |                   
-  TicketList.tsx      |   83.33 |      100 |      80 |      80 | 18                
+  TicketList.tsx      |      80 |      100 |      75 |      80 | 19                
   TimeInput.tsx       |   93.33 |    88.88 |   83.33 |   93.33 | 15                
+  UserSelect.tsx      |      75 |      100 |      75 |      75 | 18                
   ViewMyWork.tsx      |     100 |      100 |     100 |     100 |                   
 ----------------------|---------|----------|---------|---------|-------------------
