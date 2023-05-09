@@ -9,6 +9,7 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { EditTicket } from "./components/Edit_Mode_Ticket";
 
 const INITIAL_LIST: Ticket[] = [
     {
@@ -79,6 +80,10 @@ function App() {
                             <Preferences></Preferences>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    <EditTicket ticket={centralList[1]}></EditTicket>
                 </div>
 
                 <div
