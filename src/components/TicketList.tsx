@@ -29,7 +29,7 @@ export function TicketList({
     userRole: UserRole;
     requiredRole: UserRole;
     list: Ticket[];
-    setList: (newTicket: Ticket[]) => void;
+    setList: (list: Ticket[]) => void;
 }): JSX.Element {
     const [, drop] = useDrop(
         () => ({
