@@ -9,6 +9,7 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { UserSort } from "./components/UserSort";
 
 const INITIAL_LIST: Ticket[] = [
     {
@@ -64,6 +65,7 @@ function App() {
                     <div>
                         <NavigationBar
                             setUserRole={setUserRole}
+                            lists={centralList}
                         ></NavigationBar>
                     </div>
                 </header>

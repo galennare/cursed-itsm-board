@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { UserSelect } from "./UserSelect";
+import { UserSort } from "./UserSort";
+import { Ticket } from "../Interface/TicketInterface";
 
 /*
     This is NOT a UI component. This is similar to an interface
@@ -28,8 +30,10 @@ export enum UserRole {
     component.
 */
 export function NavigationBar({
+    lists,
     setUserRole
 }: {
+    lists: Ticket[];
     setUserRole: (role: UserRole) => void;
 }): JSX.Element {
     const users = [UserRole.User, UserRole.Super, UserRole.Admin];
@@ -41,6 +45,9 @@ export function NavigationBar({
             <div>
                 User selected:
                 <UserSelect users={users} setUserRole={setUserRole} />
+            </div>
+            <div>
+                <UserSort list={lists}></UserSort>
             </div>
             <div>
                 <ProfilePhoto searcher="../default-profile.png" />
