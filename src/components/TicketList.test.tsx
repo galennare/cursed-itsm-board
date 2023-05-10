@@ -5,11 +5,11 @@ import { Ticket } from "../Interface/TicketInterface";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { UserRole } from "./NavigationBar";
-import crypto from "crypto";
+import { v4 } from "uuid";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {
-        id: crypto.randomUUID(),
+        id: v4(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,

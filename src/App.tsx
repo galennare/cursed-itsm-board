@@ -9,11 +9,11 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import crypto from "crypto";
+import { v4 } from "uuid";
 
 const INITIAL_LIST: Ticket[] = [
     {
-        id: crypto.randomUUID(),
+        id: v4(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -24,7 +24,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: crypto.randomUUID(),
+        id: v4(),
         title: "My Phone Died",
         description: "This is the description for ticket two.",
         priority: 0,
@@ -35,7 +35,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: crypto.randomUUID(),
+        id: v4(),
         title: "No WIFI?",
         description: "This is the description for ticket three.",
         priority: 0,

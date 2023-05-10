@@ -4,7 +4,7 @@ import { TicketItem } from "./TicketItem";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
-import crypto from "crypto";
+import { v4 } from "uuid";
 
 test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);
@@ -13,7 +13,7 @@ test("There is a TicketItem", () => {
 
 beforeEach(() => {
     const newTicket: Ticket = {
-        id: crypto.randomUUID(),
+        id: v4(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
