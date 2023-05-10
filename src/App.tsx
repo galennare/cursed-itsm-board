@@ -10,10 +10,13 @@ import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { UserSort } from "./components/UserSort";
+import { v4 } from "uuid";
+import { TicketCreator } from "./components/TicketCreator";
+import { Button } from "react-bootstrap";
 
 const INITIAL_LIST: Ticket[] = [
     {
-        id: 1,
+        id: v4(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -24,7 +27,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 2,
+        id: v4(),
         title: "My Phone Died",
         description: "This is the description for ticket two.",
         priority: 0,
@@ -35,7 +38,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 3,
+        id: v4(),
         title: "No WIFI?",
         description: "This is the description for ticket three.",
         priority: 0,
@@ -54,6 +57,8 @@ function App() {
     const [adminList, setAdminList] = useState<Ticket[]>([]);
     const [userList, setUserList] = useState<Ticket[]>([]);
     const centralTickets = [...centralList];
+
+    const [revealCreator, setRevealCreator] = useState<boolean>(false);
 
     return (
         <div className="App">
@@ -82,7 +87,6 @@ function App() {
                         </div>
                     </div>
                 </div>
-
                 <div
                     className="row"
                     style={{ width: "100%", display: "table" }}
@@ -91,6 +95,19 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
+                        {userRole == UserRole.Super && (
+                            <Button
+                                onClick={() => setRevealCreator(!revealCreator)}
+                            >
+                                Toggle Ticket Creator
+                            </Button>
+                        )}
+                        {revealCreator && (
+                            <TicketCreator
+                                list={centralList}
+                                setList={setCentralList}
+                            ></TicketCreator>
+                        )}
                         <TicketList
                             title={"All Tickets"}
                             userRole={userRole}
@@ -115,16 +132,13 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        {(userRole == UserRole.Admin ||
-                            userRole == UserRole.Super) && (
-                            <TicketList
-                                title={"Tickets For Review"}
-                                userRole={userRole}
-                                requiredRole={UserRole.Admin}
-                                list={adminList}
-                                setList={setAdminList}
-                            />
-                        )}
+                        <TicketList
+                            title={"Tickets For Review"}
+                            userRole={userRole}
+                            requiredRole={UserRole.Admin}
+                            list={adminList}
+                            setList={setAdminList}
+                        />
                     </div>
                 </div>
             </DndProvider>
