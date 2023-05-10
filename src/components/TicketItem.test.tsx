@@ -12,7 +12,7 @@ test("There is a TicketItem", () => {
 
 beforeEach(() => {
     const newTicket: Ticket = {
-        id: 1,
+        id: crypto.randomUUID(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,

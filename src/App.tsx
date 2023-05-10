@@ -12,7 +12,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 const INITIAL_LIST: Ticket[] = [
     {
-        id: 1,
+        id: crypto.randomUUID(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -23,7 +23,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 2,
+        id: crypto.randomUUID(),
         title: "My Phone Died",
         description: "This is the description for ticket two.",
         priority: 0,
@@ -34,7 +34,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 3,
+        id: crypto.randomUUID(),
         title: "No WIFI?",
         description: "This is the description for ticket three.",
         priority: 0,
