@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { CreateTicket, TicketCreator, convertToPriority } from "./TicketCreator";
+import {
+    CreateTicket,
+    TicketCreator,
+    convertToPriority
+} from "./TicketCreator";
 import { Ticket } from "../Interface/TicketInterface";
 import { screen, render } from "@testing-library/react";
 import { v4 } from "uuid";
