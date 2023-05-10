@@ -5,7 +5,7 @@ import { Ticket } from "../Interface/TicketInterface";
 
 const INITIAL_LIST: Ticket[] = [
     {
-        id: 1,
+        id: "1",
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -16,7 +16,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 2,
+        id: "2",
         title: "My Phone Died",
         description: "This is the description for ticket two.",
         priority: 0,
@@ -27,7 +27,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 3,
+        id: "3",
         title: "No WIFI?",
         description: "This is the description for ticket three.",
         priority: 0,
