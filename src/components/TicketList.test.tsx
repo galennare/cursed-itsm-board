@@ -5,6 +5,7 @@ import { Ticket } from "../Interface/TicketInterface";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { UserRole } from "./NavigationBar";
+import crypto from "crypto";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {

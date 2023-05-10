@@ -9,6 +9,7 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import crypto from "crypto";
 
 const INITIAL_LIST: Ticket[] = [
     {
