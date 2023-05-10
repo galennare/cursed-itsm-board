@@ -8,16 +8,15 @@ import { UserRole } from "./NavigationBar";
 export function EditTicket({
     ticket,
     currentUserRole,
-    listOwner
+    editListOwner
 }: {
     ticket: Ticket;
     currentUserRole: UserRole;
-    listOwner: UserRole;
+    editListOwner: UserRole;
 }): JSX.Element {
-    const initial_date = new Date();
-    let canEdit = false;
+    //PART 1: HELPER function
 
-    //PART 1: HELPER functions
+    //function to convert status to string
     function statusToString(myStatus: EnumStatus): string {
         if (myStatus === "Pending") {
             return "Pending";
@@ -29,7 +28,11 @@ export function EditTicket({
     }
 
     //PART 2: STATE
+
+    const initial_date = new Date();
+
     const [inEditMode, setInEditMode] = useState<boolean>(false);
+    const [canEdit, setCanEdit] = useState<boolean>(false);
     const [ticketTitle, setTicketTitle] = useState<string>(ticket.title);
     const [ticketDescription, setTicketDescription] = useState<string>(
         ticket.description
@@ -47,15 +50,17 @@ export function EditTicket({
         ticket.assignee
     );
 
-    const current_date = ticket.last_modified;
-
     //PART 3: CONTROL functions
-    useEffect(() => setTicketLastModified(current_date), []);
+
+    const current_date = ticket.last_modified;
 
     //function to update EditMode
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
         setInEditMode(event.target.checked);
     }
+
+    //function to update LastModified
+    useEffect(() => setTicketLastModified(current_date), []);
 
     //function to update the title of the ticket
     function updateTicketTitle(event: React.ChangeEvent<HTMLInputElement>) {
@@ -90,6 +95,7 @@ export function EditTicket({
     }
 
     //PART 4: NOT IN EDIT MODE functions
+
     function titleNotInEditMode(): string {
         return ticketTitle;
     }
@@ -118,32 +124,35 @@ export function EditTicket({
         return ticketLastModified.toDateString();
     }
 
-    //function to control which user can edit what
-    function userRoleEdit(
-        currentUserRole: UserRole,
-        listOwner: UserRole
-    ): void {
+    //PART 5: USER ROLE function
+
+    function userRoleEdit(): boolean {
         if (
-            currentUserRole === UserRole.Super &&
-            listOwner === UserRole.Admin
+            (currentUserRole === UserRole.Admin ||
+                currentUserRole === UserRole.User) &&
+            editListOwner === UserRole.Super
         ) {
-            canEdit = true;
-        } else if (
-            currentUserRole === UserRole.Admin &&
-            listOwner === UserRole.Admin
-        ) {
-            canEdit = true;
+            return false;
         } else if (
             currentUserRole === UserRole.User &&
-            listOwner === UserRole.User
+            editListOwner === UserRole.Admin
         ) {
-            canEdit = true;
+            return false;
+        } else if (
+            (currentUserRole === UserRole.Super ||
+                currentUserRole === UserRole.Admin) &&
+            editListOwner === UserRole.User
+        ) {
+            return false;
+        } else {
+            return true;
         }
     }
 
-    //PART 5: IN EDIT MODE functions
+    //PART 6: IN EDIT MODE functions
+
     function titleInEditMode(): JSX.Element {
-        if (inEditMode === true) {
+        if (inEditMode === true && userRoleEdit() === true) {
             return (
                 <div>
                     <Form.Group controlId="formTicketTitle">
@@ -162,7 +171,7 @@ export function EditTicket({
     }
 
     function descriptionInEditMode(): JSX.Element {
-        if (inEditMode === true) {
+        if (inEditMode === true && userRoleEdit() === true) {
             return (
                 <div>
                     <Form.Group controlId="formTicketDescription">
@@ -183,7 +192,7 @@ export function EditTicket({
     }
 
     function priorityInEditMode(): JSX.Element {
-        if (inEditMode === true) {
+        if (inEditMode === true && userRoleEdit() === true) {
             return (
                 <div>
                     <Form.Group controlId="formTicketPriority">
@@ -203,7 +212,7 @@ export function EditTicket({
     }
 
     function imageInEditMode(): JSX.Element {
-        if (inEditMode === true) {
+        if (inEditMode === true && userRoleEdit() === true) {
             return (
                 <div>
                     <Form.Group controlId="formTicketImage">
@@ -222,7 +231,7 @@ export function EditTicket({
     }
 
     function statusInEditMode(): JSX.Element {
-        if (inEditMode === true) {
+        if (inEditMode === true && userRoleEdit() === true) {
             return (
                 <div>
                     <Form.Group controlId="ticketStatus">
@@ -245,7 +254,7 @@ export function EditTicket({
     }
 
     function assigneeInEditMode(): JSX.Element {
-        if (inEditMode === true) {
+        if (inEditMode === true && userRoleEdit() === true) {
             return (
                 <div>
                     <Form.Group controlId="formTicketAssignee">
@@ -263,7 +272,8 @@ export function EditTicket({
         }
     }
 
-    //PART 6: VIEW
+    //PART 7: VIEW
+
     return (
         <div>
             <Form.Switch
