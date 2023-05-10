@@ -10,6 +10,8 @@ import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { v4 } from "uuid";
+import { TicketCreator } from "./components/TicketCreator";
+import { Button } from "react-bootstrap";
 
 const INITIAL_LIST: Ticket[] = [
     {
@@ -54,6 +56,8 @@ function App() {
     const [adminList, setAdminList] = useState<Ticket[]>([]);
     const [userList, setUserList] = useState<Ticket[]>([]);
 
+    const [revealCreator, setRevealCreator] = useState<boolean>(false);
+
     return (
         <div className="App">
             <DndProvider backend={HTML5Backend}>
@@ -80,7 +84,6 @@ function App() {
                         </div>
                     </div>
                 </div>
-
                 <div
                     className="row"
                     style={{ width: "100%", display: "table" }}
@@ -89,6 +92,19 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
+                        {userRole == UserRole.Super && (
+                            <Button
+                                onClick={() => setRevealCreator(!revealCreator)}
+                            >
+                                Toggle Ticket Creator
+                            </Button>
+                        )}
+                        {revealCreator && (
+                            <TicketCreator
+                                list={centralList}
+                                setList={setCentralList}
+                            ></TicketCreator>
+                        )}
                         <TicketList
                             title={"All Tickets"}
                             userRole={userRole}
@@ -113,16 +129,13 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        {(userRole == UserRole.Admin ||
-                            userRole == UserRole.Super) && (
-                            <TicketList
-                                title={"Tickets For Review"}
-                                userRole={userRole}
-                                requiredRole={UserRole.Admin}
-                                list={adminList}
-                                setList={setAdminList}
-                            />
-                        )}
+                        <TicketList
+                            title={"Tickets For Review"}
+                            userRole={userRole}
+                            requiredRole={UserRole.Admin}
+                            list={adminList}
+                            setList={setAdminList}
+                        />
                     </div>
                 </div>
             </DndProvider>
