@@ -2,13 +2,29 @@ import React, { useState } from "react";
 import { TicketItem } from "./TicketItem";
 import { useDrop } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
+import { UserRole } from "./NavigationBar";
+
+export function canDrop(userRole: UserRole, requiredRole: UserRole): boolean {
+    let roleValue = 0;
+    roleValue = userRole == UserRole.User ? 1 : roleValue;
+    roleValue = userRole == UserRole.Admin ? 2 : roleValue;
+    roleValue = userRole == UserRole.Super ? 3 : roleValue;
+    return !(
+        (roleValue < 2 && requiredRole == UserRole.Admin) ||
+        (roleValue < 3 && requiredRole == UserRole.Super)
+    );
+}
 
 export function TicketList({
     title,
+    userRole,
+    requiredRole,
     list,
     setList
 }: {
     title: string;
+    userRole: UserRole;
+    requiredRole: UserRole;
     list: Ticket[];
     setList: (newTicket: Ticket[]) => void;
 }): JSX.Element {
@@ -16,10 +32,14 @@ export function TicketList({
         () => ({
             accept: "TicketItem",
             drop: (ticket: { ticket: Ticket }) => {
-                setList([...list, ticket.ticket]);
+                if (canDrop(userRole, requiredRole)) {
+                    setList([...list, ticket.ticket]);
+                } else {
+                    alert("You do not have permission to add to that list.");
+                }
             }
         }),
-        [list]
+        [list, userRole]
     );
 
     return (
