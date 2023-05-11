@@ -30,7 +30,7 @@ const INITIAL_LIST: Ticket[] = [
         id: v4(),
         title: "My Phone Died",
         description: "This is the description for ticket two.",
-        priority: 0,
+        priority: 1,
         last_modified: new Date(),
         author: "Donald Trump",
         status: "In-Progress",
@@ -50,13 +50,13 @@ const INITIAL_LIST: Ticket[] = [
     }
 ];
 
+export interface userProps {
+    setUserRole: (newRole: UserRole) => void;
+}
+
 export interface centralProps {
     centralList: Ticket[];
     setCentralList: (newList: Ticket[]) => void;
-}
-
-export interface userProps {
-    setUserRole: (newRole: UserRole) => void;
 }
 
 function App() {

@@ -45,6 +45,10 @@ beforeEach(() => {
             setUserRole={function (): void {
                 throw new Error("Function not implemented.");
             }}
+            centralList={[]}
+            setCentralList={function (newList: Ticket[]): void {
+                throw new Error("Function not implemented.");
+            }}
         />
     );
 });

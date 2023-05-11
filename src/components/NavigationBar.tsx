@@ -31,11 +31,13 @@ export enum UserRole {
     be stored in App.tsx and be passed in as a property to this
     component.
 */
-export function NavigationBar(
-    { setUserRole }: userProps,
-    { centralList, setCentralList }: centralProps
-): JSX.Element {
+
+interface NavigationBarProps extends userProps, centralProps {}
+
+export function NavigationBar(props: NavigationBarProps): JSX.Element {
     const users = [UserRole.User, UserRole.Super, UserRole.Admin];
+    const { setUserRole, centralList, setCentralList } = props;
+
     return (
         <span className="title">
             <div>
