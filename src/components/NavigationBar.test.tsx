@@ -45,7 +45,6 @@ beforeEach(() => {
             setUserRole={function (): void {
                 throw new Error("Function not implemented.");
             }}
-            lists={INITIAL_LIST}
         />
     );
 });

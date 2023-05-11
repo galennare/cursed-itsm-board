@@ -50,6 +50,15 @@ const INITIAL_LIST: Ticket[] = [
     }
 ];
 
+export interface centralProps {
+    centralList: Ticket[];
+    setCentralList: (newList: Ticket[]) => void;
+}
+
+export interface userProps {
+    setUserRole: (newRole: UserRole) => void;
+}
+
 function App() {
     const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
 
@@ -70,7 +79,8 @@ function App() {
                     <div>
                         <NavigationBar
                             setUserRole={setUserRole}
-                            lists={centralList}
+                            centralList={centralList}
+                            setCentralList={setCentralList}
                         ></NavigationBar>
                     </div>
                 </header>
