@@ -63,6 +63,7 @@ function App() {
                     </div>
                     <div>
                         <NavigationBar
+                            //userRole={userRole}
                             setUserRole={setUserRole}
                         ></NavigationBar>
                     </div>
@@ -83,8 +84,8 @@ function App() {
 
                 <div>
                     <EditTicket
-                        //currentUserRole={userRole}
-                        //editListOwner={UserRole.Super}
+                        currentUserRole={userRole}
+                        editListOwner={UserRole.Super}
                         ticket={centralList[1]}
                     ></EditTicket>
                 </div>
@@ -98,19 +99,7 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <TicketList
-                            title={"All Tickets"}
-                            userRole={userRole}
-                            requiredRole={UserRole.Super}
-                            list={centralList}
-                            setList={setCentralList}
-                        />
-                    </div>
-                    <div
-                        className="column"
-                        style={{ width: "33.33%", display: "table-cell" }}
-                    >
-                        <TicketList
-                            title={"My Tickets"}
+                            title={"User List"}
                             userRole={userRole}
                             requiredRole={UserRole.User}
                             list={userList}
@@ -121,16 +110,26 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        {(userRole == UserRole.Admin ||
-                            userRole == UserRole.Super) && (
-                            <TicketList
-                                title={"Tickets For Review"}
-                                userRole={userRole}
-                                requiredRole={UserRole.Admin}
-                                list={adminList}
-                                setList={setAdminList}
-                            />
-                        )}
+                        <TicketList
+                            title={"Central List"}
+                            userRole={userRole}
+                            requiredRole={UserRole.Super}
+                            list={centralList}
+                            setList={setCentralList}
+                        />
+                    </div>
+
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
+                        <TicketList
+                            title={"Admin List"}
+                            userRole={userRole}
+                            requiredRole={UserRole.Admin}
+                            list={adminList}
+                            setList={setAdminList}
+                        />
                     </div>
                 </div>
             </DndProvider>
