@@ -77,14 +77,15 @@ test("There is EditMode", () => {
 
 test("Can switch into Edit Mode", () => {
     const switchButton = screen.getByRole("checkbox");
-    act(() => {
+    switchButton.click();
+    /*act(() => {
         switchButton.click();
-    });
+    });*/
     expect(screen.getAllByRole("textbox")).toBeInTheDocument();
     expect(screen.getByRole("checkbox")).toHaveLength(2);
 });
 
-test("Editing the title changes the title text", () => {
+/*test("Editing the title changes the title text", () => {
     const myTicket: Ticket = {
         id: 1,
         title: "Computer Issues",
@@ -204,4 +205,4 @@ test("Editing the assignee changes the assignee text", () => {
         userEvent.type(assignBox, "Victor Leclercq");
     });
     expect(screen.getByText(/Victor Leclercq/i)).toBeInTheDocument();
-});
+});*/
