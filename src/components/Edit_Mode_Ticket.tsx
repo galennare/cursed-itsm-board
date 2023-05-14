@@ -276,7 +276,7 @@ export function EditTicket({
 
     return (
         <div>
-            <Form.Switch
+            <Form.Check
                 id="in-edit-mode"
                 label="In Edit Mode?"
                 checked={inEditMode}
