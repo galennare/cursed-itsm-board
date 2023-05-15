@@ -1,3 +1,5 @@
+// credit to sjohnsonaz (on GitHub) MergeSort.ts for the MergeSort implimentation
+
 import React, { ReactNode, useState } from "react";
 import { Form } from "react-bootstrap";
 import { UserRole } from "./NavigationBar";
