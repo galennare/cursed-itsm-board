@@ -4,22 +4,25 @@ import { UserRole } from "./NavigationBar";
 import { Ticket } from "../Interface/TicketInterface";
 import { centralProps } from "../App";
 
-export default function MergeSort(items: Ticket[]): Ticket[] {
-    return divide(items);
+export default function MergeSort(
+    items: Ticket[],
+    accending: boolean
+): Ticket[] {
+    return divide(items, accending);
 }
 
-function divide(items: Ticket[]): Ticket[] {
+function divide(items: Ticket[], accending: boolean): Ticket[] {
     const halfLength = Math.ceil(items.length / 2);
     let low = items.slice(0, halfLength);
     let high = items.slice(halfLength);
     if (halfLength > 1) {
-        low = divide(low);
-        high = divide(high);
+        low = divide(low, accending);
+        high = divide(high, accending);
     }
-    return combine(low, high);
+    return combine(low, high, accending);
 }
 
-function combine(low: Ticket[], high: Ticket[]): Ticket[] {
+function combine(low: Ticket[], high: Ticket[], accending: boolean): Ticket[] {
     let indexLow = 0;
     let indexHigh = 0;
     const lengthLow = low.length;
@@ -33,12 +36,22 @@ function combine(low: Ticket[], high: Ticket[]): Ticket[] {
                 combined.push(lowItem);
                 indexLow++;
             } else {
-                if (lowItem.priority <= highItem.priority) {
-                    combined.push(lowItem);
-                    indexLow++;
+                if (accending) {
+                    if (lowItem.priority <= highItem.priority) {
+                        combined.push(lowItem);
+                        indexLow++;
+                    } else {
+                        combined.push(highItem);
+                        indexHigh++;
+                    }
                 } else {
-                    combined.push(highItem);
-                    indexHigh++;
+                    if (lowItem.priority >= highItem.priority) {
+                        combined.push(lowItem);
+                        indexLow++;
+                    } else {
+                        combined.push(highItem);
+                        indexHigh++;
+                    }
                 }
             }
         } else {
@@ -55,19 +68,15 @@ export function UserSort({
     centralList,
     setCentralList
 }: centralProps): JSX.Element {
-    function sortList(): void {
-        setCentralList(MergeSort(centralList));
-    }
-
-    const sortMethods = (state: string) => {
-        if (state === "accending") {
-            return undefined;
-        } else if (state === "decending") {
-            return (a: Ticket, b: Ticket) => (a.priority > b.priority ? -1 : 1);
+    const [sortState, setSortState] = useState("Default");
+    function sortList(event: React.ChangeEvent<HTMLSelectElement>): void {
+        setSortState(event.target.value);
+        if (sortState === "ascending") {
+            setCentralList(MergeSort(centralList, false));
         } else {
-            return (a: Ticket, b: Ticket) => null;
+            setCentralList(MergeSort(centralList, true));
         }
-    };
+    }
     return (
         <div>
             <Form.Select
