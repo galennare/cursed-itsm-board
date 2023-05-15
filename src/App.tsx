@@ -53,6 +53,7 @@ function App() {
     const [centralList, setCentralList] = useState<Ticket[]>(INITIAL_LIST);
     const [adminList, setAdminList] = useState<Ticket[]>([]);
     const [userList, setUserList] = useState<Ticket[]>([]);
+    const centralTickets = [...centralList];
 
     return (
         <div className="App">
