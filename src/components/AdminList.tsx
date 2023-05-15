@@ -28,27 +28,46 @@ export function AdminList({
     title,
     userRole,
     requiredRole,
-    list,
-    setList
+    userList,
+    adminList,
+    centralList,
+    setUserList,
+    setAdminList,
+    setCentralList
 }: {
     title: string;
     userRole: UserRole;
     requiredRole: UserRole;
-    list: Ticket[];
-    setList: StateSetter<Ticket[]>;
+    userList: Ticket[];
+    adminList: Ticket[];
+    centralList: Ticket[];
+    setUserList: StateSetter<Ticket[]>;
+    setAdminList: StateSetter<Ticket[]>;
+    setCentralList: StateSetter<Ticket[]>;
 }): JSX.Element {
     function ticketSetter(ticket: Ticket): void {
-        // find the ticket index in the list by ID
-        const index = list.findIndex((q: Ticket) => q.id === ticket.id);
+        // update ticket properties in admin list
+        const adminIndex = adminList.findIndex(
+            (q: Ticket) => q.id === ticket.id
+        );
+        const newAdminTicketList = [...adminList];
+        if (adminIndex > -1) newAdminTicketList.splice(adminIndex, 1, ticket);
+        setAdminList(newAdminTicketList);
 
-        // clone the ticket list
-        const newTicketList = [...list];
+        // update ticket in user list
+        const userIndex = userList.findIndex((q: Ticket) => q.id === ticket.id);
+        const newUserTicketList = [...userList];
+        if (userIndex > -1) newUserTicketList.splice(userIndex, 1, ticket);
+        setUserList(newUserTicketList);
 
-        // replace the ticket
-        if (index > -1) newTicketList.splice(index, 1, ticket);
-
-        // call setter for ticket list
-        setList(newTicketList);
+        // update ticket in central list
+        const centralIndex = centralList.findIndex(
+            (q: Ticket) => q.id === ticket.id
+        );
+        const newCentralTicketList = [...centralList];
+        if (centralIndex > -1)
+            newCentralTicketList.splice(centralIndex, 1, ticket);
+        setCentralList(newCentralTicketList);
     }
 
     const [, drop] = useDrop(
@@ -56,13 +75,13 @@ export function AdminList({
             accept: "TicketItem",
             drop: (ticket: { ticket: Ticket }) => {
                 if (canDrop(userRole, requiredRole)) {
-                    setList([...list, ticket.ticket]);
+                    setAdminList([...adminList, ticket.ticket]);
                 } else {
                     alert("You do not have permission to add to that list.");
                 }
             }
         }),
-        [list, userRole]
+        [adminList, userRole]
     );
 
     return (
@@ -77,7 +96,7 @@ export function AdminList({
             }}
         >
             <h1>{title}</h1>
-            {list.map((ticket: Ticket) => (
+            {adminList.map((ticket: Ticket) => (
                 <TicketItemEditable
                     key={ticket.id}
                     ticket={ticket}

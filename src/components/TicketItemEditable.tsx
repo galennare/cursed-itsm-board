@@ -23,40 +23,32 @@ export function TicketItemEditable({
     /* Setter functions for each property */
     function setTicketTitle(e: React.ChangeEvent<HTMLInputElement>): void {
         const title = e.target.value;
-        if (title != "") {
-            const newTicket = { ...ticket };
-            newTicket.title = title;
-            ticketSetter(newTicket);
-        }
+        const newTicket = { ...ticket };
+        newTicket.title = title;
+        ticketSetter(newTicket);
     }
 
     function setTicketAuthor(e: React.ChangeEvent<HTMLInputElement>): void {
         const author = e.target.value;
-        if (author != "") {
-            const newTicket = { ...ticket };
-            newTicket.author = author;
-            ticketSetter(newTicket);
-        }
+        const newTicket = { ...ticket };
+        newTicket.author = author;
+        ticketSetter(newTicket);
     }
 
     function setTicketAssignee(e: React.ChangeEvent<HTMLInputElement>): void {
         const assignee = e.target.value;
-        if (assignee != "") {
-            const newTicket = { ...ticket };
-            newTicket.assignee = assignee;
-            ticketSetter(newTicket);
-        }
+        const newTicket = { ...ticket };
+        newTicket.assignee = assignee;
+        ticketSetter(newTicket);
     }
 
     function setTicketDescription(
         e: React.ChangeEvent<HTMLInputElement>
     ): void {
         const description = e.target.value;
-        if (description != "") {
-            const newTicket = { ...ticket };
-            newTicket.description = description;
-            ticketSetter(newTicket);
-        }
+        const newTicket = { ...ticket };
+        newTicket.description = description;
+        ticketSetter(newTicket);
     }
 
     const [, drag] = useDrag(() => ({

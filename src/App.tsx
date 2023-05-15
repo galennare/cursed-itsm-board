@@ -119,8 +119,12 @@ function App() {
                                 title={"Tickets For Review"}
                                 userRole={userRole}
                                 requiredRole={UserRole.Admin}
-                                list={adminList}
-                                setList={setAdminList}
+                                userList={userList}
+                                adminList={adminList}
+                                centralList={centralList}
+                                setUserList={setUserList}
+                                setAdminList={setAdminList}
+                                setCentralList={setCentralList}
                             />
                         )}
                     </div>
