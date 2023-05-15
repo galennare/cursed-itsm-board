@@ -5,6 +5,13 @@ import { Ticket } from "../Interface/TicketInterface";
 import { UserRole } from "./NavigationBar";
 import { TicketItemEditable } from "./TicketItemEditable";
 
+/*
+    This is a UI component. This component is just like the generic
+    TicketList component but it renders TicketItemEditable components
+    for each ticket because items in the admin list need to be
+    editable by the admin and super.
+*/
+
 export function canDrop(userRole: UserRole, requiredRole: UserRole): boolean {
     let roleValue = 0;
     roleValue = userRole == UserRole.User ? 1 : roleValue;
