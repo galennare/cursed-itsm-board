@@ -28,9 +28,10 @@
 
 .pfp-change {
     position: absolute;
-    right: 12vh;
-    width: 100%;
-    height: 100%;
+    right: 6vh;
+    top: .5vh;
+    width: 45%;
+    height: 41%;
     opacity: 0;
     cursor: pointer;
 }
