@@ -74,7 +74,7 @@ function App() {
             <DndProvider backend={HTML5Backend}>
                 <header className="App-header">
                     <div>
-                        <ProfilePhoto searcher="https://example.com/profile.jpg" />
+                        <ProfilePhoto url="../default-profile.png" />
                     </div>
                     <div>
                         <NavigationBar

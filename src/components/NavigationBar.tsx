@@ -54,7 +54,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element {
                 ></UserSort>
             </div>
             <div>
-                <ProfilePhoto searcher="../default-profile.png" />
+                <ProfilePhoto url="../default-profile.png" />
             </div>
         </span>
     );
