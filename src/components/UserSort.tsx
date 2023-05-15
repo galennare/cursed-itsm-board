@@ -70,28 +70,34 @@ export function UserSort({
     centralList,
     setCentralList
 }: centralProps): JSX.Element {
-    const [sortState, setSortState] = useState("Default");
-    function sortList(event: React.ChangeEvent<HTMLSelectElement>): void {
+    const [sortState, setSortState] = useState<string>("descending");
+    function handleSortState(event: React.ChangeEvent<HTMLSelectElement>) {
         setSortState(event.target.value);
+    }
+    function sortList(event: React.ChangeEvent<HTMLSelectElement>): void {
+        handleSortState(event);
+        console.log(sortState);
         if (sortState === "ascending") {
-            setCentralList(MergeSort(centralList, false));
-        } else {
             setCentralList(MergeSort(centralList, true));
+        } else {
+            setCentralList(MergeSort(centralList, false));
         }
     }
     return (
         <div>
-            Sort By Priority:
-            <br></br>
-            <Form.Select
-                role={"userSort"}
-                id={"userSort"}
-                defaultValue={"DEFAULT"}
-                onChange={sortList}
-            >
-                <option value="ascending">Ascending</option>
-                <option value="descending">Descending</option>
-            </Form.Select>
+            <Form.Group controlId="userSort">
+                <Form.Label>Sort by Priority:</Form.Label>
+                <br></br>
+                <Form.Select
+                    role={"userSort"}
+                    id={"userSort"}
+                    value={sortState}
+                    onChange={sortList}
+                >
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </Form.Select>
+            </Form.Group>
         </div>
     );
 }
