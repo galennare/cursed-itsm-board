@@ -8,20 +8,20 @@ import { centralProps } from "../App";
 
 export default function MergeSort(
     items: Ticket[],
-    accending: boolean
+    ascending: boolean
 ): Ticket[] {
-    return divide(items, accending);
+    return divide(items, ascending);
 }
 
-function divide(items: Ticket[], accending: boolean): Ticket[] {
+function divide(items: Ticket[], ascending: boolean): Ticket[] {
     const halfLength = Math.ceil(items.length / 2);
     let low = items.slice(0, halfLength);
     let high = items.slice(halfLength);
     if (halfLength > 1) {
-        low = divide(low, accending);
-        high = divide(high, accending);
+        low = divide(low, ascending);
+        high = divide(high, ascending);
     }
-    return combine(low, high, accending);
+    return combine(low, high, ascending);
 }
 
 function combine(low: Ticket[], high: Ticket[], accending: boolean): Ticket[] {
