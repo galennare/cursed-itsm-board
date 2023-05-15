@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { act, render, screen } from "@testing-library/react";
 import { Ticket } from "./TicketItem";
 import { EditTicket } from "./Edit_Mode_Ticket";
+import { convertToPriority } from "./Edit_Mode_Ticket";
 import { UserRole } from "./NavigationBar";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -80,4 +81,15 @@ test("Can check EditMode", () => {
         editBox.click();
     });
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
+});
+
+test("convertToPriority is working properly.", () => {
+    expect(convertToPriority(-1) == 0).toBeTruthy();
+    expect(convertToPriority(0) == 0).toBeTruthy();
+    expect(convertToPriority(1) == 1).toBeTruthy();
+    expect(convertToPriority(2) == 2).toBeTruthy();
+    expect(convertToPriority(3) == 3).toBeTruthy();
+    expect(convertToPriority(4) == 4).toBeTruthy();
+    expect(convertToPriority(5) == 5).toBeTruthy();
+    expect(convertToPriority(6) == 5).toBeTruthy();
 });
