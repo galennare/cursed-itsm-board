@@ -1,0 +1,22 @@
+
+.img {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    z-index: -1;
+    width: 5%;
+    height: 5%;
+}
+
+img.resize {
+    width:200px;
+    height:40px;
+}
+
+.ticket {
+    display: flex;
+    border: 5px solid black;
+    margin: 10px;
+    flex: 0 0 auto;
+}
