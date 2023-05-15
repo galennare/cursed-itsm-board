@@ -9,6 +9,7 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { AdminList } from "./components/AdminList";
 
 const INITIAL_LIST: Ticket[] = [
     {
@@ -114,7 +115,7 @@ function App() {
                     >
                         {(userRole == UserRole.Admin ||
                             userRole == UserRole.Super) && (
-                            <TicketList
+                            <AdminList
                                 title={"Tickets For Review"}
                                 userRole={userRole}
                                 requiredRole={UserRole.Admin}
