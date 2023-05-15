@@ -76,7 +76,6 @@ export function UserSort({
     }
     function sortList(event: React.ChangeEvent<HTMLSelectElement>): void {
         handleSortState(event);
-        console.log(sortState);
         if (sortState === "ascending") {
             setCentralList(MergeSort(centralList, true));
         } else {
