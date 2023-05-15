@@ -79,6 +79,8 @@ export function UserSort({
     }
     return (
         <div>
+            Sort By Priority:
+            <br></br>
             <Form.Select
                 role={"userSort"}
                 id={"userSort"}
