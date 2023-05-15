@@ -48,3 +48,47 @@ test("canDrop is working properly.", () => {
     const requiredRole = UserRole.Super;
     expect(!canDrop(userRole, requiredRole)).toBeTruthy();
 });
+
+test("Has editable tickets", () => {
+    const newTicket: Ticket = {
+        id: 1,
+        title: "Computer Issues",
+        description: "This is the description for ticket one.",
+        priority: 0,
+        last_modified: new Date(),
+        author: "Joe Biden",
+        status: "Pending",
+        assignee: "Nick DiGirolamo",
+        image_path: "path_to_image"
+    };
+
+    function TicketListHookWrapper(): JSX.Element {
+        const [list, setList] = useState<Ticket[]>([newTicket]);
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <AdminList
+                    title={"test"}
+                    userRole={UserRole.Super}
+                    requiredRole={UserRole.Super}
+                    userList={list}
+                    adminList={list}
+                    centralList={list}
+                    setUserList={setList}
+                    setAdminList={setList}
+                    setCentralList={setList}
+                ></AdminList>
+            </DndProvider>
+        );
+    }
+
+    render(<TicketListHookWrapper />);
+    const ticketTitle = screen.getByText(/Title/i);
+    const ticketAuthor = screen.getByText(/Author/i);
+    const ticketAssignee = screen.getByText(/Assignee/i);
+    const ticketDescription = screen.getByText(/Description/i);
+
+    expect(ticketAuthor).toBeInTheDocument();
+    expect(ticketTitle).toBeInTheDocument();
+    expect(ticketAssignee).toBeInTheDocument();
+    expect(ticketDescription).toBeInTheDocument();
+});
