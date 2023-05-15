@@ -5,6 +5,29 @@ import { Ticket } from "./TicketItem";
 import { Form } from "react-bootstrap";
 import { UserRole } from "./NavigationBar";
 
+//HELPER functions
+
+export function statusToString(myStatus: EnumStatus): string {
+    if (myStatus === "Pending") {
+        return "Pending";
+    } else if (myStatus === "In-Progress") {
+        return "In-Progress";
+    } else {
+        return "Resolved";
+    }
+}
+
+export function convertToPriority(value: number): 0 | 1 | 2 | 3 | 4 | 5 {
+    value = value < 0 ? 0 : 5 < value ? 5 : value;
+    let priorityValue: 0 | 1 | 2 | 3 | 4 | 5 = 0;
+    priorityValue = value == 0 ? 0 : value == 1 ? 1 : priorityValue;
+    priorityValue = value == 2 ? 2 : value == 3 ? 3 : priorityValue;
+    priorityValue = value == 4 ? 4 : value == 5 ? 5 : priorityValue;
+    return priorityValue;
+}
+
+//EDITMODE implementation
+
 export function EditTicket({
     ticket,
     currentUserRole,
@@ -14,25 +37,12 @@ export function EditTicket({
     currentUserRole: UserRole;
     editListOwner: UserRole;
 }): JSX.Element {
-    //PART 1: HELPER function
-
-    //function to convert status to string
-    function statusToString(myStatus: EnumStatus): string {
-        if (myStatus === "Pending") {
-            return "Pending";
-        } else if (myStatus === "In-Progress") {
-            return "In-Progress";
-        } else {
-            return "Resolved";
-        }
-    }
-
-    //PART 2: STATE
+    //PART 1: STATE
 
     const initial_date = new Date();
+    const priorityValues = [0, 1, 2, 3, 4, 5];
 
     const [inEditMode, setInEditMode] = useState<boolean>(false);
-    const [canEdit, setCanEdit] = useState<boolean>(false);
     const [ticketTitle, setTicketTitle] = useState<string>(ticket.title);
     const [ticketDescription, setTicketDescription] = useState<string>(
         ticket.description
@@ -40,7 +50,7 @@ export function EditTicket({
     const [ticketStatus, setTicketStatus] = useState<string>(
         statusToString(ticket.status)
     );
-    const [ticketPriority, setTicketPriority] = useState<number>(
+    const [ticketPriority, setTicketPriority] = useState<0 | 1 | 2 | 3 | 4 | 5>(
         ticket.priority
     );
     const [ticketLastModified, setTicketLastModified] =
@@ -50,51 +60,43 @@ export function EditTicket({
         ticket.assignee
     );
 
-    //PART 3: CONTROL functions
+    //PART 2: CONTROL functions
 
     const current_date = ticket.last_modified;
 
-    //function to update EditMode
     function updateInEditMode(event: React.ChangeEvent<HTMLInputElement>) {
         setInEditMode(event.target.checked);
     }
 
-    //function to update LastModified
-    useEffect(() => setTicketLastModified(current_date), []);
-
-    //function to update the title of the ticket
     function updateTicketTitle(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketTitle(event.target.value);
     }
 
-    //function to update the description of the ticket
     function updateTicketDescription(
         event: React.ChangeEvent<HTMLInputElement>
     ) {
         setTicketDescription(event.target.value);
     }
 
-    //function to update the status of the ticket
     function updateTicketStatus(event: React.ChangeEvent<HTMLSelectElement>) {
         setTicketStatus(event.target.value);
     }
 
-    //function to update the priority of the ticket
-    function updateTicketPriority(event: React.ChangeEvent<HTMLInputElement>) {
-        setTicketPriority(parseInt(event.target.value));
+    function updateTicketPriority(event: React.ChangeEvent<HTMLSelectElement>) {
+        setTicketPriority(convertToPriority(parseInt(event.target.value)));
     }
 
-    //function to update the image of the ticket
+    useEffect(() => setTicketLastModified(current_date), []);
+
     function updateTicketImage(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketImage(event.target.value);
     }
 
-    //function to update the assignee of the ticket
     function updateTicketAssignee(event: React.ChangeEvent<HTMLInputElement>) {
         setTicketAssignee(event.target.value);
     }
 
-    //PART 4: NOT IN EDIT MODE functions
+    //PART 3: NOT IN EDIT MODE functions
 
     function titleNotInEditMode(): string {
         return ticketTitle;
@@ -124,7 +126,7 @@ export function EditTicket({
         return ticketLastModified.toDateString();
     }
 
-    //PART 5: USER ROLE function
+    //PART 4: USER ROLE function
 
     function userRoleEdit(): boolean {
         if (
@@ -149,7 +151,7 @@ export function EditTicket({
         }
     }
 
-    //PART 6: IN EDIT MODE functions
+    //PART 5: IN EDIT MODE functions
 
     function titleInEditMode(): JSX.Element {
         if (inEditMode === true && userRoleEdit() === true) {
@@ -197,11 +199,19 @@ export function EditTicket({
                 <div>
                     <Form.Group controlId="formTicketPriority">
                         <Form.Label></Form.Label>
-                        <Form.Control
-                            type="number"
+                        <Form.Select
                             value={ticketPriority}
                             onChange={updateTicketPriority}
-                        />
+                        >
+                            {priorityValues.map((priority: number) => (
+                                <option
+                                    key={ticketPriority}
+                                    value={ticketPriority}
+                                >
+                                    {ticketPriority}
+                                </option>
+                            ))}
+                        </Form.Select>
                     </Form.Group>
                     <div>{ticketPriority}</div>
                 </div>
@@ -272,7 +282,7 @@ export function EditTicket({
         }
     }
 
-    //PART 7: VIEW
+    //PART 6: VIEW
 
     return (
         <div>
