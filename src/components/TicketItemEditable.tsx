@@ -1,7 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
-import { StateSetter } from "../Interface/Hook";
 import { Form } from "react-bootstrap";
 
 /*
@@ -53,7 +52,7 @@ export function TicketItemEditable({
 
     const [, drag] = useDrag(() => ({
         type: "TicketItem",
-        item: { ticket: ticket }
+        item: ticket
     }));
 
     return (

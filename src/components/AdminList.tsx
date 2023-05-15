@@ -73,9 +73,9 @@ export function AdminList({
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
-            drop: (ticket: { ticket: Ticket }) => {
+            drop: (ticket: Ticket) => {
                 if (canDrop(userRole, requiredRole)) {
-                    setAdminList([...adminList, ticket.ticket]);
+                    setAdminList([...adminList, ticket]);
                 } else {
                     alert("You do not have permission to add to that list.");
                 }
