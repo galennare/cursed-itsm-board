@@ -47,6 +47,39 @@ const INITIAL_LIST: Ticket[] = [
         status: "Resolved",
         assignee: "Nick DiGirolamo",
         image_path: "path_to_image"
+    },
+    {
+        id: v4(),
+        title: "Broken Screen",
+        description: "This is the description for ticket three.",
+        priority: 1,
+        last_modified: new Date(),
+        author: "Mr. Guy",
+        status: "Pending",
+        assignee: "Alexandra Croce",
+        image_path: "path_to_image"
+    },
+    {
+        id: v4(),
+        title: "Keybrd nt wrking",
+        description: "This is the description for ticket three.",
+        priority: 2,
+        last_modified: new Date(),
+        author: "Jenna Tomasch",
+        status: "Resolved",
+        assignee: "Alexandra Croce",
+        image_path: "path_to_image"
+    },
+    {
+        id: v4(),
+        title: "My Computer Won't Turn on",
+        description: "This is the description for ticket three.",
+        priority: 5,
+        last_modified: new Date(),
+        author: "Alejandro Tomato",
+        status: "In-Progress",
+        assignee: "Alexandra Croce",
+        image_path: "path_to_image"
     }
 ];
 
