@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import defaultImage from "../default-profile.png";
 import "./ProfilePhoto.css";
 import { Ticket } from "../Interface/TicketInterface";
-import { createHash } from "crypto";
 
 interface PFPProps {
     url?: string;
@@ -10,11 +9,6 @@ interface PFPProps {
 
 const gravBaseURL = "https://www.gravatar.com/avatar/";
 const gravURLSuffix = "?s=64&d=identicon&r=PG";
-
-export function generateGravatarURL(ticket: Ticket): string {
-    const hash = createHash("sha256").update(ticket.author).digest("hex");
-    return gravBaseURL + hash + gravURLSuffix;
-}
 
 export function ProfilePhoto(props: PFPProps): JSX.Element {
     const [userPhoto, setPhoto] = useState(props.url);
