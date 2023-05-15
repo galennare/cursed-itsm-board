@@ -4,6 +4,7 @@ import { useDrop } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
 import { UserRole } from "./NavigationBar";
 import { TicketItemEditable } from "./TicketItemEditable";
+import { StateSetter } from "../Interface/Hook";
 
 /*
     This is a UI component. This component is just like the generic
@@ -34,8 +35,22 @@ export function AdminList({
     userRole: UserRole;
     requiredRole: UserRole;
     list: Ticket[];
-    setList: (newTicket: Ticket[]) => void;
+    setList: StateSetter<Ticket[]>;
 }): JSX.Element {
+    function ticketSetter(ticket: Ticket): void {
+        // find the ticket index in the list by ID
+        const index = list.findIndex((q: Ticket) => q.id === ticket.id);
+
+        // clone the ticket list
+        const newTicketList = [...list];
+
+        // replace the ticket
+        if (index > -1) newTicketList.splice(index, 1, ticket);
+
+        // call setter for ticket list
+        setList(newTicketList);
+    }
+
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
@@ -63,7 +78,11 @@ export function AdminList({
         >
             <h1>{title}</h1>
             {list.map((ticket: Ticket) => (
-                <TicketItemEditable key={ticket.id} ticket={ticket} />
+                <TicketItemEditable
+                    key={ticket.id}
+                    ticket={ticket}
+                    ticketSetter={ticketSetter}
+                />
             ))}
             <div style={{ flex: "1 1 0%" }} />
         </div>

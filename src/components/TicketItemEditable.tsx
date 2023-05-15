@@ -1,6 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
+import { StateSetter } from "../Interface/Hook";
 
 /*
     This is a UI component that will be rendered for each ticket
@@ -12,9 +13,11 @@ import { Ticket } from "../Interface/TicketInterface";
 */
 
 export function TicketItemEditable({
-    ticket
+    ticket,
+    ticketSetter
 }: {
     ticket: Ticket;
+    ticketSetter: (ticket: Ticket) => void;
 }): JSX.Element {
     const [, drag] = useDrag(() => ({
         type: "TicketItem",
