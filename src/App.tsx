@@ -10,6 +10,7 @@ import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { AdminList } from "./components/AdminList";
+import { UserSort } from "./components/UserSort";
 import { v4 } from "uuid";
 import { TicketCreator } from "./components/TicketCreator";
 import { Button } from "react-bootstrap";
@@ -30,7 +31,7 @@ const INITIAL_LIST: Ticket[] = [
         id: v4(),
         title: "My Phone Died",
         description: "This is the description for ticket two.",
-        priority: 0,
+        priority: 1,
         last_modified: new Date(),
         author: "Donald Trump",
         status: "In-Progress",
@@ -47,8 +48,50 @@ const INITIAL_LIST: Ticket[] = [
         status: "Resolved",
         assignee: "Nick DiGirolamo",
         image_path: "path_to_image"
+    },
+    {
+        id: v4(),
+        title: "Broken Screen",
+        description: "This is the description for ticket three.",
+        priority: 1,
+        last_modified: new Date(),
+        author: "Mr. Guy",
+        status: "Pending",
+        assignee: "Alexandra Croce",
+        image_path: "path_to_image"
+    },
+    {
+        id: v4(),
+        title: "Keybrd nt wrking",
+        description: "This is the description for ticket three.",
+        priority: 2,
+        last_modified: new Date(),
+        author: "Jenna Tomasch",
+        status: "Resolved",
+        assignee: "Alexandra Croce",
+        image_path: "path_to_image"
+    },
+    {
+        id: v4(),
+        title: "My Computer Won't Turn on",
+        description: "This is the description for ticket three.",
+        priority: 5,
+        last_modified: new Date(),
+        author: "Alejandro Tomato",
+        status: "In-Progress",
+        assignee: "Alexandra Croce",
+        image_path: "path_to_image"
     }
 ];
+
+export interface userProps {
+    setUserRole: (newRole: UserRole) => void;
+}
+
+export interface centralProps {
+    centralList: Ticket[];
+    setCentralList: (newList: Ticket[]) => void;
+}
 
 function App() {
     const [userRole, setUserRole] = useState<UserRole>(UserRole.User);
@@ -65,11 +108,13 @@ function App() {
             <DndProvider backend={HTML5Backend}>
                 <header className="App-header">
                     <div>
-                        <ProfilePhoto searcher="https://example.com/profile.jpg" />
+                        <ProfilePhoto url="../default-profile.png" />
                     </div>
                     <div>
                         <NavigationBar
                             setUserRole={setUserRole}
+                            centralList={centralList}
+                            setCentralList={setCentralList}
                         ></NavigationBar>
                     </div>
                 </header>

@@ -2,6 +2,10 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { UserSelect } from "./UserSelect";
+import { UserSort } from "./UserSort";
+import { Ticket } from "../Interface/TicketInterface";
+import { centralProps } from "../App";
+import { userProps } from "../App";
 
 /*
     This is NOT a UI component. This is similar to an interface
@@ -27,12 +31,13 @@ export enum UserRole {
     be stored in App.tsx and be passed in as a property to this
     component.
 */
-export function NavigationBar({
-    setUserRole
-}: {
-    setUserRole: (role: UserRole) => void;
-}): JSX.Element {
+
+interface NavigationBarProps extends userProps, centralProps {}
+
+export function NavigationBar(props: NavigationBarProps): JSX.Element {
     const users = [UserRole.User, UserRole.Super, UserRole.Admin];
+    const { setUserRole, centralList, setCentralList } = props;
+
     return (
         <span className="title">
             <div>
@@ -43,7 +48,13 @@ export function NavigationBar({
                 <UserSelect users={users} setUserRole={setUserRole} />
             </div>
             <div>
-                <ProfilePhoto searcher="../default-profile.png" />
+                <UserSort
+                    centralList={centralList}
+                    setCentralList={setCentralList}
+                ></UserSort>
+            </div>
+            <div>
+                <ProfilePhoto url="../default-profile.png" />
             </div>
         </span>
     );
