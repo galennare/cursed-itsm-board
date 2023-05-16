@@ -21,47 +21,32 @@ export function TicketItemEditable({
 }): JSX.Element {
     /* Setter functions for each property */
     function setTicketTitle(e: React.ChangeEvent<HTMLInputElement>): void {
-        const title = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.title = title;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, title: e.target.value });
     }
 
     function setTicketAuthor(e: React.ChangeEvent<HTMLInputElement>): void {
-        const author = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.author = author;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, author: e.target.value });
     }
 
     function setTicketAssignee(e: React.ChangeEvent<HTMLInputElement>): void {
-        const assignee = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.assignee = assignee;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, assignee: e.target.value });
     }
 
     function setTicketDescription(
         e: React.ChangeEvent<HTMLInputElement>
     ): void {
-        const description = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.description = description;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, description: e.target.value });
     }
 
     function setTicketStatus(e: React.ChangeEvent<HTMLSelectElement>): void {
-        const status: TicketStatus = e.target.value as TicketStatus;
-        const newTicket = { ...ticket };
-        newTicket.status = status;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, status: e.target.value as TicketStatus });
     }
 
     function setTicketPriority(e: React.ChangeEvent<HTMLSelectElement>): void {
-        const priority = e.target.value as unknown as 0 | 1 | 2 | 3 | 4 | 5;
-        const newTicket = { ...ticket };
-        newTicket.priority = priority;
-        ticketSetter(newTicket);
+        ticketSetter({
+            ...ticket,
+            priority: e.target.value as unknown as 0 | 1 | 2 | 3 | 4 | 5
+        });
     }
 
     const [, drag] = useDrag(() => ({
