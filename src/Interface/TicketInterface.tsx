@@ -11,7 +11,7 @@
 */
 
 export interface Ticket {
-    id: number;
+    id: string;
     title: string;
     description: string;
     priority: 0 | 1 | 2 | 3 | 4 | 5;
