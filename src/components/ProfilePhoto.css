@@ -12,25 +12,22 @@
 }
 
 .pfp-container {
-    position: absolute;
-    width: 100px;
-    height: 100px;
+    position: relative;
+    max-width: 10px;
+    max-height: 10px;
 }
 
 .pfp {
     display: block;
-    width: 50%;
-    height: 50%;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
 }
 
 .pfp-change {
-    position: absolute;
-    right: 12vh;
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 50%;
+    height: 50%;
     opacity: 0;
     cursor: pointer;
 }
