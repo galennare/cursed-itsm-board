@@ -46,9 +46,13 @@ test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);
     const ticketAssignee = screen.getByText(/Assignee/i);
     const ticketDescription = screen.getByText(/Description/i);
+    const ticketStatus = screen.getByText(/Status/i);
+    const ticketPriority = screen.getByText(/Priority/i);
 
     expect(ticketAuthor).toBeInTheDocument();
     expect(ticketTitle).toBeInTheDocument();
     expect(ticketAssignee).toBeInTheDocument();
     expect(ticketDescription).toBeInTheDocument();
+    expect(ticketStatus).toBeInTheDocument();
+    expect(ticketPriority).toBeInTheDocument();
 });
