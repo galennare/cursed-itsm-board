@@ -13,7 +13,10 @@ import { StateSetter } from "../Interface/Hook";
     editable by the admin and super.
 */
 
-export function canDrop(userRole: UserRole, requiredRole: UserRole): boolean {
+export function allowedToDrop(
+    userRole: UserRole,
+    requiredRole: UserRole
+): boolean {
     let roleValue = 0;
     roleValue = userRole == UserRole.User ? 1 : roleValue;
     roleValue = userRole == UserRole.Admin ? 2 : roleValue;
@@ -74,8 +77,17 @@ export function AdminList({
         () => ({
             accept: "TicketItem",
             drop: (ticket: Ticket) => {
-                if (canDrop(userRole, requiredRole)) {
-                    setAdminList([...adminList, ticket]);
+                if (allowedToDrop(userRole, requiredRole)) {
+                    if (
+                        adminList.find(
+                            (oldTicket: Ticket): boolean =>
+                                oldTicket.id == ticket.id
+                        )
+                    ) {
+                        alert("That ticket is already in that list!");
+                    } else {
+                        setAdminList([...adminList, ticket]);
+                    }
                 } else {
                     alert("You do not have permission to add to that list.");
                 }

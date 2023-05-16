@@ -51,6 +51,12 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 Status: {ticket.status} Priority: {ticket.priority}
             </div>
             <p>{ticket.description}</p>
+            <img
+                src={require("../frog.jpg")}
+                alt="frog"
+                width="15%"
+                height="40"
+            />
         </div>
     );
 }

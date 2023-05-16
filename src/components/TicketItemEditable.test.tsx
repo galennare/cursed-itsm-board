@@ -16,7 +16,7 @@ beforeEach(() => {
     }
 
     const newTicket: Ticket = {
-        id: 1,
+        id: "1",
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,

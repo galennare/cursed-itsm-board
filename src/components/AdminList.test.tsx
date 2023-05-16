@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { AdminList, canDrop } from "./AdminList";
+import { AdminList, allowedToDrop } from "./AdminList";
 import React, { useState } from "react";
 import { Ticket } from "../Interface/TicketInterface";
 import { DndProvider, useDrop } from "react-dnd";
@@ -8,7 +8,7 @@ import { UserRole } from "./NavigationBar";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {
-        id: 1,
+        id: "1",
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -46,12 +46,12 @@ test("TicketList is rendering.", () => {
 test("canDrop is working properly.", () => {
     const userRole = UserRole.User;
     const requiredRole = UserRole.Super;
-    expect(!canDrop(userRole, requiredRole)).toBeTruthy();
+    expect(allowedToDrop(userRole, requiredRole)).toBeFalsy();
 });
 
 test("Has editable tickets", () => {
     const newTicket: Ticket = {
-        id: 1,
+        id: "1",
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
