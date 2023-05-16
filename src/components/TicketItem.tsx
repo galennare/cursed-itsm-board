@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
 
@@ -32,6 +32,11 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
         type: "TicketItem",
         item: ticket
     }));
+    let visible = false;
+    if (ticket.priority === 0) {
+        visible = true;
+    }
+    const [shouldShowImage, setShouldShowImage] = useState(true);
 
     return (
         <div
@@ -57,6 +62,24 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 width="15%"
                 height="40"
             />
+            <img
+                id="awakeFrog"
+                src={require("../frogAwake.jpg")}
+                alt="frog"
+                width="15%"
+                height="40"
+            />
+            <div className="image-container">
+                {shouldShowImage ? (
+                    <img
+                        src={require("../frogAwake.jpg")}
+                        alt="Conditional Image"
+                    />
+                ) : null}
+                <button onClick={() => setShouldShowImage(!shouldShowImage)}>
+                    Toggle Image
+                </button>
+            </div>
         </div>
     );
 }
