@@ -17,7 +17,7 @@ test("There is EditMode (1)", () => {
 
 beforeEach(() => {
     const myTicket: Ticket = {
-        id: 1,
+        id: "1",
         title: "Computer Issues",
         description: "This is ticket one.",
         priority: 0,

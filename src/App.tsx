@@ -9,11 +9,14 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { v4 } from "uuid";
+import { TicketCreator } from "./components/TicketCreator";
+import { Button } from "react-bootstrap";
 import { EditTicket } from "./components/Edit_Mode_Ticket";
 
 const INITIAL_LIST: Ticket[] = [
     {
-        id: 1,
+        id: v4(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -24,7 +27,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 2,
+        id: v4(),
         title: "My Phone Died",
         description: "This is the description for ticket two.",
         priority: 0,
@@ -35,7 +38,7 @@ const INITIAL_LIST: Ticket[] = [
         image_path: "path_to_image"
     },
     {
-        id: 3,
+        id: v4(),
         title: "No WIFI?",
         description: "This is the description for ticket three.",
         priority: 0,
@@ -54,6 +57,8 @@ function App() {
     const [adminList, setAdminList] = useState<Ticket[]>([]);
     const [userList, setUserList] = useState<Ticket[]>([]);
     const centralTickets = [...centralList];
+
+    const [revealCreator, setRevealCreator] = useState<boolean>(false);
 
     return (
         <div className="App">
@@ -100,6 +105,18 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <TicketList
+                            title={"All Tickets"}
+                            userRole={userRole}
+                            requiredRole={UserRole.Super}
+                            list={centralList}
+                            setList={setCentralList}
+                        />
+                    </div>
+                    <div
+                        className="column"
+                        style={{ width: "33.33%", display: "table-cell" }}
+                    >
+                        <TicketList
                             title={"User List"}
                             userRole={userRole}
                             requiredRole={UserRole.User}
@@ -112,20 +129,7 @@ function App() {
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
                         <TicketList
-                            title={"Central List"}
-                            userRole={userRole}
-                            requiredRole={UserRole.Super}
-                            list={centralList}
-                            setList={setCentralList}
-                        />
-                    </div>
-
-                    <div
-                        className="column"
-                        style={{ width: "33.33%", display: "table-cell" }}
-                    >
-                        <TicketList
-                            title={"Admin List"}
+                            title={"Tickets For Review"}
                             userRole={userRole}
                             requiredRole={UserRole.Admin}
                             list={adminList}

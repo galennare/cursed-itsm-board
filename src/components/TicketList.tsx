@@ -4,7 +4,10 @@ import { useDrop } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
 import { UserRole } from "./NavigationBar";
 
-export function canDrop(userRole: UserRole, requiredRole: UserRole): boolean {
+export function allowedToDrop(
+    userRole: UserRole,
+    requiredRole: UserRole
+): boolean {
     let roleValue = 0;
     roleValue = userRole == UserRole.User ? 1 : roleValue;
     roleValue = userRole == UserRole.Admin ? 2 : roleValue;
@@ -26,14 +29,23 @@ export function TicketList({
     userRole: UserRole;
     requiredRole: UserRole;
     list: Ticket[];
-    setList: (newTicket: Ticket[]) => void;
+    setList: (list: Ticket[]) => void;
 }): JSX.Element {
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
-            drop: (ticket: { ticket: Ticket }) => {
-                if (canDrop(userRole, requiredRole)) {
-                    setList([...list, ticket.ticket]);
+            drop: ({ ticket }: { ticket: Ticket }) => {
+                if (allowedToDrop(userRole, requiredRole)) {
+                    if (
+                        list.find(
+                            (oldTicket: Ticket): boolean =>
+                                oldTicket.id == ticket.id
+                        )
+                    ) {
+                        alert("That ticket is already in that list!");
+                    } else {
+                        setList([...list, ticket]);
+                    }
                 } else {
                     alert("You do not have permission to add to that list.");
                 }

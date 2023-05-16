@@ -1,14 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import { TicketList, canDrop } from "./TicketList";
+import { TicketList, allowedToDrop } from "./TicketList";
 import React, { useState } from "react";
 import { Ticket } from "../Interface/TicketInterface";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { UserRole } from "./NavigationBar";
+import { v4 } from "uuid";
 
 test("TicketList is rendering.", () => {
     const newTicket: Ticket = {
-        id: 1,
+        id: v4(),
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -42,5 +43,5 @@ test("TicketList is rendering.", () => {
 test("canDrop is working properly.", () => {
     const userRole = UserRole.User;
     const requiredRole = UserRole.Super;
-    expect(!canDrop(userRole, requiredRole)).toBeTruthy();
+    expect(allowedToDrop(userRole, requiredRole)).toBeFalsy();
 });
