@@ -6,64 +6,18 @@ import { UserRole } from "./NavigationBar";
 import { Ticket } from "../Interface/TicketInterface";
 import { centralProps } from "../App";
 
-export default function MergeSort(
-    items: Ticket[],
-    ascending: boolean
-): Ticket[] {
-    return divide(items, ascending);
-}
-
-function divide(items: Ticket[], ascending: boolean): Ticket[] {
-    const halfLength = Math.ceil(items.length / 2);
-    let low = items.slice(0, halfLength);
-    let high = items.slice(halfLength);
-    if (halfLength > 1) {
-        low = divide(low, ascending);
-        high = divide(high, ascending);
+export default function Sort(items: Ticket[], ascending: boolean): Ticket[] {
+    let newItems = [...items];
+    if (ascending) {
+        newItems = newItems.sort(function (a, b) {
+            return a.priority - b.priority;
+        });
+    } else {
+        newItems = newItems.sort(function (a, b) {
+            return b.priority - a.priority;
+        });
     }
-    return combine(low, high, ascending);
-}
-
-function combine(low: Ticket[], high: Ticket[], accending: boolean): Ticket[] {
-    let indexLow = 0;
-    let indexHigh = 0;
-    const lengthLow = low.length;
-    const lengthHigh = high.length;
-    const combined = [];
-    while (indexLow < lengthLow || indexHigh < lengthHigh) {
-        const lowItem = low[indexLow];
-        const highItem = high[indexHigh];
-        if (lowItem !== undefined) {
-            if (highItem === undefined) {
-                combined.push(lowItem);
-                indexLow++;
-            } else {
-                if (accending) {
-                    if (lowItem.priority <= highItem.priority) {
-                        combined.push(lowItem);
-                        indexLow++;
-                    } else {
-                        combined.push(highItem);
-                        indexHigh++;
-                    }
-                } else {
-                    if (lowItem.priority >= highItem.priority) {
-                        combined.push(lowItem);
-                        indexLow++;
-                    } else {
-                        combined.push(highItem);
-                        indexHigh++;
-                    }
-                }
-            }
-        } else {
-            if (highItem !== undefined) {
-                combined.push(highItem);
-                indexHigh++;
-            }
-        }
-    }
-    return combined;
+    return newItems;
 }
 
 export function UserSort({
@@ -77,9 +31,9 @@ export function UserSort({
     function sortList(event: React.ChangeEvent<HTMLSelectElement>): void {
         handleSortState(event);
         if (sortState === "ascending") {
-            setCentralList(MergeSort(centralList, true));
+            setCentralList(Sort(centralList, true));
         } else {
-            setCentralList(MergeSort(centralList, false));
+            setCentralList(Sort(centralList, false));
         }
     }
     return (
