@@ -56,29 +56,34 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 Status: {ticket.status} Priority: {ticket.priority}
             </div>
             <p>{ticket.description}</p>
-            <img
-                src={require("../frog.jpg")}
-                alt="frog"
-                width="15%"
-                height="40"
-            />
-            <img
-                id="awakeFrog"
-                src={require("../frogAwake.jpg")}
-                alt="frog"
-                width="15%"
-                height="40"
-            />
-            <div className="image-container">
-                {shouldShowImage ? (
+            <div>
+                {ticket.status === "Pending" ? (
                     <img
-                        src={require("../frogAwake.jpg")}
-                        alt="Conditional Image"
+                        id="frogEggs"
+                        src={require("../frogEggs.png")}
+                        alt="frog Eggs"
+                        height="60"
                     />
                 ) : null}
-                <button onClick={() => setShouldShowImage(!shouldShowImage)}>
-                    Toggle Image
-                </button>
+            </div>
+            <div>
+                {ticket.status === "In-Progress" ? (
+                    <img
+                        id="tadpole"
+                        src={require("../bestTadpole.png")}
+                        height="40"
+                    />
+                ) : null}
+            </div>
+            <div>
+                {ticket.status === "Resolved" ? (
+                    <img
+                        id="finalFrog"
+                        src={require("../froggy.png")}
+                        alt="cute frog"
+                        height="80"
+                    />
+                ) : null}
             </div>
         </div>
     );
