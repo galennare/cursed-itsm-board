@@ -30,7 +30,7 @@ import { Ticket } from "../Interface/TicketInterface";
 export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
     const [, drag] = useDrag(() => ({
         type: "TicketItem",
-        item: { ticket: ticket }
+        item: ticket
     }));
 
     return (

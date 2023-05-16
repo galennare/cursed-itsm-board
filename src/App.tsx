@@ -9,6 +9,7 @@ import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { AdminList } from "./components/AdminList";
 import { UserSort } from "./components/UserSort";
 import { v4 } from "uuid";
 import { TicketCreator } from "./components/TicketCreator";
@@ -175,12 +176,16 @@ function App() {
                         className="column"
                         style={{ width: "33.33%", display: "table-cell" }}
                     >
-                        <TicketList
+                        <AdminList
                             title={"Tickets For Review"}
                             userRole={userRole}
                             requiredRole={UserRole.Admin}
-                            list={adminList}
-                            setList={setAdminList}
+                            userList={userList}
+                            adminList={adminList}
+                            centralList={centralList}
+                            setUserList={setUserList}
+                            setAdminList={setAdminList}
+                            setCentralList={setCentralList}
                         />
                     </div>
                 </div>

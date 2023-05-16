@@ -34,7 +34,7 @@ export function TicketList({
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
-            drop: ({ ticket }: { ticket: Ticket }) => {
+            drop: (ticket: Ticket) => {
                 if (allowedToDrop(userRole, requiredRole)) {
                     if (
                         list.find(
