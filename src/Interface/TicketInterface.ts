@@ -10,6 +10,8 @@
     will get mad!
 */
 
+export type TicketStatus = "Pending" | "In-Progress" | "Resolved";
+
 export interface Ticket {
     id: string;
     title: string;
@@ -17,7 +19,7 @@ export interface Ticket {
     priority: 0 | 1 | 2 | 3 | 4 | 5;
     last_modified: Date;
     author: string;
-    status: "Pending" | "In-Progress" | "Resolved";
+    status: TicketStatus;
     assignee: string;
     image_path: string;
 }

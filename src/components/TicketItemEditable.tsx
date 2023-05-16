@@ -1,6 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket, TicketStatus } from "../Interface/TicketInterface";
 import { Form } from "react-bootstrap";
 
 /*
@@ -50,6 +50,20 @@ export function TicketItemEditable({
         ticketSetter(newTicket);
     }
 
+    function setTicketStatus(e: React.ChangeEvent<HTMLSelectElement>): void {
+        const status: TicketStatus = e.target.value as TicketStatus;
+        const newTicket = { ...ticket };
+        newTicket.status = status;
+        ticketSetter(newTicket);
+    }
+
+    function setTicketPriority(e: React.ChangeEvent<HTMLSelectElement>): void {
+        const priority = e.target.value as unknown as 0 | 1 | 2 | 3 | 4 | 5;
+        const newTicket = { ...ticket };
+        newTicket.priority = priority;
+        ticketSetter(newTicket);
+    }
+
     const [, drag] = useDrag(() => ({
         type: "TicketItem",
         item: ticket
@@ -80,6 +94,28 @@ export function TicketItemEditable({
                     onChange={setTicketAuthor}
                 ></Form.Control>
             </Form.Group>
+            <Form.Group controlId="ticketStatus">
+                <Form.Label>Status: </Form.Label>
+                <Form.Select value={ticket.status} onChange={setTicketStatus}>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="ticketPriority">
+                <Form.Label>Priority: </Form.Label>
+                <Form.Select
+                    value={ticket.priority}
+                    onChange={setTicketPriority}
+                >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </Form.Select>
+            </Form.Group>
             <Form.Group controlId="ticketAssignee">
                 <Form.Label>Assignee: </Form.Label>
                 <Form.Control
@@ -94,13 +130,6 @@ export function TicketItemEditable({
                     onChange={setTicketDescription}
                 ></Form.Control>
             </Form.Group>
-            {/**<h1>{ticket.title}</h1>
-            <h4>Author: {ticket.author}</h4>
-            <h4>Assigned To: {ticket.assignee}</h4>
-            <div>
-                Status: {ticket.status} Priority: {ticket.priority}
-            </div>
-            <p>{ticket.description}</p>**/}
         </div>
     );
 }
