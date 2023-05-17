@@ -1,6 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { Ticket } from "../Interface/TicketInterface";
+import { Ticket, TicketStatus } from "../Interface/TicketInterface";
 import { Form } from "react-bootstrap";
 
 /*
@@ -21,33 +21,32 @@ export function TicketItemEditable({
 }): JSX.Element {
     /* Setter functions for each property */
     function setTicketTitle(e: React.ChangeEvent<HTMLInputElement>): void {
-        const title = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.title = title;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, title: e.target.value });
     }
 
     function setTicketAuthor(e: React.ChangeEvent<HTMLInputElement>): void {
-        const author = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.author = author;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, author: e.target.value });
     }
 
     function setTicketAssignee(e: React.ChangeEvent<HTMLInputElement>): void {
-        const assignee = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.assignee = assignee;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, assignee: e.target.value });
     }
 
     function setTicketDescription(
         e: React.ChangeEvent<HTMLInputElement>
     ): void {
-        const description = e.target.value;
-        const newTicket = { ...ticket };
-        newTicket.description = description;
-        ticketSetter(newTicket);
+        ticketSetter({ ...ticket, description: e.target.value });
+    }
+
+    function setTicketStatus(e: React.ChangeEvent<HTMLSelectElement>): void {
+        ticketSetter({ ...ticket, status: e.target.value as TicketStatus });
+    }
+
+    function setTicketPriority(e: React.ChangeEvent<HTMLSelectElement>): void {
+        ticketSetter({
+            ...ticket,
+            priority: e.target.value as unknown as 0 | 1 | 2 | 3 | 4 | 5
+        });
     }
 
     const [, drag] = useDrag(() => ({
@@ -80,6 +79,28 @@ export function TicketItemEditable({
                     onChange={setTicketAuthor}
                 ></Form.Control>
             </Form.Group>
+            <Form.Group controlId="ticketStatus">
+                <Form.Label>Status: </Form.Label>
+                <Form.Select value={ticket.status} onChange={setTicketStatus}>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="ticketPriority">
+                <Form.Label>Priority: </Form.Label>
+                <Form.Select
+                    value={ticket.priority}
+                    onChange={setTicketPriority}
+                >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </Form.Select>
+            </Form.Group>
             <Form.Group controlId="ticketAssignee">
                 <Form.Label>Assignee: </Form.Label>
                 <Form.Control
@@ -94,13 +115,6 @@ export function TicketItemEditable({
                     onChange={setTicketDescription}
                 ></Form.Control>
             </Form.Group>
-            {/**<h1>{ticket.title}</h1>
-            <h4>Author: {ticket.author}</h4>
-            <h4>Assigned To: {ticket.assignee}</h4>
-            <div>
-                Status: {ticket.status} Priority: {ticket.priority}
-            </div>
-            <p>{ticket.description}</p>**/}
         </div>
     );
 }
