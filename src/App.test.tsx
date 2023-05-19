@@ -4,5 +4,5 @@ import App from "./App";
 
 test("renders app header", () => {
     const { getByText } = render(<App />);
-    expect(getByText("Cursed ITSM Ticketing System")).toBeInTheDocument();
+    expect(getByText("ITSM Ticketing System")).toBeInTheDocument();
 });
