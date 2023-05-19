@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
 
@@ -32,6 +32,11 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
         type: "TicketItem",
         item: ticket
     }));
+    let visible = false;
+    if (ticket.priority === 0) {
+        visible = true;
+    }
+    const [shouldShowImage, setShouldShowImage] = useState(true);
 
     return (
         <div
@@ -51,12 +56,35 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 Status: {ticket.status} Priority: {ticket.priority}
             </div>
             <p>{ticket.description}</p>
-            <img
-                src={require("../frog.jpg")}
-                alt="frog"
-                width="15%"
-                height="40"
-            />
+            <div>
+                {ticket.status === "Pending" ? (
+                    <img
+                        id="frogEggs"
+                        src={require("../frogEggs.png")}
+                        alt="frog Eggs"
+                        height="60"
+                    />
+                ) : null}
+            </div>
+            <div>
+                {ticket.status === "In-Progress" ? (
+                    <img
+                        id="tadpole"
+                        src={require("../bestTadpole.png")}
+                        height="40"
+                    />
+                ) : null}
+            </div>
+            <div>
+                {ticket.status === "Resolved" ? (
+                    <img
+                        id="finalFrog"
+                        src={require("../froggy.png")}
+                        alt="cute frog"
+                        height="80"
+                    />
+                ) : null}
+            </div>
         </div>
     );
 }
