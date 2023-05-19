@@ -382,6 +382,14 @@ function App() {
                         ></NavigationBar>
                     </div>
                 </header>
+                <div style={{ backgroundColor: "#8096c06e" }}>
+                    <div>
+                        <small>
+                            Team 3: Galen Nare, Solenn Gacon, Michael Arocho,
+                            Andrew Roberts, Alexandra Croce, Nicholas DiGirolamo
+                        </small>
+                    </div>
+                </div>
                 <div
                     className="row"
                     style={{ width: "100%", display: "table" }}
