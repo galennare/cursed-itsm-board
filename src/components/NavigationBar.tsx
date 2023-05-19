@@ -55,8 +55,8 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element {
             </div>
             <div>
                 <small>
-                    Team 3: Galen N., Solenn G., Andrew R., Michael A.,
-                    Alexandra C., Nicholas D.
+                    T3: Galen N., Solenn G., Andrew R., Michael A., Alexandra
+                    C., Nicholas D.
                 </small>
             </div>
             <div>
