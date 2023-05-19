@@ -54,13 +54,13 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element {
                 ></UserSort>
             </div>
             <div>
-                <p>Team 3</p>
-                <p>Galen Nare</p>
-                <p>Solenn Gacon</p>
-                <p>Andrew Roberts</p>
-                <p>Michael Arocho</p>
-                <p>Alexandra Croce</p>
-                <p>Nicholas DiGirolamo</p>
+                <small>Team 3</small>
+                <small>Galen Nare</small>
+                <small>Solenn Gacon</small>
+                <small>Andrew Roberts</small>
+                <small>Michael Arocho</small>
+                <small>Alexandra Croce</small>
+                <small>Nicholas DiGirolamo</small>
             </div>
             <div>
                 <ProfilePhoto url="../default-profile.png" />
