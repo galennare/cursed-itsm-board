@@ -382,19 +382,6 @@ function App() {
                         ></NavigationBar>
                     </div>
                 </header>
-                <div style={{ backgroundColor: "#8096c06e" }}>
-                    <div className="buttons">
-                        <div>
-                            <TicketButton></TicketButton>
-                        </div>
-                        <div>
-                            <ViewMyWork></ViewMyWork>
-                        </div>
-                        <div style={{ paddingLeft: "915px" }}>
-                            <Preferences></Preferences>
-                        </div>
-                    </div>
-                </div>
                 <div
                     className="row"
                     style={{ width: "100%", display: "table" }}
