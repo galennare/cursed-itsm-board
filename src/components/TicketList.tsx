@@ -31,6 +31,21 @@ export function TicketList({
     list: Ticket[];
     setList: (list: Ticket[]) => void;
 }): JSX.Element {
+    function deleteTicket(ticket: Ticket): void {
+        // check for permission to delete
+        if (allowedToDrop(userRole, requiredRole)) {
+            // delete the ticket
+            const ticketIndex = list.findIndex(
+                (q: Ticket) => q.id == ticket.id
+            );
+            const newList = [...list];
+            if (ticketIndex > -1) newList.splice(ticketIndex, 1);
+            setList(newList);
+        } else {
+            alert("You do not have permission to delete this ticket.");
+        }
+    }
+
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
@@ -67,7 +82,11 @@ export function TicketList({
         >
             <h1>{title}</h1>
             {list.map((ticket: Ticket) => (
-                <TicketItem key={ticket.id} ticket={ticket} />
+                <TicketItem
+                    key={ticket.id}
+                    ticket={ticket}
+                    deleteTicket={deleteTicket}
+                />
             ))}
             <div style={{ flex: "1 1 0%" }} />
         </div>
