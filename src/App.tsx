@@ -381,10 +381,10 @@ function App() {
                 </header>
                 <div style={{ backgroundColor: "#8096c06e" }}>
                     <div>
-                        <small>
+                        <h1 style={{ paddingLeft: "915px" }}>
                             Team 3: Galen Nare, Solenn Gacon, Michael Arocho,
                             Andrew Roberts, Alexandra Croce, Nicholas DiGirolamo
-                        </small>
+                        </h1>
                     </div>
                 </div>
                 <div
