@@ -78,16 +78,7 @@ export function AdminList({
             accept: "TicketItem",
             drop: (ticket: Ticket) => {
                 if (allowedToDrop(userRole, requiredRole)) {
-                    if (
-                        adminList.find(
-                            (oldTicket: Ticket): boolean =>
-                                oldTicket.id == ticket.id
-                        )
-                    ) {
-                        alert("That ticket is already in that list!");
-                    } else {
-                        setAdminList([...adminList, ticket]);
-                    }
+                    setAdminList([...adminList, ticket]);
                 } else {
                     alert("You do not have permission to add to that list.");
                 }
