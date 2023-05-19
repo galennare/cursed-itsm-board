@@ -41,7 +41,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element {
     return (
         <span className="title">
             <div>
-                <b>Cursed ITSM Ticketing System</b>
+                <b>ITSM Ticketing System</b>
             </div>
             <div>
                 User selected:
