@@ -31,6 +31,10 @@ export function TicketList({
     list: Ticket[];
     setList: (list: Ticket[]) => void;
 }): JSX.Element {
+    const handleDelete = (itemId: string) => {
+        const updatedList = list.filter((item) => item.id !== itemId);
+        setList(updatedList);
+    };
     const [, drop] = useDrop(
         () => ({
             accept: "TicketItem",
@@ -67,7 +71,14 @@ export function TicketList({
         >
             <h1>{title}</h1>
             {list.map((ticket: Ticket) => (
-                <TicketItem key={ticket.id} ticket={ticket} />
+                <TicketItem
+                    key={ticket.id}
+                    ticketItem={ticket}
+                    onDelete={() => handleDelete(ticket.id)}
+                    ticket={{
+                        ticket: ticket
+                    }}
+                />
             ))}
             <div style={{ flex: "1 1 0%" }} />
         </div>

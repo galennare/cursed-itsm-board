@@ -5,6 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
 import { v4 } from "uuid";
+import { ChildProps } from "./TicketItem";
 
 test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);
@@ -24,15 +25,31 @@ beforeEach(() => {
         image_path: "path_to_image"
     };
 
-    function TicketItemHookWrapper(): JSX.Element {
+    function TicketItemHookWrapper({ ticket }: ChildProps): JSX.Element {
         return (
             <DndProvider backend={HTML5Backend}>
-                <TicketItem ticket={newTicket} />
+                <TicketItem
+                    ticket={ticket}
+                    onDelete={function (): void {
+                        throw new Error("Function not implemented.");
+                    }}
+                    ticketItem={newTicket}
+                />
             </DndProvider>
         );
     }
 
-    render(<TicketItemHookWrapper />);
+    render(
+        <TicketItemHookWrapper
+            onDelete={function (): void {
+                throw new Error("Function not implemented.");
+            }}
+            ticket={{
+                ticket: newTicket
+            }}
+            ticketItem={newTicket}
+        />
+    );
 });
 
 test("There is a TicketItem", () => {

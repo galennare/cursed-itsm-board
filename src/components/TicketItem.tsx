@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
+import { Button } from "react-bootstrap";
+import { centralProps } from "../App";
 
 /*
     KEY PART OF MVP #########################################################
@@ -27,13 +29,24 @@ import { Ticket } from "../Interface/TicketInterface";
     current user is in order to determine whether the text fields should be
     editable.
  */
-export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
+
+export interface ChildProps {
+    ticket: { ticket: Ticket };
+    ticketItem: Ticket;
+    onDelete: () => void;
+}
+
+export function TicketItem({
+    ticket,
+    onDelete,
+    ticketItem
+}: ChildProps): JSX.Element {
     const [, drag] = useDrag(() => ({
         type: "TicketItem",
         item: ticket
     }));
     let visible = false;
-    if (ticket.priority === 0) {
+    if (ticketItem.priority === 0) {
         visible = true;
     }
     const [shouldShowImage, setShouldShowImage] = useState(true);
@@ -41,7 +54,7 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
     return (
         <div
             role="ticket_item"
-            key={ticket.id}
+            key={ticketItem.id}
             ref={drag}
             style={{
                 border: "5px solid black",
@@ -49,15 +62,25 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 flex: "0 0 auto"
             }}
         >
-            <h1>{ticket.title}</h1>
-            <h4>Author: {ticket.author}</h4>
-            <h4>Assigned To: {ticket.assignee}</h4>
-            <div>
-                Status: {ticket.status} Priority: {ticket.priority}
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    padding: "10px",
+                    paddingBottom: "0px"
+                }}
+            >
+                <Button onClick={onDelete}>Delete</Button>
             </div>
-            <p>{ticket.description}</p>
+            <h1>{ticketItem.title}</h1>
+            <h4>Author: {ticketItem.author}</h4>
+            <h4>Assigned To: {ticketItem.assignee}</h4>
             <div>
-                {ticket.status === "Pending" ? (
+                Status: {ticketItem.status} Priority: {ticketItem.priority}
+            </div>
+            <p>{ticketItem.description}</p>
+            <div>
+                {ticketItem.status === "Pending" ? (
                     <img
                         id="frogEggs"
                         src={require("../frogEggs.png")}
@@ -67,7 +90,7 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 ) : null}
             </div>
             <div>
-                {ticket.status === "In-Progress" ? (
+                {ticketItem.status === "In-Progress" ? (
                     <img
                         id="tadpole"
                         src={require("../bestTadpole.png")}
@@ -76,7 +99,7 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 ) : null}
             </div>
             <div>
-                {ticket.status === "Resolved" ? (
+                {ticketItem.status === "Resolved" ? (
                     <img
                         id="finalFrog"
                         src={require("../froggy.png")}

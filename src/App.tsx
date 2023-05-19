@@ -103,6 +103,14 @@ function App() {
 
     const [revealCreator, setRevealCreator] = useState<boolean>(false);
 
+    function deleteTicket(ticket: Ticket): void {
+        let newList = [...centralList];
+        newList = centralList.filter(
+            (cenTicket: Ticket): boolean => cenTicket !== ticket
+        );
+        setCentralList(newList);
+    }
+
     return (
         <div className="App">
             <DndProvider backend={HTML5Backend}>
