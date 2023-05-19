@@ -27,12 +27,17 @@ beforeEach(() => {
         image_path: "path_to_image"
     };
 
+    function mockDeleteTicket(ticket: Ticket): void {
+        return;
+    }
+
     function TicketItemHookWrapper(): JSX.Element {
         return (
             <DndProvider backend={HTML5Backend}>
                 <TicketItemEditable
                     ticket={newTicket}
                     ticketSetter={ticketSetter}
+                    deleteTicket={mockDeleteTicket}
                 />
             </DndProvider>
         );
