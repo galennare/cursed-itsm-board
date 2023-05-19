@@ -1,9 +1,6 @@
 import React, { useCallback, useState } from "react";
 import "./App.css";
-import { TicketButton } from "./components/TicketButton";
 import { NavigationBar, UserRole } from "./components/NavigationBar";
-import { Preferences } from "./components/Preferences";
-import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
@@ -383,16 +380,11 @@ function App() {
                     </div>
                 </header>
                 <div style={{ backgroundColor: "#8096c06e" }}>
-                    <div className="buttons">
-                        <div>
-                            <TicketButton></TicketButton>
-                        </div>
-                        <div>
-                            <ViewMyWork></ViewMyWork>
-                        </div>
-                        <div style={{ paddingLeft: "915px" }}>
-                            <Preferences></Preferences>
-                        </div>
+                    <div>
+                        <small style={{ paddingRight: "800px" }}>
+                            Team 3: Galen Nare, Solenn Gacon, Michael Arocho,
+                            Andrew Roberts, Alexandra Croce, Nicholas DiGirolamo
+                        </small>
                     </div>
                 </div>
                 <div
