@@ -54,12 +54,6 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element {
                 ></UserSort>
             </div>
             <div>
-                <small>
-                    T3: Galen N., Solenn G., Andrew R., Michael A., Alexandra
-                    C., Nicholas D.
-                </small>
-            </div>
-            <div>
                 <ProfilePhoto url="../default-profile.png" />
             </div>
         </span>
