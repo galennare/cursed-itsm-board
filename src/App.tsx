@@ -1,9 +1,6 @@
 import React, { useCallback, useState } from "react";
 import "./App.css";
-import { TicketButton } from "./components/TicketButton";
 import { NavigationBar, UserRole } from "./components/NavigationBar";
-import { Preferences } from "./components/Preferences";
-import { ViewMyWork } from "./components/ViewMyWork";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { Ticket } from "./Interface/TicketInterface";
 import { TicketList } from "./components/TicketList";
