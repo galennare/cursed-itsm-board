@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { screen, render } from "@testing-library/react";
-import { TicketItem } from "./TicketItem";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
-import { v4 } from "uuid";
+import { TicketItemEditable } from "./TicketItemEditable";
 
 test("There is a TicketItem", () => {
     const ticketAuthor = screen.getByText(/Author/i);
@@ -12,8 +11,12 @@ test("There is a TicketItem", () => {
 });
 
 beforeEach(() => {
+    function ticketSetter(ticket: Ticket): void {
+        console.log(`'${ticket.title}' was set.`);
+    }
+
     const newTicket: Ticket = {
-        id: v4(),
+        id: "1",
         title: "Computer Issues",
         description: "This is the description for ticket one.",
         priority: 0,
@@ -27,7 +30,10 @@ beforeEach(() => {
     function TicketItemHookWrapper(): JSX.Element {
         return (
             <DndProvider backend={HTML5Backend}>
-                <TicketItem ticket={newTicket} />
+                <TicketItemEditable
+                    ticket={newTicket}
+                    ticketSetter={ticketSetter}
+                />
             </DndProvider>
         );
     }
@@ -36,11 +42,17 @@ beforeEach(() => {
 });
 
 test("There is a TicketItem", () => {
+    const ticketTitle = screen.getByText(/Title/i);
     const ticketAuthor = screen.getByText(/Author/i);
-    const ticketPriority = screen.getByText(/Priority/i);
+    const ticketAssignee = screen.getByText(/Assignee/i);
+    const ticketDescription = screen.getByText(/Description/i);
     const ticketStatus = screen.getByText(/Status/i);
+    const ticketPriority = screen.getByText(/Priority/i);
 
     expect(ticketAuthor).toBeInTheDocument();
-    expect(ticketPriority).toBeInTheDocument();
+    expect(ticketTitle).toBeInTheDocument();
+    expect(ticketAssignee).toBeInTheDocument();
+    expect(ticketDescription).toBeInTheDocument();
     expect(ticketStatus).toBeInTheDocument();
+    expect(ticketPriority).toBeInTheDocument();
 });
