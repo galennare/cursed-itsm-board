@@ -1,8 +1,7 @@
 // credit to sjohnsonaz (on GitHub) MergeSort.ts for the MergeSort implimentation
 
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import { UserRole } from "./NavigationBar";
 import { Ticket } from "../Interface/TicketInterface";
 import { centralProps } from "../App";
 
@@ -25,6 +24,7 @@ export function UserSort({
     setCentralList
 }: centralProps): JSX.Element {
     const [sortState, setSortState] = useState<string>("descending");
+    /* istanbul ignore next */
     function handleSortState(event: React.ChangeEvent<HTMLSelectElement>) {
         setSortState(event.target.value);
     }

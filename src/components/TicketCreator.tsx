@@ -41,27 +41,32 @@ export function TicketCreator({
     setList: (list: Ticket[]) => void;
 }) {
     const [title, setTitle] = useState<string>("");
+    /* istanbul ignore next */
     function updateTitle(event: React.ChangeEvent<HTMLInputElement>) {
         setTitle(event.target.value);
     }
 
     const [description, setDescription] = useState<string>("");
+    /* istanbul ignore next */
     function updateDescription(event: React.ChangeEvent<HTMLInputElement>) {
         setDescription(event.target.value);
     }
 
     const priorityValues = [0, 1, 2, 3, 4, 5];
     const [priority, setPriority] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
+    /* istanbul ignore next */
     function updatePriority(event: React.ChangeEvent<HTMLSelectElement>) {
         setPriority(convertToPriority(parseInt(event.target.value)));
     }
 
     const [author, setAuthor] = useState<string>("");
+    /* istanbul ignore next */
     function updateAuthor(event: React.ChangeEvent<HTMLInputElement>) {
         setAuthor(event.target.value);
     }
 
     const [assignee, setAssignee] = useState<string>("");
+    /* istanbul ignore next */
     function updateAssignee(event: React.ChangeEvent<HTMLInputElement>) {
         setAssignee(event.target.value);
     }

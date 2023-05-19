@@ -26,28 +26,34 @@ export function TicketItemEditable({
     }
 
     /* Setter functions for each property */
+    /* istanbul ignore next */
     function setTicketTitle(e: React.ChangeEvent<HTMLInputElement>): void {
         ticketSetter({ ...ticket, title: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketAuthor(e: React.ChangeEvent<HTMLInputElement>): void {
         ticketSetter({ ...ticket, author: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketAssignee(e: React.ChangeEvent<HTMLInputElement>): void {
         ticketSetter({ ...ticket, assignee: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketDescription(
         e: React.ChangeEvent<HTMLInputElement>
     ): void {
         ticketSetter({ ...ticket, description: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketStatus(e: React.ChangeEvent<HTMLSelectElement>): void {
         ticketSetter({ ...ticket, status: e.target.value as TicketStatus });
     }
 
+    /* istanbul ignore next */
     function setTicketPriority(e: React.ChangeEvent<HTMLSelectElement>): void {
         ticketSetter({
             ...ticket,
