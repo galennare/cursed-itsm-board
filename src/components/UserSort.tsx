@@ -24,7 +24,6 @@ export function UserSort({
     setCentralList
 }: centralProps): JSX.Element {
     const [sortState, setSortState] = useState<string>("descending");
-    /* istanbul ignore next */
     function handleSortState(event: React.ChangeEvent<HTMLSelectElement>) {
         setSortState(event.target.value);
     }
