@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Ticket } from "../Interface/TicketInterface";
+import { Button } from "react-bootstrap";
 
 /*
     KEY PART OF MVP #########################################################
@@ -27,7 +28,17 @@ import { Ticket } from "../Interface/TicketInterface";
     current user is in order to determine whether the text fields should be
     editable.
  */
-export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
+export function TicketItem({
+    ticket,
+    deleteTicket
+}: {
+    ticket: Ticket;
+    deleteTicket: (ticket: Ticket) => void;
+}): JSX.Element {
+    function deleteCurrentTicket(): void {
+        deleteTicket(ticket);
+    }
+
     const [, drag] = useDrag(() => ({
         type: "TicketItem",
         item: ticket
@@ -49,6 +60,16 @@ export function TicketItem({ ticket }: { ticket: Ticket }): JSX.Element {
                 flex: "0 0 auto"
             }}
         >
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    padding: "10px",
+                    paddingBottom: "0px"
+                }}
+            >
+                <Button onClick={deleteCurrentTicket}>Delete</Button>
+            </div>
             <h1>{ticket.title}</h1>
             <h4>Author: {ticket.author}</h4>
             <h4>Assigned To: {ticket.assignee}</h4>

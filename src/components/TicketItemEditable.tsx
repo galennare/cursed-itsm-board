@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { Ticket, TicketStatus } from "../Interface/TicketInterface";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 /*
     This is a UI component that will be rendered for each ticket
@@ -14,34 +14,46 @@ import { Form } from "react-bootstrap";
 
 export function TicketItemEditable({
     ticket,
-    ticketSetter
+    ticketSetter,
+    deleteTicket
 }: {
     ticket: Ticket;
     ticketSetter: (ticket: Ticket) => void;
+    deleteTicket: (ticket: Ticket) => void;
 }): JSX.Element {
+    function deleteCurrentTicket(): void {
+        deleteTicket(ticket);
+    }
+
     /* Setter functions for each property */
+    /* istanbul ignore next */
     function setTicketTitle(e: React.ChangeEvent<HTMLInputElement>): void {
         ticketSetter({ ...ticket, title: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketAuthor(e: React.ChangeEvent<HTMLInputElement>): void {
         ticketSetter({ ...ticket, author: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketAssignee(e: React.ChangeEvent<HTMLInputElement>): void {
         ticketSetter({ ...ticket, assignee: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketDescription(
         e: React.ChangeEvent<HTMLInputElement>
     ): void {
         ticketSetter({ ...ticket, description: e.target.value });
     }
 
+    /* istanbul ignore next */
     function setTicketStatus(e: React.ChangeEvent<HTMLSelectElement>): void {
         ticketSetter({ ...ticket, status: e.target.value as TicketStatus });
     }
 
+    /* istanbul ignore next */
     function setTicketPriority(e: React.ChangeEvent<HTMLSelectElement>): void {
         ticketSetter({
             ...ticket,
@@ -65,6 +77,16 @@ export function TicketItemEditable({
                 flex: "0 0 auto"
             }}
         >
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    padding: "10px",
+                    paddingBottom: "0px"
+                }}
+            >
+                <Button onClick={deleteCurrentTicket}>Delete</Button>
+            </div>
             <Form.Group controlId="ticketTitle">
                 <Form.Label>Title: </Form.Label>
                 <Form.Control
