@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/cursed-itsm-board/static/css/main.d00dfd77.css",
-    "main.js": "/cursed-itsm-board/static/js/main.e4cd5fed.js",
+    "main.css": "/cursed-itsm-board/static/css/main.eeaf9b35.css",
+    "main.js": "/cursed-itsm-board/static/js/main.ab800dfd.js",
     "static/js/787.886e8bed.chunk.js": "/cursed-itsm-board/static/js/787.886e8bed.chunk.js",
+    "static/media/frogEggs.png": "/cursed-itsm-board/static/media/frogEggs.b4cbbf1de6f0d7edb3ce.png",
+    "static/media/bestTadpole.png": "/cursed-itsm-board/static/media/bestTadpole.624b186ab187c8709179.png",
+    "static/media/froggy.png": "/cursed-itsm-board/static/media/froggy.1c9351f4869539d06b6a.png",
     "index.html": "/cursed-itsm-board/index.html",
-    "main.d00dfd77.css.map": "/cursed-itsm-board/static/css/main.d00dfd77.css.map",
-    "main.e4cd5fed.js.map": "/cursed-itsm-board/static/js/main.e4cd5fed.js.map",
+    "main.eeaf9b35.css.map": "/cursed-itsm-board/static/css/main.eeaf9b35.css.map",
+    "main.ab800dfd.js.map": "/cursed-itsm-board/static/js/main.ab800dfd.js.map",
     "787.886e8bed.chunk.js.map": "/cursed-itsm-board/static/js/787.886e8bed.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d00dfd77.css",
-    "static/js/main.e4cd5fed.js"
+    "static/css/main.eeaf9b35.css",
+    "static/js/main.ab800dfd.js"
   ]
 }
