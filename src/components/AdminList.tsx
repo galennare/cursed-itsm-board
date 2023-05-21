@@ -48,6 +48,21 @@ export function AdminList({
     setAdminList: StateSetter<Ticket[]>;
     setCentralList: StateSetter<Ticket[]>;
 }): JSX.Element {
+    function deleteTicket(ticket: Ticket): void {
+        // check for permission to delete
+        if (allowedToDrop(userRole, requiredRole)) {
+            // delete the ticket
+            const ticketIndex = adminList.findIndex(
+                (q: Ticket) => q.id == ticket.id
+            );
+            const newList = [...adminList];
+            if (ticketIndex > -1) newList.splice(ticketIndex, 1);
+            setAdminList(newList);
+        } else {
+            alert("You do not have permission to delete this ticket.");
+        }
+    }
+
     function ticketSetter(ticket: Ticket): void {
         // update ticket properties in admin list
         const adminIndex = adminList.findIndex(
@@ -78,16 +93,7 @@ export function AdminList({
             accept: "TicketItem",
             drop: (ticket: Ticket) => {
                 if (allowedToDrop(userRole, requiredRole)) {
-                    if (
-                        adminList.find(
-                            (oldTicket: Ticket): boolean =>
-                                oldTicket.id == ticket.id
-                        )
-                    ) {
-                        alert("That ticket is already in that list!");
-                    } else {
-                        setAdminList([...adminList, ticket]);
-                    }
+                    setAdminList([...adminList, ticket]);
                 } else {
                     alert("You do not have permission to add to that list.");
                 }
@@ -113,6 +119,7 @@ export function AdminList({
                     key={ticket.id}
                     ticket={ticket}
                     ticketSetter={ticketSetter}
+                    deleteTicket={deleteTicket}
                 />
             ))}
             <div style={{ flex: "1 1 0%" }} />
